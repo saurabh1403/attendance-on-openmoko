@@ -1,0 +1,12 @@
+. /usr/local/openmoko/arm/setup-env
+
+export PKG_CONFIG_PATH="/home/saurabhg/moko/build/tmp/staging/arm-angstrom-linux-gnueabi/usr/lib/pkgconfig"
+
+export OMDIR="/home/saurabhg/moko"
+
+echo $PKG_CONFIG_PATH
+echo $OMDIR
+
+# /home/saurabhg/moko/build/tmp/cross/arm-angstrom-linux-gnueabi/bin/gcc main.c -o neo_gui `/home/saurabhg/moko/build/tmp/staging/i686-linux/usr/bin/pkg-config --cflags --libs gtk+-2.0`
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/bin/gcc  main.c -o neo_gui `pkg-config --cflags --libs gtk+-2.0`
