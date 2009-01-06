@@ -1,0 +1,3 @@
+
+program for chatting between  two systems. 
+run server code with no arguments and client code with the IP address of the other chat system(use 127.0.0.1 for local chatting).
