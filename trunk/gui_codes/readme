@@ -1,4 +1,3 @@
+gui_hello_world: gtk code for hello world
 
-gui_codes: the checkout repo of gui codes. 
-
-test_gui_neo: gui codes for neo. codes are written here first then committed in the gui_codes repo.
+test_gui_neo: gui codes for neo. includes test codes for testing various gtk functions
