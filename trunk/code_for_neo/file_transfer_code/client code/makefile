@@ -1,7 +1,7 @@
 
-SRC = client.c
+SRC = client.cpp
 
-GCC = gcc
+GCC = g++
 GCC_OM = /home/saurabhg/moko/build/tmp/cross/arm-angstrom-linux-gnueabi/bin/gcc
 
 test: ${SRC}
