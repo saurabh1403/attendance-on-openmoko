@@ -17,6 +17,8 @@
 #include<fstream>
 
 using namespace std;
+//using std::ios;
+//using std::ofstream;
 
 #define PORT "3490"  // the port users will be connecting to
 
@@ -27,6 +29,8 @@ using namespace std;
 char term_string[10]= "EOF";
 
 int receive_file(int);
+inline int receive_string(int new_fd, char *buff, int max_data_size);
+
 
 void sigchld_handler(int s)
 {
@@ -43,7 +47,7 @@ void *get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-inline int receive_string(int,char*,int);
+
 
 
 int main(void)
@@ -90,7 +94,8 @@ int main(void)
 		break;
 	}
 
-	if (p == NULL)  {
+	if (p == NULL)  
+	{
 		fprintf(stderr, "server: failed to bind\n");
 		return 2;
 	}
@@ -110,7 +115,7 @@ int main(void)
 		exit(1);
 	}
 
-	printf("server: waiting for connections...\n");
+	cout<<"server: waiting for connections...\n";
 
 	new_fd = -1;
 	while(1)  // main accept() loop
@@ -124,7 +129,7 @@ int main(void)
 		}
 
 	inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr *)&their_addr),s, sizeof s);
-	printf("server: got connection from %s\n", s);
+	cout<<"server: got connection from"<< s<<endl;
 
 	if(!fork())
 	{
@@ -141,12 +146,12 @@ int main(void)
 
 		else if(strcmp(buff,"FILE")==0)
 		{
-			printf("\nfile is coming\n");
+			cout<<"\nfile is coming\n";
 			receive_file(new_fd);
 		}
 
 		else
-			printf("wrong signal\n");
+			cout<<"wrong signal\n";
 			
 		fcloseall();
 		close(new_fd);
@@ -159,7 +164,11 @@ int main(void)
 
 }
 
-
+/* receives the data string across the socket
+ * new_fd: socket descriptor for the listening socket
+ * buff: pointer to the data where the recieved data is to be stored
+ * max_data_size: maximum length of the buff in bytes 
+ * returns 1 on success and -1 on failure */
 inline int receive_string(int new_fd, char *buff, int max_data_size)
 {
 	int numbytes;
@@ -170,7 +179,7 @@ inline int receive_string(int new_fd, char *buff, int max_data_size)
 	{
 		perror("receive");		
 		fcloseall();
-		return 0;
+		return -1;
 	}
 
 	numbytes = send(new_fd, "ok", 2, 0);
@@ -179,34 +188,42 @@ inline int receive_string(int new_fd, char *buff, int max_data_size)
 	{
 		perror("send");
 		fcloseall();
-		return 0;
+		return -1;
 	}
 
 	return 1;
 }
 
 
+/* receives a file across a socket
+ * new_fd: socket file descriptor
+ * returns 1 on success and -1 on failure */
 int receive_file(int new_fd)			//return 0 on failure and 1 on success
 {
-	FILE *fp;
+
 	char buff[MAXDATASIZE],flag=1;
 
 	int numbytes;
 
-	printf("\n*************************file transfer has begun*********************\n");
+	cout<<"\n*************************file transfer has begun*********************\n";
 
 	receive_string(new_fd, buff, MAXDATASIZE);
-		printf("\nthe file is %s\n",buff);
+	cout<<"\nthe file is "<<buff<<endl;
 
-	fp=fopen(buff,"w+");
-//	ofstream out_file(buff,ios::out);
+	ofstream out_file(buff,ios::out);
 
-//	assert(fp!=NULL);
+	if(!out_file)
+	{
+		cerr<<"error in opening the file\n";
+		return -1;
+	}
 
 	while(flag)
 	{
-
 		flag=receive_string(new_fd,buff,MAXDATASIZE);
+		
+		if(flag<0)
+			return -1;
 
 		if(strcmp(buff,"data")==0)
 			flag=1;
@@ -217,29 +234,18 @@ int receive_file(int new_fd)			//return 0 on failure and 1 on success
 		else
 		{
 			flag = 0;
-			return 0;
+			return -1;
 		}
 
 		if(flag!=0)
 		{
 			receive_string(new_fd,buff,MAXDATASIZE);
-			fprintf(fp,"%c",buff[0]);
+			out_file<<buff[0];
 		}
-
-/*		if(strcmp(buff,term_string)==0)
-		{
-			flag=0;
-		}
-
-		else if(flag!=0)
-		{
-			fprintf(fp,"%s ",buff);
-		}
-*/
 
 	}		//end of  while
 
-	fclose(fp);
+	return 1;
 }
 
 
