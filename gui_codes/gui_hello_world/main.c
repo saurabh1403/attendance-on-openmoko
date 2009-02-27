@@ -22,10 +22,10 @@ gchar *world = "World";
 GtkWidget *label;
 gchar *labeltext;
 
-void buttoncb(GtkWidget *widget, gint data)
+void buttoncb(GtkWidget *widget, gpointer data)
 {
 	
-	printf("clicked %d\n",data);
+	printf("clicked %d\n",*(gint*)data);
 if (labeltext == hello)
    {
    labeltext = world;
@@ -40,14 +40,17 @@ int main(int argc, char *argv[])
 GtkWidget *window;
 GtkWidget *button;
 
+gint a = 23;
+
 gtk_init(&argc, &argv);
 window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 button = gtk_button_new();
 labeltext = hello;
 label = gtk_label_new(labeltext);
 gtk_container_add(GTK_CONTAINER(button), label);
-g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(buttoncb), 23);
+g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(buttoncb),&(a));
 gtk_container_add(GTK_CONTAINER(window), button);
+gtk_widget_set_size_request ( window, 300, 300 ) ;
 gtk_widget_show_all(window);
 gtk_main();
 

@@ -13,6 +13,10 @@
 #include <signal.h>
 #include <assert.h>
 
+#include<iostream>
+#include<fstream>
+
+using namespace std;
 
 #define PORT "3490"  // the port users will be connecting to
 
@@ -50,7 +54,7 @@ int main(void)
 	socklen_t sin_size;
 	struct sigaction sa;
 	int yes=1;
-	char s[INET6_ADDRSTRLEN], buff[MAXDATASIZE]="hello";
+	char s[INET6_ADDRSTRLEN], buff[MAXDATASIZE];
 	int rv,pid,numbytes,status,flag;
 
 	memset(&hints, 0, sizeof hints);
@@ -127,20 +131,20 @@ int main(void)
 		close(sockfd);
 
 		flag=receive_string(new_fd,buff,MAXDATASIZE);
-		
+
 		if(flag==0)
 		{
 			fcloseall();
 			close(new_fd);
 			exit(0);
-		}			
+		}
 
 		else if(strcmp(buff,"FILE")==0)
 		{
-			printf("\nfile has come\n");
+			printf("\nfile is coming\n");
 			receive_file(new_fd);
 		}
-		
+
 		else
 			printf("wrong signal\n");
 			
@@ -148,7 +152,7 @@ int main(void)
 		close(new_fd);
 		exit(0);
 	}
-	
+
 	close(new_fd);
 }
     return 0;
@@ -161,6 +165,7 @@ inline int receive_string(int new_fd, char *buff, int max_data_size)
 	int numbytes;
 	numbytes = recv(new_fd, buff, max_data_size-1, 0);
 	buff[numbytes] = '\0';
+
 	if (numbytes == -1||numbytes ==0)
 	{
 		perror("receive");		
@@ -176,15 +181,16 @@ inline int receive_string(int new_fd, char *buff, int max_data_size)
 		fcloseall();
 		return 0;
 	}
-	
+
 	return 1;
-}	
+}
 
 
 int receive_file(int new_fd)			//return 0 on failure and 1 on success
 {
 	FILE *fp;
 	char buff[MAXDATASIZE],flag=1;
+
 	int numbytes;
 
 	printf("\n*************************file transfer has begun*********************\n");
@@ -193,22 +199,43 @@ int receive_file(int new_fd)			//return 0 on failure and 1 on success
 		printf("\nthe file is %s\n",buff);
 
 	fp=fopen(buff,"w+");
-	assert(fp!=NULL);
+//	ofstream out_file(buff,ios::out);
+
+//	assert(fp!=NULL);
 
 	while(flag)
 	{
 
 		flag=receive_string(new_fd,buff,MAXDATASIZE);
-		
-		if(strcmp(buff,term_string)==0)
+
+		if(strcmp(buff,"data")==0)
+			flag=1;
+
+		else if(strcmp(buff,term_string)==0)
+			flag=0;
+
+		else
+		{
+			flag = 0;
+			return 0;
+		}
+
+		if(flag!=0)
+		{
+			receive_string(new_fd,buff,MAXDATASIZE);
+			fprintf(fp,"%c",buff[0]);
+		}
+
+/*		if(strcmp(buff,term_string)==0)
 		{
 			flag=0;
 		}
-		
+
 		else if(flag!=0)
 		{
 			fprintf(fp,"%s ",buff);
 		}
+*/
 
 	}		//end of  while
 

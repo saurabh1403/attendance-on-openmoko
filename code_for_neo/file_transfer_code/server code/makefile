@@ -1,8 +1,11 @@
 
-SRC = server.c
+SRC = server.cpp
 
-GCC = gcc
+GCC = g++
+
 GCC_OM = /home/saurabhg/moko/build/tmp/cross/arm-angstrom-linux-gnueabi/bin/gcc
+
+all: test neo_test
 
 test: ${SRC}
 	$(GCC)  -lm -o $@ ${SRC}
