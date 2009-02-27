@@ -18,9 +18,9 @@
 
 using namespace std;
 
-int send_char(int sockfd, char buff);
+int send_data(int sockfd, const void * data, int size=1 );
 int send_file(int sockfd);
-int send_string(int sockfd, const char *buff, int max_data_size);
+int send_string(int sockfd, const char *buff);
 
 #define PORT "3490" // the port client will be connecting to 
 
@@ -99,7 +99,6 @@ int main(int argc, char *argv[])
 
 	freeaddrinfo(servinfo); // all done with this structure
 	
-	
 	send_file(sockfd);
 
     close(sockfd);
@@ -107,49 +106,63 @@ int main(int argc, char *argv[])
 }
 
 
+/* sends a file across a socket
+ * sockfd: socket file descriptor
+ * returns 1 on success and -1 on failure */
 int send_file(int sockfd)
 {
 
 	string buff("");
 	string file_name;
-	FILE *fp;
 
 	cout<<"\nenter the name of the file\n";
 	cin>>file_name;
 
 	ifstream filehandle(file_name.c_str(),ios::in);
+	
+	if(!filehandle)
+	{
+		cerr<<"error in opening the file\n";
+		return -1;
+	}
 
 	buff+="FILE";
 
-	send_string(sockfd,buff.c_str(),MAXDATASIZE);
-	send_string(sockfd, file_name.c_str(), file_name.length());
+	send_string(sockfd,buff.c_str());
+	send_string(sockfd, file_name.c_str());
 
+	char data;
+	int data_i;
 
 	while(!filehandle.eof())
 	{
-		char data;
-		send_string(sockfd,"data",4);
+
+		send_string(sockfd,"data");
 		filehandle.get(data);
 		cout<<data;
-		send_char(sockfd, data);
+		data_i = data;
+		send_data(sockfd, &data);
 	}
 
-	send_string(sockfd,term_string,3);
-//	send_char(sockfd, 4);
-//	send_char(sockfd,0);
+	send_string(sockfd,term_string);
 
-	fcloseall();
+//	fcloseall();
+	
+	return 1;
 
 }
 
-
-int send_char(int sockfd, const char data)
+/* sends the data across the socket 
+ * sockfd: socket descriptor for the socket made
+ * data: pointer to the data to be sent
+ * size: size of the data in bytes. default is for char i.e. size = 1*/
+int send_data(int sockfd, const void * data, int size )
 {
 	int numbytes;
 	char buff[5];
 
-	numbytes = send(sockfd,&data,1 , 0);
-
+	numbytes = send(sockfd,data,size , 0);
+ 
 	if ( numbytes== -1 || numbytes < 1)
 	{
 		perror("send");
@@ -169,12 +182,14 @@ int send_char(int sockfd, const char data)
 		exit(0);
 	}
 
-
 	return 1;
 }
 
 
-int send_string(int sockfd, const char *buff, int max_data_size)
+/* sends a string across the socket 
+ * sockfd: socket descriptor for the socket made
+ * buff: pointer to the string to be sent */
+int send_string(int sockfd, const char *buff)
 {
 	int numbytes;
 	char buff_t[5];
@@ -198,7 +213,6 @@ int send_string(int sockfd, const char *buff, int max_data_size)
 		fcloseall();
 		exit(0);
 	}
-	
 
 	return 1;
 }
