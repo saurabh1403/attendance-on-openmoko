@@ -1,16 +1,18 @@
 
 <?php
 
-$host = "192.168.1.144";
-$port = 3490;
-$term_string = "EO11F";
+//phpinfo();
 
-printf("$term_string");
-
+//$host = "192.168.1.144";
+//$port = 3490;
 
 $sqlSchema = array(
-	"CREATE TABLE pcd_meta ( key1 varchar(10), value TEXT NOT NULL, PRIMARY KEY(key1) )");
+	"CREATE TABLE student_attendance ( roll_number varchar(30) not null autoincrement, name TEXT NOT NULL, PRIMARY KEY(roll_number) )",
+	"INSERT INTO pcd_meta values('saurabh1','gupta')",
+	"SELECT * from pcd_meta"
+	);
 
+$names = array("saurabh","vijay","sunny");
 
 $con = mysql_connect("localhost","root","openmoko");
 
@@ -19,122 +21,102 @@ if (!$con)
   	die('Could not connect: ' . mysql_error());
 }
 
-/*
-if (mysql_query("CREATE DATABASE my_db",$con))
+
+function create_database($db_name, $con)
 {
-  	echo "Database created";
+	$sql_query=	"CREATE DATABASE ". $db_name;
+	if (mysql_query($sql_query,$con))
+	{
+		echo $db_name ."Database created";
+	}
+
+	else
+	{
+		echo "Error creating database: " . mysql_error();
+	}
+
 }
 
-else
+function make_table($db_name, $con)
 {
-  	echo "Error creating database: " . mysql_error();
+
+	$sql_query=	"CREATE TABLE student_attendance ( roll_number INT NOT NULL AUTO_INCREMENT, name TEXT NOT NULL, PRIMARY KEY(roll_number) )";
+
+	mysql_select_db($db_name, $con);
+	
+	mysql_query	("FLUSH TABLES");
+
+	if (mysql_query($sql_query))
+	{
+		echo "Table created";
+	}
+
+	else
+	{
+		echo "Error creating table: " . mysql_error();
+	}
+
 }
 
-*/
 
-
-
-mysql_select_db("my_db", $con);
-
-if (mysql_query($sqlSchema[0],$con))
+function populate_table ($db_name, $con, $no_students, $names1)
 {
-  	echo "Database created";
+	mysql_select_db($db_name, $con);
+
+	$i;
+	
+	$sql_query="INSERT INTO student_attendance (name) values('";
+
+	for($i = 0;$i<$no_students;$i++)
+	{
+		if($i!=0)
+			$sql_query = $sql_query. "'),('";
+
+		$sql_query = $sql_query. $names1[$i];
+	}
+
+	$sql_query = $sql_query."')";
+
+	echo $sql_query."\n";
+
+
+	if (mysql_query($sql_query))
+	{
+		echo "value inserted\n";
+	}
+
+	else
+	{
+		echo "Error inserting value: " . mysql_error();
+	}
+
+
 }
 
-else
+function show_data($db_name, $con, $table_name)
 {
-  	echo "Error creating table: " . mysql_error();
+	mysql_select_db($db_name, $con);
+
+	$sql_query="SELECT * FROM ". $table_name;
+	$result = mysql_query($sql_query);
+
+while($row = mysql_fetch_array($result))
+  {
+  echo $row['roll_number'] . "\n";
+  echo $row['name'] . "\n";
+
+  }
+	
+	
+	
 }
 
-
-//mysql_query($sqlSchema[0],$con);
+create_database("my_db", $con);
+make_table("my_db",$con);
+populate_table("my_db",$con, 3, $names);
+show_data("my_db",$con, "student_attendance");
 
 mysql_close($con);
-
-
-
-/*
-// read client input
-function recv_string($spawn)
-{
-	$buff = "a";
-	$buff = socket_read($spawn, 1024);// or die("Could not read input\n");
-
-	socket_write($spawn, "ok", 2) or die("Could not write output\n");
-
-	return $buff;
-}
-
-
-function recv_file($spawn)
-{
-	$input = recv_string($spawn);
-
-	while($input != "FILE")
-	{
-		$input = recv_string($spawn);
-	}
-
-	$input = recv_string($spawn);
-	echo $input . "  file is coming\n";
-
-	$flag = 1;
-
-	$file = fopen($input,"w") or exit("file can't be opened");
-//	fseek($file, 0, SEEK_END);
-
-	while($flag == 1)
-	{
-		$input = recv_string($spawn);
-
-		if($input =="data")
-			$flag=1;
-
-//		elseif($input == $term_string)
-//			$flag  = 0;
-
-		else
-			$flag = 0;
-
-		if($flag !=0)
-		{
-			$input = recv_string($spawn);
-			echo $input;
-//			$input[1]='\0';
-			fputs($file, $input, 1);
-		}
-	
-	}
-
-	fclose($file);
-}
-
-
-echo $term_string[0]. "first letter\n";
-
-
-// don't timeout!
-set_time_limit(0);
-
-// create socket
-$socket = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
-
-// bind socket to port
-$result = socket_bind($socket, $host, $port) or die("Could not bind to socket\n");
-
-// start listening for connections
-$result = socket_listen($socket, 3) or die("Could not set up socket listener\n");
-
-// accept incoming connections
-// spawn another socket to handle communication
-$spawn = socket_accept($socket) or die("Could not accept incoming connection\n");
-
-recv_file($spawn);
-
-socket_close($spawn);
-socket_close($socket);
-*/
-
 
 ?>
 
