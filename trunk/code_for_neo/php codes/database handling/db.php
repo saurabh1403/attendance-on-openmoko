@@ -3,15 +3,6 @@
 
 //phpinfo();
 
-//$host = "192.168.1.144";
-//$port = 3490;
-
-$sqlSchema = array(
-	"CREATE TABLE student_attendance ( roll_number varchar(30) not null autoincrement, name TEXT NOT NULL, PRIMARY KEY(roll_number) )",
-	"INSERT INTO pcd_meta values('saurabh1','gupta')",
-	"SELECT * from pcd_meta"
-	);
-
 $names = array("saurabh","vijay","sunny");
 
 $con = mysql_connect("localhost","root","openmoko");
@@ -100,16 +91,53 @@ function show_data($db_name, $con, $table_name)
 	$sql_query="SELECT * FROM ". $table_name;
 	$result = mysql_query($sql_query);
 
-while($row = mysql_fetch_array($result))
-  {
-  echo $row['roll_number'] . "\n";
-  echo $row['name'] . "\n";
+	while($row = mysql_fetch_array($result))
+	{
+	  echo $row['roll_number'] . "\n";
+	  echo $row['name'] . "\n";
 
-  }
+	}
+
+}
+
+//returns nothing
+function execute_query_NR($$db_name, $con, $sql_query)	
+{
 	
+	mysql_select_db($db_name, $con);
+
+	if (mysql_query($sql_query))
+	{
+		echo "value inserted\n";
+		return 1;
+	}
+
+	else
+	{
+		echo "Error executing command: " . mysql_error();
+		return -1;
+	}
+
+	
+}
+
+
+//returns a single field
+function execute_query_single($$db_name, $con, $sql_query)	
+{
 	
 	
 }
+
+
+//returns a list with interleaved values
+function execute_query_single($$db_name, $con, $sql_query)	
+{
+	
+	
+}
+
+
 
 create_database("my_db", $con);
 make_table("my_db",$con);
