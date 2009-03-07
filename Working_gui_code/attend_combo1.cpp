@@ -16,7 +16,6 @@ typedef struct
 }Widgets;
 
 
-
 void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) 
 {
 //this is called when the toggle button is toggled.
@@ -165,3 +164,5 @@ int main(int argc, char* argv[])
 	create_first_window(argc,argv);
 	return 0;
 }
+
+
