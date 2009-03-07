@@ -1,3 +1,13 @@
+<<<<<<< .working
+vijay kumar 
+
+
+now, I have added new lines and yet to see the effect of changed lines.
+
+Lets see what svn merge does....
+
+=======
 vijay kumar 
 
 this is testing lines for testing the svn merge command and utility
+>>>>>>> .merge-right.r24
