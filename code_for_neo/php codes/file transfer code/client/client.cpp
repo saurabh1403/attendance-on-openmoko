@@ -139,8 +139,8 @@ int send_file(int sockfd)
 
 		send_string(sockfd,"data");
 		filehandle.get(data);
-		cout<<data;
-		data_i = data;
+//		cout<<data;
+//		data_i = data;
 		send_data(sockfd, &data);
 	}
 
