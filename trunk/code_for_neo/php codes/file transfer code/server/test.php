@@ -13,6 +13,7 @@ function recv_string($spawn)
 	$buff = socket_read($spawn, 1024);// or die("Could not read input\n");
 
 	socket_write($spawn, "ok", 2) or die("Could not write output\n");
+//	socket_write($spawn, "ok", 2) or return "Could not write output\n";
 	
 	return $buff;
 }
@@ -79,13 +80,14 @@ $result = socket_listen($socket, 3) or die("Could not set up socket listener\n")
 
 // accept incoming connections
 // spawn another socket to handle communication
+while(1)
+{
 $spawn = socket_accept($socket) or die("Could not accept incoming connection\n");
-
 recv_file($spawn);
+}
 
 socket_close($spawn);
 socket_close($socket);
 
 ?>
-
 
