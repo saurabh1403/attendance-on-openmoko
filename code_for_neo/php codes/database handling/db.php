@@ -131,7 +131,7 @@ function execute_query_single($$db_name, $con, $sql_query)
 
 
 //returns a list with interleaved values
-function execute_query_single($$db_name, $con, $sql_query)	
+function execute_query_list($$db_name, $con, $sql_query)	
 {
 	
 	
