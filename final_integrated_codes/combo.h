@@ -8,6 +8,9 @@
 
 #include"utils.h"
 
+#define CLASS_LIST_FILE		"class_list.txt"
+
+
 typedef struct 
 {
 	GtkWidget *window;
@@ -18,6 +21,3 @@ typedef struct
 std::string attendance_list_window(int argc, char* argv[]);
 
 
-//this the callback function it is called when the class is selceted using dropdown menu
-//This function is called when combo is selected & "DONE" button is clicked
-void combo_button_clicked(GtkWidget * button,gpointer window1); 

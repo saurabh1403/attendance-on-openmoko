@@ -22,7 +22,7 @@ int send_data(int sockfd, const void * data, int size=1 );
 int send_file(int sockfd);
 int send_string(int sockfd, const char *buff);
 
-#define PORT "3490" // the port client will be connecting to 
+#define PORT "34175" // the port client will be connecting to 
 
 #define MAXDATASIZE 100 // max number of bytes we can get at once 
 

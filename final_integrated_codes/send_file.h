@@ -24,7 +24,7 @@
  * file_name: name of the file to be sent
  * ip_address: ip address of the server whom to connect to
  * PORT: port number */
-int send_file(const std::string file_name,const char* ip_address, const char *PORT , std::string &ErrMsg);
+int send_file(const std::string file_path, const std::string file_name, const char* ip_address, const char *PORT, std::string &ErrMsg);
 
 const char term_string[]= "EOF";
 
