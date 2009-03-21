@@ -15,7 +15,7 @@ static int send_data(int sockfd, const void * data, int size=1 );
 /* sends a file across a socket
  * sockfd: socket file descriptor
  * returns 1 on success and -1 on failure */
-static int transfer_file(int sockfd, const std::string file_name, std::string &ErrMsg);
+static int transfer_file(int sockfd,const std::string file_path, const std::string file_name, std::string &ErrMsg);
 
 
 /* sends a string across the socket 
@@ -48,17 +48,18 @@ void *get_in_addr(struct sockaddr *sa)
 }
 
 
-int send_file(const std::string file_name,const char* ip_address, const char *PORT, std::string &ErrMsg)
+int send_file(const std::string file_path, const std::string file_name, const char* ip_address, const char *PORT, std::string &ErrMsg)
 {
 	int sockfd, numbytes;  
 
+	cout<<file_name<<endl<<ip_address<<endl<<PORT<<endl;
 	struct addrinfo hints, *servinfo, *p;
 	int rv,pid,flag,status;
 	char s[INET6_ADDRSTRLEN];
 
 	if(NULL == PORT)
 	{
-//	    cerr<<"usage: client hostname\n";
+	    cerr<<"usage: client hostname\n";
 	    ErrMsg+="usage: client hostname";
 	    return -1;
 	}
@@ -67,9 +68,9 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-	if ((rv = getaddrinfo(ip_address, PORT_N, &hints, &servinfo)) != 0) 
+	if ((rv = getaddrinfo(ip_address, PORT, &hints, &servinfo)) != 0) 
 	{
-//		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		ErrMsg+="getaddrinfo: ";
 		ErrMsg+= gai_strerror(rv);
 		return -1;
@@ -78,6 +79,7 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 	// loop through all the results and bind to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) 
 	{
+
 		if ( (sockfd = socket(p->ai_family, p->ai_socktype,p->ai_protocol) ) == -1) 
 		{
 			perror("client: socket");
@@ -96,7 +98,7 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 
 	if (p == NULL) 
 	{
-//		fprintf(stderr, "client: failed to connect\n");
+		fprintf(stderr, "client: failed to connect\n");
 		ErrMsg+= "client: failed to connect";
 		return -1;
 	}
@@ -106,19 +108,19 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 
 	freeaddrinfo(servinfo); // all done with this structure
 
-	status = transfer_file(sockfd, file_name, ErrMsg);
+	status = transfer_file(sockfd, file_path, file_name, ErrMsg);
 
     close(sockfd);
     return (status < 0)? -1: 1;
 }
 
 
-static int transfer_file(int sockfd, const std::string file_name, std::string &ErrMsg)
+static int transfer_file(int sockfd,const std::string file_path, const std::string file_name, std::string &ErrMsg)
 {
 
 	string buff("");
 
-	ifstream filehandle(file_name.c_str(),ios::in);
+	ifstream filehandle((file_path + file_name).c_str(),ios::in);
 
 	if(!filehandle)
 	{

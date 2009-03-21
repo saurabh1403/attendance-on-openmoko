@@ -3,8 +3,7 @@
 
 using namespace std; 
 
-string file_name= get_current_time_T();
-//file_name += ".txt";
+std::string file_name= get_current_time_sec();
 
 //string file_name("vijay.txt");
 ofstream g((get_data_folder() + file_name + ".txt").c_str(), ios::out); 
@@ -69,8 +68,8 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 {
 	GtkWidget * window;
 	int no_student;
+	file_name += ".txt";
 	
-//	file_name+=get_current_time_T();
 	GtkWidget *vbox,*swin,*table1,*table2,*label[100],*toggle_button[100],*v_separator[100];
 	GtkAdjustment *horizontal,*vertical;
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -78,15 +77,19 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_widget_set_size_request(window,500,400);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
-	ifstream f(RollList.c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
+
+
+	ifstream f((get_data_folder() + RollList).c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
 	f>>no_student;
 	string current;
 	int i;
+
 	//CREATING A TABLE OF 50X3.
 	table1=gtk_table_new(no_student,3,TRUE);
 	gtk_table_set_row_spacings(GTK_TABLE(table1),5);
 	gtk_table_set_col_spacings(GTK_TABLE(table1),5);
-	//PACKING TABLE WITH LABELS & CHECK BUTTON.& vertical separator
+
+	//PACKING TABLE WITH LABELS & CHECK BUTTON.& vertical separator	
 	for(i=0;i<no_student;i++)
 	{
 		f>>current;
@@ -99,11 +102,14 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 		g_signal_connect(G_OBJECT(toggle_button[i]),"toggled",G_CALLBACK(toggle_button_clicked),label[i]);
 	}
 	f.close();
+
 	GtkWidget *Button_f;
 	//this has been done to limit the size of the button.
 	table2=gtk_table_new(1,3,TRUE);
 	Button_f=gtk_button_new_with_label("DONE");
 	gtk_table_attach_defaults(GTK_TABLE(table2),Button_f,1,2,0,1);
+
+
 	//Creating a new scrolled window
 	swin= gtk_scrolled_window_new(NULL,NULL);
 	horizontal=gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW(swin)) ;
@@ -129,6 +135,7 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	gtk_main();
 	
 	FileName = file_name;
+
 	return 1;
 	/*This is to be decided	
 	return file_name;

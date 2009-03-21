@@ -28,7 +28,11 @@ typedef enum ConfigFileActions
 }ConfigFileActions;
 
 
-std::string get_current_time_T();
+//returns the current time in seconds elapsed since 00:00 hours, Jan 1, 1970 UTC
+std::string get_current_time_sec();
+
+//returns the current time in string form
+std::string get_current_time_str();
 
 //returns the folder path where database files are stored
 std::string get_data_folder();

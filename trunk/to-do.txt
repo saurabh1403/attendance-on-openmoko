@@ -1,0 +1,6 @@
+
+1. attendance.cpp doesn't read the full names written in a row in the class roll number list. 
+
+2. combo.cpp is not robust at all. IF a user terminates the window, it should indicate the master program
+
+3. Make a function which will read a given file and reads the strings from it line by line and returns the strings in the  form of a <vector> and the number of lines in that file(number of strings). Reading of file in this manner is needed at many places.

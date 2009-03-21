@@ -100,6 +100,7 @@ function show_data($db_name, $con, $table_name)
 
 }
 
+
 //returns nothing
 function execute_query_NR($$db_name, $con, $sql_query)	
 {
@@ -125,16 +126,18 @@ function execute_query_NR($$db_name, $con, $sql_query)
 //returns a single field
 function execute_query_single($$db_name, $con, $sql_query)	
 {
-	
-	
+
+
 }
 
 
 //returns a list with interleaved values
 function execute_query_list($$db_name, $con, $sql_query)	
 {
-	
-	
+
+
+
+
 }
 
 

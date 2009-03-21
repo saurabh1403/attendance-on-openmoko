@@ -3,7 +3,7 @@
 
 using namespace std;
 
-std::string get_current_time_T()
+std::string get_current_time_sec()
 {
 	time_t seconds;
 	seconds=time(NULL);
@@ -14,9 +14,21 @@ std::string get_current_time_T()
 	return s;
 }
 
+
+std::string get_current_time_str()
+{
+	time_t seconds;
+	seconds=time(NULL);
+	std::string time_str(ctime(&seconds));
+	return time_str.substr(0,time_str.length()-1);
+}
+
+
+
+
 std::string get_data_folder()
 {
-	return "/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/";	
+	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	
 }
 
 
@@ -117,13 +129,17 @@ int update_log_file(std::string LogMsg)
 		return -1;
 	}
 
-	logFile.seekp(0,ios::beg);		//seeking the pointer to the end of the file
+//	logFile.seekp(0,ios::beg);		//seeking the pointer to the end of the file
 
-	logFile<<": "<<LogMsg<<endl;
-	
+//	cout<<get_current_time_str().c_str()<<" : "<<LogMsg<<endl;
+	logFile<<get_current_time_str().c_str()<<" : "<<LogMsg<<endl;
+
 	return 1;
 	
 }
+
+
+
 
 
 

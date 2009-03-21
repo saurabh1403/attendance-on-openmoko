@@ -1,0 +1,9 @@
+
+1) Opening a file in ios::ate erase the previous data
+
+2) Sending a file to IP 192.168.1.2 makes all processes hang
+
+3) attendance.cpp: gtk_main_quit is not working as expected. It is called multiple times, yet the parent window is not destroyed.
+
+4) php script sometimes, is not able to bind socket to a particular IP for some time. <closed>
+

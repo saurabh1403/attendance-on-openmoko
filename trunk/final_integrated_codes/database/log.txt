@@ -1,0 +1,5 @@
+Sun Mar 22 01:12:33 2009 : client: failed to connect
+Sun Mar 22 01:19:06 2009 : client: failed to connect
+Sun Mar 22 01:25:42 2009 : error in opening the file
+Sun Mar 22 02:40:52 2009 : /media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/1237669842.txtsent to server
+Sun Mar 22 02:49:01 2009 : 1237670333.txtsent to server

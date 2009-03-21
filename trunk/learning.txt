@@ -1,0 +1,2 @@
+
+1. We cannot initialize a new variable inside a switch case block
