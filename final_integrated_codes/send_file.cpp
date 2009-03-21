@@ -15,7 +15,7 @@ static int send_data(int sockfd, const void * data, int size=1 );
 /* sends a file across a socket
  * sockfd: socket file descriptor
  * returns 1 on success and -1 on failure */
-static int transfer_file(int sockfd,const std::string file_name);
+static int transfer_file(int sockfd, const std::string file_name, std::string &ErrMsg);
 
 
 /* sends a string across the socket 
@@ -48,7 +48,7 @@ void *get_in_addr(struct sockaddr *sa)
 }
 
 
-int send_file(const std::string file_name,const char* ip_address, const char *PORT)
+int send_file(const std::string file_name,const char* ip_address, const char *PORT, std::string &ErrMsg)
 {
 	int sockfd, numbytes;  
 
@@ -56,10 +56,10 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 	int rv,pid,flag,status;
 	char s[INET6_ADDRSTRLEN];
 
-
 	if(NULL == PORT)
 	{
-	    cerr<<"usage: client hostname\n";
+//	    cerr<<"usage: client hostname\n";
+	    ErrMsg+="usage: client hostname";
 	    return -1;
 	}
 
@@ -67,20 +67,25 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-	if ((rv = getaddrinfo(ip_address, PORT_N, &hints, &servinfo)) != 0) {
-		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
-		return 1;
+	if ((rv = getaddrinfo(ip_address, PORT_N, &hints, &servinfo)) != 0) 
+	{
+//		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+		ErrMsg+="getaddrinfo: ";
+		ErrMsg+= gai_strerror(rv);
+		return -1;
 	}
 
 	// loop through all the results and bind to the first we can
-	for(p = servinfo; p != NULL; p = p->ai_next) {
-		if ((sockfd = socket(p->ai_family, p->ai_socktype,
-				p->ai_protocol)) == -1) {
+	for(p = servinfo; p != NULL; p = p->ai_next) 
+	{
+		if ( (sockfd = socket(p->ai_family, p->ai_socktype,p->ai_protocol) ) == -1) 
+		{
 			perror("client: socket");
 			continue;
 		}
 
-		if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
+		if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) 
+		{
 			close(sockfd);
 			perror("client: connect");
 			continue;
@@ -89,25 +94,26 @@ int send_file(const std::string file_name,const char* ip_address, const char *PO
 		break;
 	}
 
-	if (p == NULL) {
-		fprintf(stderr, "client: failed to connect\n");
-		return 2;
+	if (p == NULL) 
+	{
+//		fprintf(stderr, "client: failed to connect\n");
+		ErrMsg+= "client: failed to connect";
+		return -1;
 	}
 
-	inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr),
-			s, sizeof s);
+	inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr),s, sizeof s);
 	printf("client: connecting to %s\n", s);
 
 	freeaddrinfo(servinfo); // all done with this structure
 
-	transfer_file(sockfd, file_name);
+	status = transfer_file(sockfd, file_name, ErrMsg);
 
     close(sockfd);
-    return 0;
+    return (status < 0)? -1: 1;
 }
 
 
-static int transfer_file(int sockfd, const std::string file_name)
+static int transfer_file(int sockfd, const std::string file_name, std::string &ErrMsg)
 {
 
 	string buff("");
@@ -116,7 +122,8 @@ static int transfer_file(int sockfd, const std::string file_name)
 
 	if(!filehandle)
 	{
-		cerr<<"error in opening the file\n";
+//		cerr<<"error in opening the file\n";
+		ErrMsg+= "error in opening the file";
 		return -1;
 	}
 
@@ -130,11 +137,8 @@ static int transfer_file(int sockfd, const std::string file_name)
 
 	while(!filehandle.eof())
 	{
-
 		send_string(sockfd,"data");
 		filehandle.get(data);
-//		cout<<data;
-//		data_i = data;
 		send_data(sockfd, &data);
 	}
 
@@ -157,7 +161,8 @@ static int send_data(int sockfd, const void * data, int size )
 		perror("send");
 		close(sockfd);
 		fcloseall();
-		exit(0);
+//		exit(0);
+		return -1;
 	}
 
 	numbytes = recv(sockfd, buff, 5, 0);
@@ -167,7 +172,8 @@ static int send_data(int sockfd, const void * data, int size )
 		perror("receive");		
 		close(sockfd);
 		fcloseall();
-		exit(0);
+//		exit(0);
+		return -1;
 	}
 	buff[numbytes] = '\0';
 
@@ -179,7 +185,7 @@ static int send_string(int sockfd, const char *buff)
 {
 	int numbytes;
 	char buff_t[5];
-	
+
 	numbytes = send(sockfd, buff, strlen(buff), 0);
 
 	if ( numbytes== -1 || numbytes < strlen(buff))
@@ -187,7 +193,8 @@ static int send_string(int sockfd, const char *buff)
 		perror("send");
 		close(sockfd);
 		fcloseall();
-		exit(0);
+//		exit(0);
+		return -1;
 	}
 
 	numbytes = recv(sockfd, buff_t, 5, 0);
@@ -197,7 +204,8 @@ static int send_string(int sockfd, const char *buff)
 		perror("receive");		
 		close(sockfd);
 		fcloseall();
-		exit(0);
+//		exit(0);
+		return -1;
 	}
 
 	return 1;

@@ -3,11 +3,16 @@
 
 using namespace std;
 
-void combo_button_clicked(GtkWidget * button,gpointer window1) 
+void combo_button_clicked(GtkWidget *button, gpointer struct_handle) 
 {
-	gtk_object_destroy((GtkObject *)window1);
+	Data * gpoint;
+	gpoint=(Data *) struct_handle;
+	gchar * data=gtk_combo_box_get_active_text((GtkComboBox *)gpoint->combo);
+	gpoint->p=data;
+	gtk_object_destroy((GtkObject *)gpoint->window);
 }
-void create_first_window(int argc, char* argv[])
+
+string attendance_list_window(int argc, char* argv[])
 {
 	GtkWidget *combo,*window,*vbox,*label,*button,*table;
 	gtk_init(&argc,&argv);
@@ -29,12 +34,16 @@ void create_first_window(int argc, char* argv[])
 	{
 		gtk_combo_box_append_text((GtkComboBox *)combo,class_name.c_str());
 	}
-	g_signal_connect(G_OBJECT(button),"clicked",G_CALLBACK(combo_button_clicked),window);
+	Data gpoint;
+	gpoint.window=(GtkWidget *)window;
+	gpoint.combo=(GtkWidget *)combo;
+	g_signal_connect(G_OBJECT(button),"clicked",G_CALLBACK(combo_button_clicked),&gpoint);
+	//string class_selected=gpoint.p;
 	gtk_box_pack_start((GtkBox *)vbox,label,FALSE,TRUE,35);
 	gtk_box_pack_start((GtkBox *)vbox,combo,FALSE,TRUE,70);
 	gtk_box_pack_start((GtkBox *)vbox,table,FALSE,TRUE,70);
 	gtk_container_add(GTK_CONTAINER(window),vbox);
 	gtk_widget_show_all(window);
 	gtk_main();
+	return string(gpoint.p);
 }
-

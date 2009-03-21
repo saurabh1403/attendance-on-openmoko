@@ -1,0 +1,8 @@
+Device
+Openmoko
+id_code
+#1234
+Teacher
+Mr-Dhananjay-Gadre
+Year-of-Issue
+2008
