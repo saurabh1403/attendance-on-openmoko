@@ -4,11 +4,21 @@
 using namespace std; 
 
 string file_name= get_current_time_T();
+//file_name += ".txt";
 
 //string file_name("vijay.txt");
-ofstream g(file_name.c_str()); 
+ofstream g((get_data_folder() + file_name + ".txt").c_str(), ios::out); 
 
-void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) 
+
+//this func capitalizes the name if it is pressed
+static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) ;
+
+
+//this is called when the teacher completes taking attendance
+static void final_button_clicked(GtkWidget *button,gpointer student);
+
+
+static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) 
 {
 //this is called when the toggle button is toggled.
 //its use is just to highlight the roll nos that are clicked
@@ -38,7 +48,7 @@ void toggle_button_clicked(GtkWidget *toggle_button,gpointer label)
 }
 
 
-void final_button_clicked(GtkWidget *button,gpointer student)
+static void final_button_clicked(GtkWidget *button,gpointer student)
 {
 	//this is called when the attendance is finished.
 	Widgets *a=(Widgets *)student;
@@ -55,8 +65,9 @@ void final_button_clicked(GtkWidget *button,gpointer student)
 }
 
 
-const string create_second_window(GtkWidget * window)
+int create_take_attendance(std::string &FileName,const std::string &RollList)
 {
+	GtkWidget * window;
 	int no_student;
 	
 //	file_name+=get_current_time_T();
@@ -67,7 +78,7 @@ const string create_second_window(GtkWidget * window)
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_widget_set_size_request(window,500,400);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
-	ifstream f("roll_list");//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
+	ifstream f(RollList.c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
 	f>>no_student;
 	string current;
 	int i;
@@ -116,8 +127,13 @@ const string create_second_window(GtkWidget * window)
 	gtk_container_add(GTK_CONTAINER(window),vbox);
 	gtk_widget_show_all(window);
 	gtk_main();
-	return file_name;
+	
+	FileName = file_name;
+	return 1;
 	/*This is to be decided	
 	return file_name;
 	*/
 }
+
+
+
