@@ -17,3 +17,4 @@ learning.txt: important points and things learnt during the course of this proje
 
 to-do.txt: a modifiable file which contains the list of to-do things currently. Contains bugs also.
 
+docs: contains the documentation material for this project
