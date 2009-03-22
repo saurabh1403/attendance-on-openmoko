@@ -52,7 +52,6 @@ int send_file(const std::string file_path, const std::string file_name, const ch
 {
 	int sockfd, numbytes;  
 
-	cout<<file_name<<endl<<ip_address<<endl<<PORT<<endl;
 	struct addrinfo hints, *servinfo, *p;
 	int rv,pid,flag,status;
 	char s[INET6_ADDRSTRLEN];

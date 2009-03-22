@@ -9,7 +9,6 @@
 #include<stdio.h>
 
 #include <list> // list class-template definition
-//#include <algorithm> // copy algorithm
 #include <iterator> // ostream_iterator
 
 
