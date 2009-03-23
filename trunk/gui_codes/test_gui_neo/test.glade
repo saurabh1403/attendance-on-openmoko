@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Oct 25 17:39:36 2008 -->
+<!--Generated with glade3 3.4.5 on Mon Mar 23 16:04:43 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="window">
     <property name="title" translatable="yes">my attendence</property>
@@ -173,19 +173,19 @@
           </packing>
         </child>
         <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
           <widget class="GtkProgressBar" id="progressbar1">
             <property name="visible">True</property>
             <property name="text" translatable="yes"></property>
           </widget>
           <packing>
-            <property name="position">3</property>
+            <property name="position">5</property>
           </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
         </child>
         <child>
           <widget class="GtkStatusbar" id="statusbar1">

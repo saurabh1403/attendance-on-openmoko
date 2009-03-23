@@ -1,6 +1,34 @@
 
-1. attendance.cpp doesn't read the full names written in a row in the class roll number list. 
+1. attendance.cpp doesn't read the full names written in a row in the class roll number list. <done>
 
 2. combo.cpp is not robust at all. IF a user terminates the window, it should indicate the master program
 
-3. Make a function which will read a given file and reads the strings from it line by line and returns the strings in the  form of a <vector> and the number of lines in that file(number of strings). Reading of file in this manner is needed at many places.
+3. Make a function which will read a given file and reads the strings from it line by line and returns the strings in the  form 
+of a <vector> and the number of lines in that file(number of strings). 
+Reading of file in this manner is needed at many places.
+<done>
+
+4. Creation of first GUI window to select the action by user. <going on>
+
+5. SQL queries implementation in php (update and retrieve from database). <going on>
+
+6. Error handling in all GUI codes along with error message generation to be fed in log.txt <TBD>
+
+7. API development for showing table on HTML. Requires interfcaing with underlying database using PHP. <TBD>
+
+8. Shell script to start the system and maintain the database files(moving and removing). <TBD>
+
+9. Porting all things on openmoko <TBD>
+
+10. HTML page to select the class and subject to view the attendance.  <TBD>
+
+11. Creation of many windows to give user feedbacks. <TBD>
+
+12. Modification of communication Engine to interface with the server in a proper manner and not only sending and receiving of file. <TBD>
+
+13. Completion of BTP report and preparation of presentation. <going on>
+
+14. Formats of different files are yet to be decided. PHP parsing of these files. <going on>
+
+15. 
+
