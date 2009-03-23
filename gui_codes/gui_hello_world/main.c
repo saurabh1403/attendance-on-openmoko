@@ -24,15 +24,14 @@ gchar *labeltext;
 
 void buttoncb(GtkWidget *widget, gpointer data)
 {
-	
 	printf("clicked %d\n",*(gint*)data);
-if (labeltext == hello)
-   {
-   labeltext = world;
-   gtk_label_set_text(GTK_LABEL(label), labeltext);
-   }
-else if (labeltext == world)
-   gtk_main_quit();
+	if (labeltext == hello)
+	   {
+	   labeltext = world;
+	   gtk_label_set_text(GTK_LABEL(label), labeltext);
+	   }
+	else if (labeltext == world)
+	   gtk_main_quit();
 }
 
 int main(int argc, char *argv[])

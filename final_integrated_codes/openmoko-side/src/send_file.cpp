@@ -194,7 +194,6 @@ static int send_string(int sockfd, const char *buff)
 		perror("send");
 		close(sockfd);
 		fcloseall();
-//		exit(0);
 		return -1;
 	}
 
@@ -205,7 +204,6 @@ static int send_string(int sockfd, const char *buff)
 		perror("receive");		
 		close(sockfd);
 		fcloseall();
-//		exit(0);
 		return -1;
 	}
 

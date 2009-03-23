@@ -1,0 +1,54 @@
+--***********************************************************
+-- db_query.txt: script for creating pbd tables and triggers
+-- Usage:
+--	$sqlite3 new.db < db_query.txt
+--
+--
+--
+--
+--
+--***********************************************************
+--			TABLE payloads
+--***********************************************************
+
+
+--CREATE TABLE att(	
+--			TeacherName TEXT NOT NULL, 
+--			SubjectCode TEXT NOT NULL,
+--			OpenmokoID TEXT NOT NULL, 
+--			Date INT NOT NULL,
+--			Month INT NOT NULL,
+--			Year INT NOT NULL,
+--			Time TEXT NOT NULL,
+--			'Saurabh Gupta' varchar(5) DEFAULT 'A',
+--			'Praveen yadav' varchar(5) DEFAULT 'A',
+--			'Vijay Majum' varchar(5) DEFAULT 'A',
+--			'Vijay lambaa' varchar(5) DEFAULT 'A',
+--			'nimit varsh' varchar(5) DEFAULT 'A',
+--			PRIMARY KEY (TeacherName,Time,OpenmokoID));
+
+
+--select * from payloads;
+--.head on
+--select * from payloads;
+
+
+--insert into payloads (PayloadID, installTime) values(12,223);
+
+--insert into student('name my') values('saurabh gupta');
+
+--insert into att values('Mr. D.V.G.','EC-481','#122321','14','1','2009','12:30:14','P','P','A','A','P');
+--insert into att values('Mr. D.V.G.','EC-421','#121321','15','7','2007','11:36:14','P','P','P','A','A');
+--insert into att values('Mr. D.V.G.','EC-418','#121321','13','1','2008','12:34:14','P','A','P','A','P');
+
+select * from att where TeacherName = 'Mr. D.V.G.' and year > 2007 and year <2009;
+
+
+--select * from att;
+
+
+
+
+
+
+
