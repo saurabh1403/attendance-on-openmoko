@@ -15,23 +15,25 @@ OM_FLAGS= -L /home/saurabhg/moko/build/tmp/staging/arm-angstrom-linux-gnueabi/li
 OM_FLAGS_TOOLCHAIN = \
 	`pkg-config --cflags --libs gtk+-2.0`
 
+INCLUDE_DIR = ../include/
+
 test: $(OBJ)
 	$(GCC) $(MY_FLAGS) -o $@ $(OBJ)
 
 attendance.o: attendance.cpp 
-	$(GCC) $(MY_FLAGS_C) -c  attendance.cpp 
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  attendance.cpp 
 
 combo.o: combo.cpp
-	$(GCC) $(MY_FLAGS_C) -c  combo.cpp
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  combo.cpp
 
 main.o: main.cpp
-	$(GCC) $(MY_FLAGS_C) -c  main.cpp
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  main.cpp
 
 utils.o: utils.cpp
-	$(GCC) $(MY_FLAGS_C) -c  utils.cpp
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  utils.cpp
 
 send_file.o: send_file.cpp
-	$(GCC) -lm -c send_file.cpp
+	$(GCC) -I$(INCLUDE_DIR) -lm -c send_file.cpp
 
 
 neo_gui: main.cpp
