@@ -28,7 +28,8 @@ std::string get_current_time_str()
 
 std::string get_data_folder()
 {
-	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	
+//	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	
+	return string("../database/");				//relative database path
 }
 
 

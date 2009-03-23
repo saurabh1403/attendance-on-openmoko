@@ -31,7 +31,7 @@ void take_new_attendance(string class_selected)
 		else
 		{
 			ErrMsg = file_name;
-			ErrMsg+= "sent to server";
+			ErrMsg+= " sent to server";
 			update_log_file(ErrMsg);
 		}
 
