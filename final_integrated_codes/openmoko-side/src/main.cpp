@@ -61,15 +61,16 @@ int main(int argc, char* argv[])
 
 //	this is  the main window creating the combo box.
 	string class_selected, ErrMsg;
-	class_selected=attendance_list_window(argc,argv);
+//	class_selected=attendance_list_window(argc,argv);
 //	cout<<class_selected<<endl;
 
-	UserOptions option_selected = TakeAttendance;
-
+	UserOptions option_selected;
+	int status = begin_window(argc, argv,option_selected);
 	switch (option_selected)
 	{
 
 		case TakeAttendance:
+			class_selected=attendance_list_window(argc,argv);
 			take_new_attendance(class_selected);
 //			update_config_file("vijay12.txt", ADD_ENTRY);
 //			update_config_file("vijay12.txt", DELETE_ENTRY);

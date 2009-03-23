@@ -1,5 +1,5 @@
 
-#include "attendance.h"
+#include"attendance.h"
 
 using namespace std; 
 
@@ -79,9 +79,10 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
 
 
-	ifstream f((get_data_folder() + RollList).c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
-	f>>no_student;
-	string current;
+//	ifstream f((get_data_folder() + RollList).c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
+//	f>>no_student;
+	vector<string> current(0);
+	read_file((get_data_folder() + RollList), no_student , current);
 	int i;
 
 	//CREATING A TABLE OF 50X3.
@@ -92,8 +93,11 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	//PACKING TABLE WITH LABELS & CHECK BUTTON.& vertical separator	
 	for(i=0;i<no_student;i++)
 	{
-		f>>current;
-		label[i]=gtk_label_new(current.c_str());
+//		getline(f,current);
+//		cout<<current;
+//		int wait1;
+//		cin>>wait1;
+		label[i]=gtk_label_new(current[i].c_str());
 		v_separator[i]=gtk_vseparator_new();
 		toggle_button[i]=gtk_toggle_button_new_with_label("YES");
 		gtk_table_attach_defaults(GTK_TABLE(table1),label[i],0,1,i,i+1);
@@ -101,7 +105,7 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 		gtk_table_attach_defaults(GTK_TABLE(table1),toggle_button[i],2,3,i,i+1);	
 		g_signal_connect(G_OBJECT(toggle_button[i]),"toggled",G_CALLBACK(toggle_button_clicked),label[i]);
 	}
-	f.close();
+//	f.close();
 
 	GtkWidget *Button_f;
 	//this has been done to limit the size of the button.
