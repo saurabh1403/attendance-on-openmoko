@@ -32,6 +32,15 @@ std::string get_data_folder()
 	return string("../database/");				//relative database path
 }
 
+int read_file(string file_path,int &file_size,vector<string> &line_data)
+{
+	ifstream f(file_path.c_str());
+	string temp;
+	while(getline(f,temp))
+		line_data.push_back(temp);
+	file_size=line_data.size();
+	return 1;
+}
 
 int update_config_file(std::string file_name, ConfigFileActions action)
 {

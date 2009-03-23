@@ -2,10 +2,10 @@ GCC = g++
 GCC_OM = /home/saurabhg/moko/build/tmp/cross/arm-angstrom-linux-gnueabi/bin/gcc
 GCC_OM_TOOLCHAIN = /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/bin/gcc
 
-OBJ = attendance.o combo.o main.o utils.o send_file.o
+OBJ = attendance.o combo.o main.o utils.o send_file.o begin_window.o
 
-MY_FLAGS =  `pkg-config --cflags --libs gtk+-2.0`
-MY_FLAGS_C = `pkg-config --cflags gtk+-2.0`
+MY_FLAGS =  `pkg-config --cflags --libs gtk+-2.0 libglade-2.0` -export-dynamic
+MY_FLAGS_C = `pkg-config --cflags gtk+-2.0 libglade-2.0` -export-dynamic
 
 
 OM_FLAGS= -L /home/saurabhg/moko/build/tmp/staging/arm-angstrom-linux-gnueabi/lib/ -Wl, \
@@ -35,6 +35,8 @@ utils.o: utils.cpp
 send_file.o: send_file.cpp
 	$(GCC) -I$(INCLUDE_DIR) -lm -c send_file.cpp
 
+begin_window.o: begin_window.cpp
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS) -c begin_window.cpp
 
 neo_gui: main.cpp
 	. /usr/local/openmoko/arm/setup-env
