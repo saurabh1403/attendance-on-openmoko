@@ -26,7 +26,7 @@ static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label)
 	char *p=a;
 	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
 	{
-		gtk_button_set_label((GtkButton *)toggle_button,"NO");
+		gtk_button_set_label((GtkButton *)toggle_button,"PRESENT");
 		while(isalpha(*p))
 		{
 			*p=char((*p)+'A'-'a');
@@ -36,7 +36,7 @@ static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label)
 
 	else
 	{	
-		gtk_button_set_label((GtkButton *)toggle_button,"YES");
+		gtk_button_set_label((GtkButton *)toggle_button,"ABSENT");
 		while(isalpha(*p))
 		{
 			*p=char((*p)+'a'-'A');
@@ -57,9 +57,9 @@ static void final_button_clicked(GtkWidget *button,gpointer student)
 	gtk_label_get((GtkLabel *)label,(gchar **)&b);
 	string vijay=b;
 	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
-		g<<vijay<<"\tYES"<<endl;
+		g<<vijay<<"\tPRESENT"<<endl;
 	else
-		g<<vijay<<"\tNO"<<endl;
+		g<<vijay<<"\tABSENT"<<endl;
 	gtk_main_quit();
 }
 
@@ -99,7 +99,7 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 //		cin>>wait1;
 		label[i]=gtk_label_new(current[i].c_str());
 		v_separator[i]=gtk_vseparator_new();
-		toggle_button[i]=gtk_toggle_button_new_with_label("YES");
+		toggle_button[i]=gtk_toggle_button_new_with_label("ABSENT");
 		gtk_table_attach_defaults(GTK_TABLE(table1),label[i],0,1,i,i+1);
 		gtk_table_attach_defaults(GTK_TABLE(table1),v_separator[i],1,2,i,i+1);	
 		gtk_table_attach_defaults(GTK_TABLE(table1),toggle_button[i],2,3,i,i+1);	
