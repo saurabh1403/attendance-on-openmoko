@@ -1,8 +1,6 @@
 
 <?php
 
-//require_once 'db.php';
-
 include 'db.php';
 
 
@@ -32,6 +30,7 @@ $_SQL[]= "
 select * from att where TeacherName = 'Mr. D.V.G.'";
 
 
+
 $con = mysql_connect("localhost","root","openmoko");
 
 if (!$con)
@@ -43,6 +42,7 @@ if (!$con)
 $roll = array(11,21,13,14,51);
 $names = array("saurabh","vijay","praveen","nimit","lamba");
 
+
 //echo "haha '$_SQL[\'attendance\']' $_SQL[0] \n";
 
 //create_class_names("my_db1", $con, "names_COE_2_2005");
@@ -51,8 +51,9 @@ $names = array("saurabh","vijay","praveen","nimit","lamba");
 //create_ODASI_table("my_db1",$con);
 
 
-//create_attendance_table("my_db1", $con, "attendance_ECE_2_2005", "names_ECE_2_2005");
+create_attendance_table("my_db1", $con, "attendance_ECE_3_2005", "names_ECE_2_2005");
 
+/*
 $info = array(  'TeacherName' => 'Mr. D.U.',
 				'SubjectCode' => 'EC-401',
 				'OpenmokoID' => '#123451',
@@ -72,12 +73,11 @@ $info_odasi = array( 'Branch' => 'ECE',
 $attend = array('P','A','A','P','A');
 $no = count($attend);
 
+*/
 //echo $no;
 //update_attendance_table("my_db1",$con, "attendance_ECE_2_2005",$info, $attend);
 //update_ODASI_table("my_db1",$con,$info_odasi);
-//execute_query_list("my_db1",$con, "SELECT * from attendance_ECE_2_2005", &$rows, &$col, &$op);
-
-/*
+execute_query_list("my_db1",$con, "SELECT * from names_ECE_2_2005", &$rows, &$col, &$op);
 
 for($i = 0; $i < $rows; $i++)
 {
@@ -89,9 +89,11 @@ for($i = 0; $i < $rows; $i++)
 	echo "\n";
 }
 
-*/
 
 
+
+
+/*
 retrieve_attendance_data("my_db1",$con, "ECE","2","2005", "3", "EC-411", &$no_students, &$stamp, &$stats, &$st_names, &$roll_no);
 
 print_r($roll_no);
@@ -112,16 +114,7 @@ for($i = 0; $i < $no_rows; $i++)
 	
 	echo "\n";
 }
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 //print_r($op);
@@ -129,7 +122,7 @@ for($i = 0; $i < $no_rows; $i++)
 
 //show_data("my_db1",$con, "att");
 //execute_query_NR("my_db1",$con, $_SQL[1]);
-mysql_close($con);
+//mysql_close($con);
 
 
 ?>

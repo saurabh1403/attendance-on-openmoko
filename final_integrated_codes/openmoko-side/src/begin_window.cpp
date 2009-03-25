@@ -13,21 +13,21 @@ UserOptions a;
 
 void attendance_clicked(GtkWidget *object,GtkWidget *window)
 {
-	cout<<"ATTEND";
+//	cout<<"ATTEND";
 	a=TakeAttendance;
 	gtk_object_destroy((GtkObject *)window);
 }
 
 void notes_clicked(GtkWidget *object,GtkWidget *window)
 {
-	cout<<"NOTES";
+//	cout<<"NOTES";
 	a=TakeNotes;
 	gtk_object_destroy((GtkObject *)window);
 }
 
 void update_clicked(GtkWidget *object, GtkWidget *window)
 {
-	cout<<"UPDATE";
+//	cout<<"UPDATE";
 	a=UpdateOpenmokoData;
 	gtk_object_destroy((GtkObject *)window);
 }
@@ -85,7 +85,7 @@ int begin_window(int argc, char *argv[],UserOptions &b)
 	g_signal_connect (G_OBJECT (button_notes), "clicked", G_CALLBACK (notes_clicked),window);
 	g_signal_connect (G_OBJECT (button_update), "clicked", G_CALLBACK (update_clicked),window);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
-//	gint func_ref = g_timeout_add (100, update_progress_bar, progress_bar);
+	gint func_ref = g_timeout_add (100, update_progress_bar, progress_bar);
 
 	gtk_widget_show (window);
 //	GTimer *wasted_time_tracker = g_timer_new ();
@@ -95,7 +95,7 @@ int begin_window(int argc, char *argv[],UserOptions &b)
 	glade_xml_signal_autoconnect(xml);
 	gtk_main();
 
-//	g_source_remove (func_ref);
+	g_source_remove (func_ref);
 	b=a;
 	return 1;
 }

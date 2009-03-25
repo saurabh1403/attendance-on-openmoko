@@ -8,13 +8,13 @@ of a <vector> and the number of lines in that file(number of strings).
 Reading of file in this manner is needed at many places.
 <done>
 
-4. Creation of first GUI window to select the action by user. <going on>
+4. Creation of first GUI window to select the action by user. <almost done>
 
-5. SQL queries implementation in php (update and retrieve from database). <going on>
+5. SQL queries implementation in php (update and retrieve from database). <done>
 
 6. Error handling in all GUI codes along with error message generation to be fed in log.txt <TBD>
 
-7. API development for showing table on HTML. Requires interfcaing with underlying database using PHP. <TBD>
+7. API development for showing table on HTML. Requires interfcaing with underlying database using PHP. <going on>
 
 8. Shell script to start the system and maintain the database files(moving and removing). <TBD>
 
@@ -30,5 +30,5 @@ Reading of file in this manner is needed at many places.
 
 14. Formats of different files are yet to be decided. PHP parsing of these files. <going on>
 
-15. 
+
 
