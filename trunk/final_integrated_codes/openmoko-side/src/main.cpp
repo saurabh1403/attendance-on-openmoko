@@ -21,7 +21,7 @@ void take_new_attendance(string class_selected)
 		update_config_file(file_name, ADD_ENTRY);
 		
 		//sending of all previous files should be done here. TO DO
-		status = send_file(get_data_folder(), file_name, "192.168.1.5", "34175", ErrMsg);
+		status = send_file(get_data_folder(), file_name, IP_LOCAL_LOOPBACK, PORT, ErrMsg);
 
 		if(status<0)
 		{

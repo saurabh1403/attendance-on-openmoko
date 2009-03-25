@@ -23,9 +23,51 @@ std::string get_current_time_str()
 	return time_str.substr(0,time_str.length()-1);
 }
 
+int file_write(GtkWidget *button,gpointer student,std::ofstream &g)
+{
+	//this is called when the attendance is finished.
+	Widgets *a=(Widgets *)student;
+	GtkWidget *toggle_button=a->toggle_button;
+	GtkWidget *label=a->label;
+	char *b;
+	gtk_label_get((GtkLabel *)label,(gchar **)&b);
+	string vijay=b;
+	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
+	{
+		g<<vijay<<endl<<"PRESENT"<<endl;
+	}
+	else
+	{
+		g<<vijay<<endl<<"ABSENT"<<endl;
+	}
+	return 1;
+}
 
+int file_head_stamp(std::ofstream &g)
+{
+/*	this file is copying the ID.txt into the header of the returned file;
+	for example
+	Device
+	Openmoko
+	id_code
+	#1234
+	Teacher
+	Teacher_name
+	Year-of-Issue
+	2008*/
 
-
+	ifstream h((get_data_folder()+ INFO_USER_FILE_NAME ).c_str());
+	string temp;
+	while(getline(h,temp))
+	{
+		g<<temp<<endl;
+		
+	}
+	temp=get_current_time_str();
+	g<<temp<<endl;
+	h.close();
+	return 1;
+}
 std::string get_data_folder()
 {
 //	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	

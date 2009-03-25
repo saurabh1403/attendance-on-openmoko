@@ -8,8 +8,8 @@
 #include<string>
 #include<vector>
 #include<stdio.h>
-#include <list> 
-#include <iterator> 
+#include<list> 
+#include<iterator> 
 
 
 using std::ofstream;
@@ -19,7 +19,7 @@ using namespace std;
 
 #define LOG_FILE_NAME		"log.txt"
 #define CONFIG_FILE_NAME	"config.txt"
-
+#define INFO_USER_FILE_NAME "id.txt"
 typedef enum ConfigFileActions
 {
 	ADD_ENTRY	=	1,
@@ -34,6 +34,11 @@ typedef enum UserOptions
 	UpdateOpenmokoData 	= 3			//for updating the class list and students list on openmoko
 }UserOptions;
 
+typedef struct
+{
+	GtkWidget *label;
+	GtkWidget *toggle_button;
+}Widgets;
 
 //returns the current time in seconds elapsed since 00:00 hours, Jan 1, 1970 UTC
 std::string get_current_time_sec();
@@ -59,6 +64,9 @@ int update_log_file(std::string LogMsg);
 //retrieves the list of files stored in config.txt
 int Get_file_list(int &no_files, char **list);
 
+//write the data of each student 
+int file_write(GtkWidget *button,gpointer student,std::ofstream &g);
 
-
+//write the head on the file
+int file_head_stamp(std::ofstream &g);
 

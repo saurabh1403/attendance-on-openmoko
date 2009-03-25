@@ -1,29 +1,8 @@
 
 <?php
 
-//phpinfo();
 
-$_SCHEMA['attendance'] = "
-			TeacherName varchar(20) NOT NULL, 
-			SubjectCode varchar(20) NOT NULL,
-			OpenmokoID varchar(20) NOT NULL, 
-			Date INT NOT NULL,
-			Month INT NOT NULL,
-			Year INT NOT NULL,
-			Time varchar(20) NOT NULL,
-			TimeStamp varchar(20) NOT NULL";
-
-$_SCHEMA['attendance_key'] = "
-			PRIMARY KEY (TeacherName,Time,OpenmokoID)";
-
-$_SCHEMA['ODASI'] = "
-			CREATE TABLE ODASI(
-			Branch varchar(20) NOT NULL, 
-			Section varchar(20) NOT NULL,
-			Year varchar(20) NOT NULL, 
-			name_file TEXT,
-			attendance_file TEXT,
-			PRIMARY KEY(Branch, Section, Year))";
+include "schema_database.php";
 
 
 function create_database($db_name, $con)
@@ -86,6 +65,12 @@ function create_class_names($db_name, $con, $class_name)
 }
 
 
+/*
+ * 
+ * name: update_class_names
+ * @param
+ * @return
+ */
 function update_class_names($db_name, $con, $class_name, $roll, $names)
 {
 
@@ -104,17 +89,24 @@ function update_class_names($db_name, $con, $class_name, $roll, $names)
 
 
 //creates an attendance table for storing the attendance data of a class
+/*
+ * 
+ * name: unknown
+ * @param $table_name: name of the table to be created
+ * @param $class_name: name of the class file name where all the names are stored
+ * @return
+ */
 function create_attendance_table($db_name, $con, $table_name, $class_name)
 {
 
 	mysql_select_db($db_name, $con);
-	
+
 	global $_SCHEMA;
-	
+
 	$sql_query = "SELECT * from $class_name";
-	
+
 	$result = mysql_query($sql_query);
-	
+
 	$sql_query = "CREATE TABLE ". $table_name ."(". $_SCHEMA['attendance']  ;
 
 	while($row  = mysql_fetch_array($result))
@@ -215,7 +207,7 @@ function retrieve_attendance_data($db_name, $con, $branch, $section, $year, $mon
 		$no_rows = mysql_num_rows($result);
 
 		$no_students = $no_col -8;
-		
+
 		$row_no = 0;
 
 		while($row = mysql_fetch_array($result))

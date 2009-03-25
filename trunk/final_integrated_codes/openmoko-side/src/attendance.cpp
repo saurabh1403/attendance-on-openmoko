@@ -4,10 +4,7 @@
 using namespace std; 
 
 std::string file_name= get_current_time_sec();
-
-//string file_name("vijay.txt");
-ofstream g((get_data_folder() + file_name + ".txt").c_str(), ios::out); 
-
+ofstream g((get_data_folder() + file_name + ".txt").c_str(), ios::out); 	
 
 //this func capitalizes the name if it is pressed
 static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) ;
@@ -16,6 +13,7 @@ static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) ;
 //this is called when the teacher completes taking attendance
 static void final_button_clicked(GtkWidget *button,gpointer student);
 
+static void file_head_clicked(GtkWidget *button,gpointer File_ptr);
 
 static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) 
 {
@@ -46,25 +44,22 @@ static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label)
 	gtk_label_set_text((GtkLabel *)label,a);
 }
 
-
+static void file_head_clicked(GtkWidget *button,gpointer File_ptr)
+{
+	g<<"ATTENDANCE"<<endl;
+	g<<(*(string *)File_ptr)<<endl;
+	int status = file_head_stamp(g);
+	gtk_main_quit();	
+}
 static void final_button_clicked(GtkWidget *button,gpointer student)
 {
 	//this is called when the attendance is finished.
-	Widgets *a=(Widgets *)student;
-	GtkWidget *toggle_button=a->toggle_button;
-	GtkWidget *label=a->label;
-	char *b;
-	gtk_label_get((GtkLabel *)label,(gchar **)&b);
-	string vijay=b;
-	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
-		g<<vijay<<"\tPRESENT"<<endl;
-	else
-		g<<vijay<<"\tABSENT"<<endl;
+	int status = file_write(button,student,g);
 	gtk_main_quit();
 }
 
 
-int create_take_attendance(std::string &FileName,const std::string &RollList)
+int create_take_attendance(std::string &FileName,std::string RollList)
 {
 	GtkWidget * window;
 	int no_student;
@@ -93,10 +88,6 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	//PACKING TABLE WITH LABELS & CHECK BUTTON.& vertical separator	
 	for(i=0;i<no_student;i++)
 	{
-//		getline(f,current);
-//		cout<<current;
-//		int wait1;
-//		cin>>wait1;
 		label[i]=gtk_label_new(current[i].c_str());
 		v_separator[i]=gtk_vseparator_new();
 		toggle_button[i]=gtk_toggle_button_new_with_label("ABSENT");
@@ -105,7 +96,6 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 		gtk_table_attach_defaults(GTK_TABLE(table1),toggle_button[i],2,3,i,i+1);	
 		g_signal_connect(G_OBJECT(toggle_button[i]),"toggled",G_CALLBACK(toggle_button_clicked),label[i]);
 	}
-//	f.close();
 
 	GtkWidget *Button_f;
 	//this has been done to limit the size of the button.
@@ -119,6 +109,7 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	horizontal=gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW(swin)) ;
 	vertical=gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(swin));
 	Widgets * student[no_student];
+	g_signal_connect(G_OBJECT(Button_f),"clicked",G_CALLBACK(file_head_clicked),&RollList);
 	for(i=0;i<no_student;i++)
 	{	
 		student[i] = g_slice_new (Widgets);
@@ -141,9 +132,6 @@ int create_take_attendance(std::string &FileName,const std::string &RollList)
 	FileName = file_name;
 
 	return 1;
-	/*This is to be decided	
-	return file_name;
-	*/
 }
 
 
