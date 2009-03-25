@@ -26,7 +26,7 @@ Reading of file in this manner is needed at many places.
 
 12. Modification of communication Engine to interface with the server in a proper manner and not only sending and receiving of file. <TBD>
 
-13. Completion of BTP report and preparation of presentation. <going on>
+13. Completion of BTP report and preparation of presentation. More general diagrams need to be added.<going on>
 
 14. Formats of different files are yet to be decided. PHP parsing of these files. <going on>
 
