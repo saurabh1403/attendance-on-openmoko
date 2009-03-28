@@ -4,6 +4,27 @@
 
 include "schema_database.php";
 
+define("DB_NAME","my_db1");
+
+
+//to be made
+function file_read_linewise($file_name, $roll, $names)
+{
+$file_handle=fopen($file_name,'r');
+
+$i=0;
+while($temp = chop(fgets($file_handle)))
+{
+	$roll[$i]=$i+1;
+	$names[$i]=$temp;
+	$i++;
+}
+
+fclose($file_handle);
+
+}
+
+
 
 function create_database($db_name, $con)
 {
@@ -26,7 +47,7 @@ function make_table($db_name, $con)
 	$sql_query=	"CREATE TABLE student_attendance ( roll_number INT NOT NULL AUTO_INCREMENT, name TEXT NOT NULL, PRIMARY KEY(roll_number) )";
 
 	mysql_select_db($db_name, $con);
-	
+
 	mysql_query	("FLUSH TABLES");
 
 	if (mysql_query($sql_query))
@@ -49,7 +70,7 @@ function create_class_names($db_name, $con, $class_name)
 	$sql_query=	"CREATE TABLE  $class_name (roll_number INT NOT NULL AUTO_INCREMENT, name TEXT NOT NULL, PRIMARY KEY(roll_number) )";
 
 	mysql_select_db($db_name, $con);
-	
+
 	mysql_query	("FLUSH TABLES");
 
 	if (mysql_query($sql_query))
@@ -61,7 +82,7 @@ function create_class_names($db_name, $con, $class_name)
 	{
 		echo "Error creating table: " . mysql_error();
 	}
-	
+
 }
 
 
@@ -111,7 +132,8 @@ function create_attendance_table($db_name, $con, $table_name, $class_name)
 
 	while($row  = mysql_fetch_array($result))
 	{
-		$sql_query.= ", ". $row['name'] . "  varchar(5) DEFAULT 'A'";
+//		$sql_query.= ", ". $row['name'] . "  varchar(5) DEFAULT 'A'";
+		$sql_query.= ", ". "roll_". $row['roll_number']. "  varchar(5) ";
 	}
 
 	$sql_query.= ", ". $_SCHEMA['attendance_key'] . ")";
@@ -129,24 +151,43 @@ function create_attendance_table($db_name, $con, $table_name, $class_name)
 
 }
 
+
+function update_database($info, $attendance)
+{
+
+$con = mysql_connect("localhost","root","openmoko");
+
+if (!$con)
+{
+  	die('Could not connect: ' . mysql_error());
+}
+
+update_attendance_table(DB_NAME, $con, $info['ClassName'],$info, $attendance);
+
+mysql_close($con);
+
+}
+
+
 //update an attendance for a class in the corresponding table
 function update_attendance_table($db_name, $con, $table_name, $info_array, $attendance)
 {
 
 	$sql_query  = "INSERT INTO $table_name values('". $info_array['TeacherName']. "', '" . $info_array['SubjectCode']. "', '" . $info_array['OpenmokoID']. "', '" . $info_array['Date']. "', '" . $info_array['Month']. "', '" . $info_array['Year']. "', '" . $info_array['Time'] . "', '" . $info_array['TimeStamp']."'";
-	
+
+	echo "\n month is \t".$info_array['Month']."\n\n";
 	$i=0;
-	
+
 	$no_students = count($attendance);
-	
+
 	echo $no_students;
-	
+
 	while($i<$no_students)
 	{
 		$sql_query.=", ' $attendance[$i]' ";
 		$i++;
 	}
-	
+
 	$sql_query.=")";	
 	echo $sql_query;
 	
@@ -182,7 +223,7 @@ function retrieve_attendance_data($db_name, $con, $branch, $section, $year, $mon
 	$sql_query = "SELECT name_file, attendance_file from ODASI where Branch = '". $branch . "' and Section = '". $section. "' and Year = '". $year . "'";
 
 	execute_query_list($db_name, $con, $sql_query, &$no_rows, &$no_col, &$file_names);
-	
+
 	if($no_col == 2 && $no_rows ==1)
 	{
 
@@ -228,12 +269,12 @@ function retrieve_attendance_data($db_name, $con, $branch, $section, $year, $mon
 		return 1;
 	
 	}
-	
+
 	else
 		return -1;
 
 }
-	
+
 /*
  * name: execute_query_NR
  * @param $db_name: name of the database to be selected
@@ -258,7 +299,6 @@ function execute_query_NR($db_name, $con, $sql_query)
 		return -1;
 	}
 
-	
 }
 
 
@@ -285,7 +325,7 @@ function execute_query_list($db_name, $con, $sql_query,  $no_rows, $no_col, $op)
 	}
 
 	mysql_free_result($result);
-	
+
 }
 
 

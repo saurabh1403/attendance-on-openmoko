@@ -1,45 +1,62 @@
 
 <?php
 
-define("DATABASE_DIR","../database/");
-
-function test()
-{
-//	$user = "bob";
-//	$DATABASE_DIR = "user";
-//	print "${$DATABASE_DIR} \n";
-//	$$DATABASE_DIR = "sauarbh";
-//	print $user;
-//	print DATABASE_DIR;
-	print __FILE__;
-
-}
-
+include "db.php";
 
 //parses the file send by the openmoko
-function parse_file($file_name, $no_students, $roll_list, $attendance_list)
+function parse_file($file_name)
 {
 	$file_handle=fopen($file_name,'r');
-	$data=fgets($file_handle);
-
-	print $data;	
-	return;
-	$no_students=fgets($file_handle);
-	for($i=0;$i<$no_students;$i++)
+	$data=chop(fgets($file_handle));
+	if($data=="ATTENDANCE")
 	{
-		$attend=chop(fgets($file_handle));
-		print $attend;
-		if($attend=="yes")
-		{
-			$roll_list[$i] = $i+1;
-			$attendance_list[$i]=1;
-		}
-		else
-		{
-			$roll_list[$i] = $i+1;
-			$attendance_list[$i]=0;
+//		$info['SubjectCode']  = "210";
+		#this part extarcts the info from the file
+		$info['ClassName']=chop(fgets($file_handle));
+		list($trash,$info['SubjectCode'],$trash1,$trash2) = split('_',$info['ClassName']);
+		echo $info['SubjectCode'];
 
+		$trash=fgets($file_handle);
+		$trash=chop(fgets($file_handle));
+
+		$trash=fgets($file_handle);
+		$info['OpenmokoID']=chop(fgets($file_handle));
+		
+		$trash=fgets($file_handle);
+		$info['TeacherName']=chop(fgets($file_handle));
+		echo $info['TeacherName']."<br/>\n";
+		
+		$trash=fgets($file_handle);
+		$trash=chop(fgets($file_handle));
+
+		$info['TimeStamp']=chop(fgets($file_handle));
+		list($trash, $info['Month'], $info['Date'], $info['Time'],$info['Year'])=split(' ',$info['TimeStamp']);
+		echo $info['Month'];
+		
+		$i=0;
+		
+		while($temp=chop(fgets($file_handle)))
+		{
+			$attend=chop(fgets($file_handle));
+			if($attend=="PRESENT")
+			{
+				$arr_attend[$i]=1;
+			}
+			else
+			{
+				$arr_attend[$i]=0;
+			}
+			
+//			echo $arr_attend[$i]."\n";
+			$i++;
 		}
+//		echo "\n\nno of st". count($arr_attend)."\n\n";
+
+		update_database($info,$arr_attend);
+	}
+	else
+	{
+		#notes taking
 	}
 	fclose($file_handle);
 
@@ -47,9 +64,9 @@ function parse_file($file_name, $no_students, $roll_list, $attendance_list)
 
 //test();
 
-parse_file("test_file.txt", &$no, &$roll, &$attend);
+//parse_file("test_file.txt", &$no, &$roll, &$attend);
 
-echo "no of students are ".$no."\n";
+//echo "no of students are ".$no."\n";
 
 /*
 for($i = 0; $i < $no; $i++)

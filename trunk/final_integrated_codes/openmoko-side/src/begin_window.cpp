@@ -74,6 +74,7 @@ int begin_window(int argc, char *argv[],UserOptions &b)
 	gtk_init(&argc, &argv);
 	xml = glade_xml_new("test1.glade", NULL, NULL);
 	window = glade_xml_get_widget(xml, "window1");
+	gtk_window_set_title(GTK_WINDOW(window),"DASO");
 	GtkWidget *progress_bar = glade_xml_get_widget (xml, "progressbar1");
 	gtk_progress_bar_pulse (GTK_PROGRESS_BAR (progress_bar));
 	g_assert(progress_bar);

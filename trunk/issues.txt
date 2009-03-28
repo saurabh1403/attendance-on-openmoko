@@ -7,3 +7,4 @@
 
 4) php script sometimes, is not able to bind socket to a particular IP for some time. <closed>
 
+5) gtk files are not getting compiled using openmoko build image, whereas it is getting compiled with openmoko toolchain.

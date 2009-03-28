@@ -29,13 +29,13 @@ string attendance_list_window(int argc, char* argv[])
 	table = gtk_table_new(1,3,TRUE);
 	gtk_table_attach_defaults(GTK_TABLE(table),button,1,2,0,1);
 
-	gtk_window_set_title(GTK_WINDOW(window),"My Attendance");
+	gtk_window_set_title(GTK_WINDOW(window),"Class Selection");
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_widget_set_size_request(window,500,400);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
 	combo = gtk_combo_box_new_text();
 	vbox= gtk_vbox_new(FALSE,0);
-	
+
 	int i;
 	std:string class_file_name = get_data_folder();
 	class_file_name+= CLASS_LIST_FILE;

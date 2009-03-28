@@ -7,9 +7,9 @@ $_SCHEMA['attendance'] = "
 			TeacherName varchar(20) NOT NULL, 
 			SubjectCode varchar(20) NOT NULL,
 			OpenmokoID varchar(20) NOT NULL, 
-			Date INT NOT NULL,
-			Month INT NOT NULL,
-			Year INT NOT NULL,
+			Date varchar(20) NOT NULL,
+			Month varchar(20) NOT NULL,
+			Year varchar(20) NOT NULL,
 			Time varchar(20) NOT NULL,
 			TimeStamp varchar(20) NOT NULL";
 

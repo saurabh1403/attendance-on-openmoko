@@ -3,7 +3,6 @@
 
 include 'db.php';
 
-
 $_SQL['attendance'] = "
 CREATE TABLE att(
 			TeacherName varchar(20) NOT NULL, 
@@ -39,21 +38,22 @@ if (!$con)
 }
 
 
-$roll = array(11,21,13,14,51);
-$names = array("saurabh","vijay","praveen","nimit","lamba");
+//$roll = array(11,21,13,14,51);
+//$names = array("saurabh","vijay","praveen","nimit","lamba");
 
 
 //echo "haha '$_SQL[\'attendance\']' $_SQL[0] \n";
 
-//create_class_names("my_db1", $con, "names_COE_2_2005");
-//update_class_names("my_db1", $con, "names_COE_2_2005", $roll, $names);
+//create_class_names("my_db1", $con, "names_ECE_402_2_2008");
+//file_read_linewise("ICE_330_2_2005.txt",&$roll,&$names);
+//update_class_names("my_db1", $con, " names_ICE_330_2_2005", $roll, $names);
 
 //create_ODASI_table("my_db1",$con);
 
 
-create_attendance_table("my_db1", $con, "attendance_ECE_3_2005", "names_ECE_2_2005");
+//create_attendance_table("my_db1", $con, "ICE_330_2_2005", "names_ICE_330_2_2005");
 
-/*
+
 $info = array(  'TeacherName' => 'Mr. D.U.',
 				'SubjectCode' => 'EC-401',
 				'OpenmokoID' => '#123451',
@@ -63,20 +63,21 @@ $info = array(  'TeacherName' => 'Mr. D.U.',
 				'Time' => '12:15:13',
 				'TimeStamp' => 'sdsdss');
 
-$info_odasi = array( 'Branch' => 'ECE',
+$info_odasi = array( 'Branch' => 'ICE',
 				'Section' => '2',
 				'Year' => '2005',
-				'name_file' => 'names_ECE_2_2005',
-				'attendance_file' => 'attendance_ECE_2_2005');
+				'name_file' => 'names_ICE_330_2_2005',
+				'attendance_file' => 'ICE_330_2_2005');
 
 
 $attend = array('P','A','A','P','A');
 $no = count($attend);
 
-*/
+
 //echo $no;
 //update_attendance_table("my_db1",$con, "attendance_ECE_2_2005",$info, $attend);
 //update_ODASI_table("my_db1",$con,$info_odasi);
+/*
 execute_query_list("my_db1",$con, "SELECT * from names_ECE_2_2005", &$rows, &$col, &$op);
 
 for($i = 0; $i < $rows; $i++)
@@ -88,17 +89,14 @@ for($i = 0; $i < $rows; $i++)
 	
 	echo "\n";
 }
+*/
 
 
+retrieve_attendance_data("my_db1",$con, "ICE","2","2005", "Mar", "330", &$no_students, &$stamp, &$stats, &$st_names, &$roll_no);
 
+//print_r($roll_no);
 
-
-/*
-retrieve_attendance_data("my_db1",$con, "ECE","2","2005", "3", "EC-411", &$no_students, &$stamp, &$stats, &$st_names, &$roll_no);
-
-print_r($roll_no);
-
-print_r($st_names);
+//print_r($st_names);
 
 $no_rows = count($stamp);
 
@@ -114,7 +112,7 @@ for($i = 0; $i < $no_rows; $i++)
 	
 	echo "\n";
 }
-*/
+
 
 
 //print_r($op);
@@ -122,7 +120,14 @@ for($i = 0; $i < $no_rows; $i++)
 
 //show_data("my_db1",$con, "att");
 //execute_query_NR("my_db1",$con, $_SQL[1]);
-//mysql_close($con);
+mysql_close($con);
+
+
+
+
+
+
+
 
 
 ?>
