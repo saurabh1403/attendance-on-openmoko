@@ -30,5 +30,10 @@ Reading of file in this manner is needed at many places.
 
 14. Formats of different files are yet to be decided. PHP parsing of these files. <going on>
 
+15. Format of class file names are to be changed. IC-310-2-2005 should be IC-2-2005. Subject code is to be added in the transmitting file.
+
+16. Name of the students need to be changed. No gap between them is allowed.
+
+
 
 

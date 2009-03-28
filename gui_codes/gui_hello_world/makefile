@@ -16,7 +16,7 @@ test: main.c
 
 neo_gui: main.c
 	. /usr/local/openmoko/arm/setup-env
-	$(GCC_OM_TOOLCHAIN) -o neo_gui main.c $(OM_FLAGS_TOOLCHAIN)
+	$(GCC_OM_TOOLCHAIN) $(OM_FLAGS_TOOLCHAIN) -o neo_gui main.c 
 
 clean:
 	rm test neo_gui

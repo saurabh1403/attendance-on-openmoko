@@ -1,10 +1,13 @@
 
 <?php
 
+include "parse.php";
 $host = "127.0.0.1";
-$port = 3490;
+$port = 3491;
 $term_string = "EOF";
-$DATABASE_DIR = "../database/";
+$DATABASE_DIR = "./";
+
+define("DATABASE_DIR","/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/server-side/php-codes/");
 
 // read client input
 function recv_string($spawn)
@@ -21,8 +24,6 @@ function recv_string($spawn)
 
 function recv_file($spawn)
 {
-	$DATABASE_DIR = "../database/";
-
 	$input = recv_string($spawn);
 
 	while($input != "FILE")
@@ -34,8 +35,12 @@ function recv_file($spawn)
 	echo $input . "  file is coming\n";
 
 	$flag = 1;
+	
+	$file_created = DATABASE_DIR. $input;
 
-	$file = fopen($DATABASE_DIR. $input,"w") or exit("file can't be opened");
+	echo $file_created. "\n";
+
+	$file = fopen($file_created,"w") or exit("file can't be opened");
 //	$file = fopen( $input,"w") or exit("file can't be opened");
 
 	while($flag == 1)
@@ -62,6 +67,8 @@ function recv_file($spawn)
 	}
 
 	fclose($file);
+	
+	return $file_created;
 }
 
 // don't timeout!
@@ -81,7 +88,9 @@ $result = socket_listen($socket, 3) or die("Could not set up socket listener\n")
 while(1)
 {
 $spawn = socket_accept($socket) or die("Could not accept incoming connection\n");
-recv_file($spawn);
+$file_name = recv_file($spawn);
+parse_file($file_name);
+
 }
 
 socket_close($spawn);

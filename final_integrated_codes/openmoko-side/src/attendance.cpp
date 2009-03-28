@@ -68,7 +68,7 @@ int create_take_attendance(std::string &FileName,std::string RollList)
 	GtkWidget *vbox,*swin,*table1,*table2,*label[100],*toggle_button[100],*v_separator[100];
 	GtkAdjustment *horizontal,*vertical;
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(window),"My Attendance");
+	gtk_window_set_title(GTK_WINDOW(window),RollList.c_str());
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_widget_set_size_request(window,500,400);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
@@ -77,7 +77,7 @@ int create_take_attendance(std::string &FileName,std::string RollList)
 //	ifstream f((get_data_folder() + RollList).c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
 //	f>>no_student;
 	vector<string> current(0);
-	read_file((get_data_folder() + RollList), no_student , current);
+	read_file((get_data_folder() + RollList + ".txt"), no_student , current);
 	int i;
 
 	//CREATING A TABLE OF 50X3.
