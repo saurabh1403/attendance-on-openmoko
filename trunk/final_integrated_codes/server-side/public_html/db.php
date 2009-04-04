@@ -175,7 +175,7 @@ function update_attendance_table($db_name, $con, $table_name, $info_array, $atte
 
 	$sql_query  = "INSERT INTO $table_name values('". $info_array['TeacherName']. "', '" . $info_array['SubjectCode']. "', '" . $info_array['OpenmokoID']. "', '" . $info_array['Date']. "', '" . $info_array['Month']. "', '" . $info_array['Year']. "', '" . $info_array['Time'] . "', '" . $info_array['TimeStamp']."'";
 
-	echo "\n month is \t".$info_array['Month']."\n\n";
+//	echo "\n month is \t".$info_array['Month']."\n\n";
 	$i=0;
 
 	$no_students = count($attendance);
@@ -188,9 +188,9 @@ function update_attendance_table($db_name, $con, $table_name, $info_array, $atte
 		$i++;
 	}
 
-	$sql_query.=")";	
-	echo $sql_query;
-	
+	$sql_query.=")";
+//	echo $sql_query;
+
 	return execute_query_NR($db_name, $con, $sql_query);
 
 }

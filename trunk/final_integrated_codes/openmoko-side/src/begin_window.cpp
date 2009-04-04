@@ -32,6 +32,7 @@ void update_clicked(GtkWidget *object, GtkWidget *window)
 	gtk_object_destroy((GtkObject *)window);
 }
 
+
 gboolean update_progress_bar (gpointer data)
 {
   gtk_progress_bar_pulse (GTK_PROGRESS_BAR (data));
@@ -41,8 +42,9 @@ gboolean update_progress_bar (gpointer data)
    */
   return TRUE;
 }
-/* This is the callback for the delete_event, i.e. window closing */
 
+
+/* This is the callback for the delete_event, i.e. window closing */
 void inform_user_of_time_wasted (GtkWidget *widget, GdkEvent * event, gpointer data)
 {
   /* Get the elapsed time since the timer was started */
@@ -51,7 +53,7 @@ void inform_user_of_time_wasted (GtkWidget *widget, GdkEvent * event, gpointer d
   gdouble time_elapsed = g_timer_elapsed (timer, &dumb_API_needs_this_variable);
 
   /* Tell the user how much time they used */
-  printf ("You wasted %.2f seconds with this program.\n", time_elapsed);
+//  printf ("You wasted %.2f seconds with this program.\n", time_elapsed);
 
   /* Free the memory from the timer */
   g_timer_destroy (timer);

@@ -3,11 +3,11 @@
 
 include "parse.php";
 $host = "127.0.0.1";
-$port = 3491;
+$port = 3490;
 $term_string = "EOF";
 $DATABASE_DIR = "./";
 
-define("DATABASE_DIR","/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/server-side/php-codes/");
+define("DATABASE_DIR","/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/server-side/local_dir/");
 
 // read client input
 function recv_string($spawn)

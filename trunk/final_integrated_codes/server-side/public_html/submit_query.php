@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,7 +20,7 @@
     <tr>
       <td height="364"><table width="693" border="1">
         <tr>
-          <td width="315" height="459"><img src="Attendance.JPG" width="315" height="350" /></td>
+          <td width="315" height="459"><img src="../images/Attendance.JPG" width="315" height="350" /></td>
           <td width="362"><table width="367" border="1">
             <tr>
               <td width="176" height="42">TEACHER NAME </td>

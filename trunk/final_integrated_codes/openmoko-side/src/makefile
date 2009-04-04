@@ -1,8 +1,8 @@
 
 GCC = g++
 GCC_OM = /home/saurabhg/moko/build/tmp/cross/arm-angstrom-linux-gnueabi/bin/g++
-GCC_OM_TOOLCHAIN = ${CXX}
-#GCC_OM_TOOLCHAIN = /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/bin/g++
+#GCC_OM_TOOLCHAIN = ${CXX}
+GCC_OM_TOOLCHAIN = /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/bin/g++
 
 
 OM_COMPILER_USED = $(GCC_OM_TOOLCHAIN)
@@ -53,7 +53,7 @@ begin_window.o: begin_window.cpp
 #build commands for openmoko
 
 neo_gui: $(OBJ_OM)
-	. /usr/local/openmoko/arm/setup-env
+	. /usr/local/openmoko/arm/bin/setup-env
 	$(GCC_OM_TOOLCHAIN) -o $@ $(OBJ_OM) $(OM_FLAGS_USED)
 
 attendance_OM.o: attendance.cpp 
@@ -74,10 +74,6 @@ send_file_OM.o: send_file.cpp
 begin_window_OM.o: begin_window.cpp
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c begin_window.cpp -o begin_window_OM.o
 
-
 clean:
 	rm *.o *_OM.o test neo_gui
-
-
-
 

@@ -4,7 +4,7 @@
 using namespace std; 
 
 std::string file_name= get_current_time_sec();
-ofstream g((get_data_folder() + file_name + ".txt").c_str(), ios::out); 	
+ofstream g((get_local_folder() + file_name + ".txt").c_str(), ios::out); 	
 
 //this func capitalizes the name if it is pressed
 static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) ;
@@ -51,6 +51,8 @@ static void file_head_clicked(GtkWidget *button,gpointer File_ptr)
 	int status = file_head_stamp(g);
 	gtk_main_quit();	
 }
+
+
 static void final_button_clicked(GtkWidget *button,gpointer student)
 {
 	//this is called when the attendance is finished.
@@ -64,7 +66,7 @@ int create_take_attendance(std::string &FileName,std::string RollList)
 	GtkWidget * window;
 	int no_student;
 	file_name += ".txt";
-	
+
 	GtkWidget *vbox,*swin,*table1,*table2,*label[100],*toggle_button[100],*v_separator[100];
 	GtkAdjustment *horizontal,*vertical;
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -117,22 +119,21 @@ int create_take_attendance(std::string &FileName,std::string RollList)
 		student[i]->toggle_button = toggle_button[i];
 		g_signal_connect(G_OBJECT(Button_f),"clicked",G_CALLBACK(final_button_clicked),student[i]);
 	}
+
 	gtk_container_set_border_width(GTK_CONTAINER(swin),5);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swin),GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swin),table1);
-	
+
 	vbox= gtk_vbox_new(FALSE,0);
 	gtk_box_pack_start((GtkBox *)vbox,swin,TRUE,TRUE,0);
 	gtk_box_pack_start((GtkBox *)vbox,table2,FALSE,TRUE,0);
-	
+
 	gtk_container_add(GTK_CONTAINER(window),vbox);
 	gtk_widget_show_all(window);
 	gtk_main();
-	
+
 	FileName = file_name;
 
 	return 1;
 }
-
-
 

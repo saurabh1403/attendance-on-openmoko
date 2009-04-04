@@ -14,7 +14,7 @@ function parse_file($file_name)
 		#this part extarcts the info from the file
 		$info['ClassName']=chop(fgets($file_handle));
 		list($trash,$info['SubjectCode'],$trash1,$trash2) = split('_',$info['ClassName']);
-		echo $info['SubjectCode'];
+//		echo $info['SubjectCode'];
 
 		$trash=fgets($file_handle);
 		$trash=chop(fgets($file_handle));
@@ -24,17 +24,23 @@ function parse_file($file_name)
 		
 		$trash=fgets($file_handle);
 		$info['TeacherName']=chop(fgets($file_handle));
-		echo $info['TeacherName']."<br/>\n";
-		
+//		echo $info['TeacherName']."<br/>\n";
+
 		$trash=fgets($file_handle);
 		$trash=chop(fgets($file_handle));
 
 		$info['TimeStamp']=chop(fgets($file_handle));
-		list($trash, $info['Month'], $info['Date'], $info['Time'],$info['Year'])=split(' ',$info['TimeStamp']);
-		echo $info['Month'];
-		
+
+	// split the phrase by any number of commas or space characters,
+	// which include " ", \r, \t, \n and \f
+		list($trash, $info['Month'], $info['Date'], $info['Time'],$info['Year'])=preg_split("/[\s,]+/",$info['TimeStamp']);
+
+		echo "\nmonth is\t". $info['Month'] ."\ndate is\t".$info['Date']. "\ntime is\t".$info['Time']."\nyear is\t".$info['Year']. "\n\n";
+
+//		echo $info['Year'] ."\n";
+
 		$i=0;
-		
+
 		while($temp=chop(fgets($file_handle)))
 		{
 			$attend=chop(fgets($file_handle));
@@ -50,10 +56,11 @@ function parse_file($file_name)
 //			echo $arr_attend[$i]."\n";
 			$i++;
 		}
-//		echo "\n\nno of st". count($arr_attend)."\n\n";
 
+//		echo "\n\nno of st". count($arr_attend)."\n\n";
 		update_database($info,$arr_attend);
 	}
+
 	else
 	{
 		#notes taking
