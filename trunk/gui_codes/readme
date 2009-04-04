@@ -1,3 +1,5 @@
 gui_hello_world: gtk code for hello world
 
 test_gui_neo: gui codes for neo. includes test codes for testing various gtk functions
+
+gui_for_openmoko: codes written for openmoko for mid term evaluation. used C and gtk+
