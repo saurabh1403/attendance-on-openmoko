@@ -183,7 +183,7 @@ int update_log_file(std::string LogMsg)
 {
 	std::string log_file = get_data_folder();
 	log_file+=LOG_FILE_NAME;
-	
+
 	ofstream logFile(log_file.c_str(), ios::app);
 	
 	if(!logFile)

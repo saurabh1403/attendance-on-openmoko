@@ -31,22 +31,22 @@ INCLUDE_DIR = ../include/
 test: $(OBJ)
 	$(GCC) $(MY_FLAGS) -o $@ $(OBJ)
 
-attendance.o: attendance.cpp 
+attendance.o: attendance.cpp $(INCLUDE_DIR)attendance.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  attendance.cpp 
 
-combo.o: combo.cpp
+combo.o: combo.cpp $(INCLUDE_DIR)combo.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  combo.cpp
 
-main.o: main.cpp
+main.o: main.cpp $(INCLUDE_DIR)include.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  main.cpp
 
-utils.o: utils.cpp
+utils.o: utils.cpp $(INCLUDE_DIR)utils.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  utils.cpp
 
-send_file.o: send_file.cpp
+send_file.o: send_file.cpp $(INCLUDE_DIR)send_file.h
 	$(GCC) -I$(INCLUDE_DIR) -lm -c send_file.cpp
 
-begin_window.o: begin_window.cpp
+begin_window.o: begin_window.cpp $(INCLUDE_DIR)begin_window.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS) -c begin_window.cpp
 
 
@@ -56,22 +56,22 @@ neo_gui: $(OBJ_OM)
 	. /usr/local/openmoko/arm/bin/setup-env
 	$(GCC_OM_TOOLCHAIN) -o $@ $(OBJ_OM) $(OM_FLAGS_USED)
 
-attendance_OM.o: attendance.cpp 
+attendance_OM.o: attendance.cpp $(INCLUDE_DIR)attendance.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  attendance.cpp -o attendance_OM.o
 
-combo_OM.o: combo.cpp
+combo_OM.o: combo.cpp $(INCLUDE_DIR)combo.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c combo.cpp -o combo_OM.o
 
-main_OM.o: main.cpp
+main_OM.o: main.cpp $(INCLUDE_DIR)include.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  main.cpp -o main_OM.o
 
-utils_OM.o: utils.cpp
+utils_OM.o: utils.cpp $(INCLUDE_DIR)utils.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  utils.cpp -o utils_OM.o
 
-send_file_OM.o: send_file.cpp
+send_file_OM.o: send_file.cpp $(INCLUDE_DIR)send_file.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -lm -c send_file.cpp -o send_file_OM.o
 
-begin_window_OM.o: begin_window.cpp
+begin_window_OM.o: begin_window.cpp $(INCLUDE_DIR)begin_window.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c begin_window.cpp -o begin_window_OM.o
 
 clean:

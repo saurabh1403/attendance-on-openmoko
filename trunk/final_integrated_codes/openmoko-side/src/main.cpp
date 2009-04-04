@@ -21,7 +21,7 @@ void take_new_attendance(string class_selected)
 		update_config_file(file_name, ADD_ENTRY);
 
 		//sending of all previous files should be done here. TO DO
-		status = send_file(get_local_folder(), file_name, IP_LOCAL_LOOPBACK, PORT, ErrMsg);
+		status = send_file(get_local_folder(), file_name, IP_CONNECT, PORT, ErrMsg);
 
 		if(status<0)
 		{
@@ -33,6 +33,7 @@ void take_new_attendance(string class_selected)
 			ErrMsg = file_name;
 			ErrMsg+= " sent to server";
 			update_log_file(ErrMsg);
+			update_config_file(file_name, DELETE_ENTRY);
 		}
 
 	}
