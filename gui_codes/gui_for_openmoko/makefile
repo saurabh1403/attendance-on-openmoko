@@ -40,7 +40,7 @@ combo.o: combo.c
 
 #compile options for openmoko
 neo_gui: $(OBJ_OM)
-#	. /usr/local/openmoko/arm/setup-env
+	. /usr/local/openmoko/arm/bin/setup-env
 	$(GCC_OM_TOOLCHAIN) -o $@ $(OBJ_OM) $(OM_FLAGS_TOOLCHAIN)
 
 main_OM.o: main.c

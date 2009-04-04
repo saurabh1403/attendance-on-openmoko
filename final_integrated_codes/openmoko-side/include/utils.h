@@ -20,6 +20,7 @@ using namespace std;
 #define LOG_FILE_NAME		"log.txt"
 #define CONFIG_FILE_NAME	"config.txt"
 #define INFO_USER_FILE_NAME "id.txt"
+
 typedef enum ConfigFileActions
 {
 	ADD_ENTRY	=	1,
@@ -34,6 +35,7 @@ typedef enum UserOptions
 	UpdateOpenmokoData 	= 3			//for updating the class list and students list on openmoko
 }UserOptions;
 
+
 typedef struct
 {
 	GtkWidget *label;
@@ -46,8 +48,11 @@ std::string get_current_time_sec();
 //returns the current time in string form
 std::string get_current_time_str();
 
-//returns the folder path where database files are stored
+//returns the folder path where database files are stored. 
 std::string get_data_folder();
+
+//returns the folder path where local storage of file are kept.
+std::string get_local_folder();
 
 //It reads the file in the form of vector<string> & read the file linewise
 int read_file(string file_path,int &file_size,vector< string > &line_data );
@@ -69,4 +74,6 @@ int file_write(GtkWidget *button,gpointer student,std::ofstream &g);
 
 //write the head on the file
 int file_head_stamp(std::ofstream &g);
+
+
 

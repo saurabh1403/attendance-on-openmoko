@@ -14,7 +14,7 @@ test: ${SRC}
 	$(GCC) -o test ${SRC}  $(MY_FLAGS)
 
 neo_gui: ${SRC}
-	. /usr/local/openmoko/arm/setup-env
+	. /usr/local/openmoko/arm/bin/setup-env
 	$(GCC_OM_TOOLCHAIN) -I/usr/local/openmoko/arm/usr/include  -o neo_gui ${SRC}  $(OM_FLAGS) 
 
 

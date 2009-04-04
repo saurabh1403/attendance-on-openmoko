@@ -20,6 +20,7 @@ std::string get_current_time_str()
 	time_t seconds;
 	seconds=time(NULL);
 	std::string time_str(ctime(&seconds));
+	cout<<time_str.c_str()<<endl;
 	return time_str.substr(0,time_str.length()-1);
 }
 
@@ -61,17 +62,27 @@ int file_head_stamp(std::ofstream &g)
 	while(getline(h,temp))
 	{
 		g<<temp<<endl;
-		
 	}
+
 	temp=get_current_time_str();
 	g<<temp<<endl;
 	h.close();
 	return 1;
 }
+
+
 std::string get_data_folder()
 {
 //	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	
 	return string("../database/");				//relative database path
+}
+
+
+std::string get_local_folder()
+{
+
+	return string("../local_dir/");				
+	
 }
 
 int read_file(string file_path,int &file_size,vector<string> &line_data)

@@ -12,7 +12,7 @@
 
 
 
-#define PORT	"3491"
+#define PORT	"3490"
 #define IP_LOCAL_LOOPBACK	"127.0.0.1"
 #define IP_CONNECT		"192.168.1.2"
 

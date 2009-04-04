@@ -18,6 +18,7 @@ static void combo_button_clicked(GtkWidget *button, gpointer struct_handle)
 	gtk_object_destroy((GtkObject *)gpoint->window);
 }
 
+
 string attendance_list_window(int argc, char* argv[])
 {
 
@@ -52,7 +53,6 @@ string attendance_list_window(int argc, char* argv[])
 	gpoint.combo=(GtkWidget *)combo;
 	g_signal_connect(G_OBJECT(button),"clicked",G_CALLBACK(combo_button_clicked),&gpoint);
 
-
 	//string class_selected=gpoint.p;
 	gtk_box_pack_start((GtkBox *)vbox,label,FALSE,TRUE,35);
 	gtk_box_pack_start((GtkBox *)vbox,combo,FALSE,TRUE,70);
@@ -63,4 +63,7 @@ string attendance_list_window(int argc, char* argv[])
 	gtk_main();
 
 	return string(gpoint.p);
+
 }
+
+
