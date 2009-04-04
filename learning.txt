@@ -2,3 +2,11 @@
 1. We cannot initialize a new variable inside a switch case block
 
 2. vimdiff : tool for visualizing the *diff* of two files in a coluored manner.
+
+3. ctime() function returns the time stamp in a format that "date" field always occupies two characters. if date is only of single character than the other one becomes a whitespace (" ")
+
+e.g.
+23
+ 4
+12
+
