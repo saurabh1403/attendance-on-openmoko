@@ -113,21 +113,12 @@ for($i = 0; $i < $no_rows; $i++)
 	echo "\n";
 }
 
-
-
 //print_r($op);
 //echo "\n $col \n $rows \n";
 
 //show_data("my_db1",$con, "att");
 //execute_query_NR("my_db1",$con, $_SQL[1]);
 mysql_close($con);
-
-
-
-
-
-
-
 
 
 ?>

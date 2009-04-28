@@ -15,7 +15,8 @@ function parse_file($file_name)
 //		$info['SubjectCode']  = "210";
 		#this part extarcts the info from the file
 		$info['ClassName']=chop(fgets($file_handle));
-		list($trash,$info['SubjectCode'],$trash1,$trash2) = split('_',$info['ClassName']);
+		list($info['Branch'],$info['SubjectCode'],$info['Section'],$info['EntryYear']) = split('_',$info['ClassName']);
+//		list($trash,$info['SubjectCode'],$trash1,$trash2) = split('_',$info['ClassName']);
 //		echo $info['SubjectCode'];
 
 		$trash=fgets($file_handle);
@@ -37,7 +38,7 @@ function parse_file($file_name)
 	// which include " ", \r, \t, \n and \f
 		list($trash, $info['Month'], $info['Date'], $info['Time'],$info['Year'])=preg_split("/[\s,]+/",$info['TimeStamp']);
 
-		echo "\nmonth is\t". $info['Month'] ."\ndate is\t".$info['Date']. "\ntime is\t".$info['Time']."\nyear is\t".$info['Year']. "\n\n";
+//		echo "\nmonth is\t". $info['Month'] ."\ndate is\t".$info['Date']. "\ntime is\t".$info['Time']."\nyear is\t".$info['Year']. "\n\n";
 
 //		echo $info['Year'] ."\n";
 
@@ -54,7 +55,7 @@ function parse_file($file_name)
 			{
 				$arr_attend[$i]=0;
 			}
-			
+
 //			echo $arr_attend[$i]."\n";
 			$i++;
 		}

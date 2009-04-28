@@ -30,7 +30,8 @@ Reading of file in this manner is needed at many places.
 
 14. Formats of different files are yet to be decided. PHP parsing of these files. <going on>
 
-15. Format of class file names are to be changed. IC-310-2-2005 should be IC-2-2005. Subject code is to be added in the transmitting file.
+15. Format of class file names are to be changed. IC-310-2-2005 should be IC-2-2005. Subject code is to be added in the transmitting file. 
+	Names of the student should be listed in files according to class, section and year only and not to be according to subject code. 
 
 16. Name of the students need to be changed. No gap between them is allowed.<resolved in php>
 
@@ -50,4 +51,6 @@ This includes moving images, data and other items inside this
 23. Size of different GUI windows to be taken care of.
 
 24. Check for killing of a child process by a parent process or to communicate between processes.
+
+25. Addition of roll numbers in the names list file and proper parsing of it in C as well as in php.
 

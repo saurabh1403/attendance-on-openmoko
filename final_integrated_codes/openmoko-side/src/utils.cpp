@@ -74,6 +74,7 @@ int file_head_stamp(std::ofstream &g)
 std::string get_data_folder()
 {
 //	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	
+
 	return string("../database/");				//relative database path
 }
 
@@ -100,7 +101,6 @@ int update_config_file(std::string file_name, ConfigFileActions action)
 	std::string config_file = get_data_folder();
 	config_file+=CONFIG_FILE_NAME;
 
-	
 	if(ADD_ENTRY==action)
 	{
 		ofstream configFile;
@@ -143,7 +143,7 @@ int update_config_file(std::string file_name, ConfigFileActions action)
 
 			if(data_st != string(""))
 			{
-				cout<<data_st.c_str()<<endl;
+//				cout<<data_st.c_str()<<endl;
 				list_files.push_back(data_st);
 		}
 		}
@@ -170,7 +170,7 @@ int update_config_file(std::string file_name, ConfigFileActions action)
 
 		OutconfigFile.close();
 	}
-	
+
 	else
 	{
 	}
