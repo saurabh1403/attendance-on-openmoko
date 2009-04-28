@@ -19,12 +19,12 @@ $_SCHEMA['attendance_key'] = "
 
 
 $_SCHEMA['ODASI'] = "
-			CREATE TABLE ODASI(
 			Branch varchar(20) NOT NULL, 
 			Section varchar(20) NOT NULL,
 			Year varchar(20) NOT NULL, 
 			name_file TEXT,
 			attendance_file TEXT,
+			notes_file TEXT,
 			PRIMARY KEY(Branch, Section, Year))";
 
 ?>

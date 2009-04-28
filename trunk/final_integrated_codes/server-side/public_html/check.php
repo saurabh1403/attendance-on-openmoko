@@ -18,16 +18,7 @@
 		 $sub_code = $_POST['sub_code'];
 		 $month = $_POST['month'];
 
-		$con = mysql_connect("localhost","root","openmoko");
-
-			if (!$con)
-			{
-				die('Could not connect: ' . mysql_error());
-			}
-
-		retrieve_attendance_data(DB_NAME, $con, $branch, $section, $year, $month, $sub_code, &$no_students, &$arr_date, &$arr_attnd, &$arr_name, &$arr_roll);
-
-		mysql_close($con);
+		retrieve_attendance_data($branch, $section, $year, $month, $sub_code, &$no_students, &$arr_date, &$arr_attnd, &$arr_name, &$arr_roll);
 
 		?>
 

@@ -1,0 +1,12 @@
+
+1. see the result according to months, subject codes, year, branch and section
+
+2. See the graph, histogram, percentage and other statistics for whole class or some students.
+
+3. upload the result, attendance through intra college website.
+
+4. facility to enter a new class data or create a new class.
+
+5. view the available classes, students names etc.
+
+6. Facility to change the subject codes and corresponding teachers. 

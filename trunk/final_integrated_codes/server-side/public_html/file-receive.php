@@ -3,11 +3,9 @@
 
 include "parse.php";
 $host = "127.0.0.1";
-$port = 3490;
+$port = 3491;
 $term_string = "EOF";
 $DATABASE_DIR = "./";
-
-define("DATABASE_DIR","/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/server-side/local_dir/");
 
 require_once 'lib-common.php';
 
@@ -45,7 +43,6 @@ function recv_file($spawn)
 	echo $file_created. "\n";
 
 	$file = fopen($file_created,"w") or exit("file can't be opened");
-//	$file = fopen( $input,"w") or exit("file can't be opened");
 
 	while($flag == 1)
 	{
@@ -54,17 +51,12 @@ function recv_file($spawn)
 		if($input =="data")
 			$flag=1;
 
-//		elseif($input == $term_string)
-//			$flag  = 0;
-
 		else
 			$flag = 0;
 
 		if($flag !=0)
 		{
 			$input = recv_string($spawn);
-			echo $input;
-//			$input[1]='\0';
 			fputs($file, $input, 1);
 		}
 	
