@@ -9,7 +9,6 @@ ofstream g((get_local_folder() + file_name + ".txt").c_str(), ios::out);
 //this func capitalizes the name if it is pressed
 static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) ;
 
-
 //this is called when the teacher completes taking attendance
 static void final_button_clicked(GtkWidget *button,gpointer student);
 

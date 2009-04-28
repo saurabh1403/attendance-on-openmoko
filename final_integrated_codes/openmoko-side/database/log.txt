@@ -22,3 +22,13 @@ Sat Apr  4 22:59:13 2009 : 1238866146.txt sent to server
 Sat Apr  4 23:08:34 2009 : 1238866691.txt sent to server
 Sat Apr  4 23:34:23 2009 : 1238868257.txt sent to server
 Sat Apr  4 23:36:21 2009 : 1238868376.txt sent to server
+Sat Apr 25 16:54:45 2009 : client: failed to connect
+Sat Apr 25 16:56:36 2009 : 1240658789.txt sent to server
+Sat Apr 25 16:57:11 2009 : 1240658824.txt sent to server
+Tue Apr 28 14:09:54 2009 : client: failed to connect
+Tue Apr 28 14:10:40 2009 : 1240908026.txt sent to server
+Tue Apr 28 14:11:12 2009 : 1240908062.txt sent to server
+Tue Apr 28 14:29:01 2009 : 1240909130.txt sent to server
+Tue Apr 28 14:34:09 2009 : 1240909439.txt sent to server
+Tue Apr 28 14:36:27 2009 : 1240909578.txt sent to server
+Tue Apr 28 14:37:25 2009 : 1240909637.txt sent to server

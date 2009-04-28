@@ -319,9 +319,9 @@ function execute_query_list($db_name, $con, $sql_query,  $no_rows, $no_col, $op)
 	$no_col =(mysql_num_fields($result)) ;
 	$no_rows = mysql_num_rows($result);
 
-	while($row = mysql_fetch_row($result))
+	while($row = mysql_fetch_row($result))		//$row contains an array of full fetched row
 	{
-		$op[] = $row;
+		$op[] = $row;							//$op is a 2-D array
 	}
 
 	mysql_free_result($result);
@@ -409,4 +409,3 @@ function show_data($db_name, $con, $table_name)
 }
 
 ?>
-
