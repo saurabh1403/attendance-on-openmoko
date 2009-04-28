@@ -9,6 +9,8 @@ $DATABASE_DIR = "./";
 
 define("DATABASE_DIR","/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/server-side/local_dir/");
 
+require_once 'lib-common.php';
+
 // read client input
 function recv_string($spawn)
 {
@@ -24,6 +26,7 @@ function recv_string($spawn)
 
 function recv_file($spawn)
 {
+	global $_CONF;
 	$input = recv_string($spawn);
 
 	while($input != "FILE")
@@ -35,8 +38,9 @@ function recv_file($spawn)
 	echo $input . "  file is coming\n";
 
 	$flag = 1;
-	
-	$file_created = DATABASE_DIR. $input;
+
+//	$file_created = DATABASE_DIR. $input;
+	$file_created = $_CONF['LocalDir']. $input;
 
 	echo $file_created. "\n";
 

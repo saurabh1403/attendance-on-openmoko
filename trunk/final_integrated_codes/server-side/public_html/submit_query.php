@@ -11,7 +11,9 @@
 </style>
 </head>
 
+
 <body>
+
 <form id="form1" name="form1" method="post" action="check.php">
   <table width="702" border="1">
     <tr>
@@ -20,7 +22,7 @@
     <tr>
       <td height="364"><table width="693" border="1">
         <tr>
-          <td width="315" height="459"><img src="../images/Attendance.JPG" width="315" height="350" /></td>
+          <td width="315" height="459"><img src="./images/attendance.jpg" width="315" height="350" /></td>
           <td width="362"><table width="367" border="1">
             <tr>
               <td width="176" height="42">TEACHER NAME </td>
@@ -72,5 +74,7 @@
     </tr>
   </table>
 </form>
+
 </body>
 </html>
+

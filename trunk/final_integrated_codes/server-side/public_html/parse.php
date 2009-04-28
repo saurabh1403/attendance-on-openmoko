@@ -1,11 +1,13 @@
 
 <?php
 
-include "db.php";
+require_once 'lib-common.php';
+require_once 'db.php';
 
 //parses the file send by the openmoko
 function parse_file($file_name)
 {
+
 	$file_handle=fopen($file_name,'r');
 	$data=chop(fgets($file_handle));
 	if($data=="ATTENDANCE")
@@ -21,7 +23,7 @@ function parse_file($file_name)
 
 		$trash=fgets($file_handle);
 		$info['OpenmokoID']=chop(fgets($file_handle));
-		
+
 		$trash=fgets($file_handle);
 		$info['TeacherName']=chop(fgets($file_handle));
 //		echo $info['TeacherName']."<br/>\n";

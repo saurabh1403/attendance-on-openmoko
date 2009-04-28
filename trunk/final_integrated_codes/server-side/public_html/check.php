@@ -8,8 +8,8 @@
 <body>
 
 	<?PHP
-	
-	include "db.php";
+		require_once 'lib-common.php';	
+		require_once $_CONF['path'] . 'db.php';
 
 		$teacher_name = $_POST['teacher_name'];
 		$branch = $_POST['branch'];
