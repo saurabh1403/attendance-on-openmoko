@@ -8,7 +8,8 @@ INCLUDE_DIR = -I/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/c
 
 SRC = main.cpp
 
-MY_FLAGS = -lm -Wall `pkg-config --cflags --libs gtk+-2.0`
+#MY_FLAGS = -lm -Wall `pkg-config --cflags --libs gtk+-2.0`
+MY_FLAGS = -lm -Wall `pkg-config --cflags --libs gtkmm-2.4`
 
 OM_FLAGS= -L /home/saurabhg/moko/build/tmp/staging/arm-angstrom-linux-gnueabi/lib/ -Wl, \
  	 /home/saurabhg/moko/build/tmp/staging/arm-angstrom-linux-gnueabi/usr/lib/ -Wl, \

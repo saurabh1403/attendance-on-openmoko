@@ -10,3 +10,15 @@
 5) gtk files are not getting compiled using openmoko build image, whereas it is getting compiled with openmoko toolchain.
 
 6) Sometimes, ssh of root@phone doesn't work, specially then when usb connection takes place more than once. 
+<resolved>
+==> usb0 doesn;t get the static IP automatically. use the command : sudo ifconfig usb0 192.168.0.200 netmask 255.255.255.0
+and then 
+==> ssh root@192.168.0.202
+
+7) compiling C++ code using openmoko toolchain:
+Change the following things:
+	=> src/Makefile.am : replace source files name extension: .c to .cpp
+	=> src/Makefile.am : Change AM_CFLAGS to AM_CXXFLAGS
+	=> configure.ac    : change AC_PROG_CC to AC_PROG_CXX    
+
+run "make distclean" and then "make"

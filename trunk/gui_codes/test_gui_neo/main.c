@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
     GladeXML *xml;
 	GtkWidget *window1;
 	int a=1;
-	
+
     gtk_init(&argc, &argv);
 
     /* load the interface */
@@ -115,18 +115,18 @@ int main(int argc, char *argv[]) {
 	gint func_ref = g_timeout_add (100, update_progress_bar, progress_bar);
 
 	gtk_widget_show (window1);
-	
+
 	GTimer *wasted_time_tracker = g_timer_new ();
-	
+
   	GtkWidget *widget = glade_xml_get_widget (xml, "WasteTimeWindow");
   	g_signal_connect (G_OBJECT (widget), "delete_event", G_CALLBACK (inform_user_of_time_wasted),wasted_time_tracker);
- 
+
     /* connect the signals in the interface */
     glade_xml_signal_autoconnect(xml);
 
     /* start the event loop */
     gtk_main();
-  g_source_remove (func_ref);
+	g_source_remove (func_ref);
     return 0;
 }
 
