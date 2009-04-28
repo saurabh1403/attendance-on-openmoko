@@ -18,7 +18,7 @@ Reading of file in this manner is needed at many places.
 
 8. Shell script to start the system and maintain the database files(moving and removing). <TBD>
 
-9. Porting all things on openmoko <TBD>
+9. Porting all things on openmoko <going on>
 
 10. HTML page to select the class and subject to view the attendance.  <TBD>
 
@@ -32,8 +32,22 @@ Reading of file in this manner is needed at many places.
 
 15. Format of class file names are to be changed. IC-310-2-2005 should be IC-2-2005. Subject code is to be added in the transmitting file.
 
-16. Name of the students need to be changed. No gap between them is allowed.
+16. Name of the students need to be changed. No gap between them is allowed.<resolved in php>
 
 17. Third GUI window should take the file handlers and then update those files rather than creating its own for reading and writing
 
 18. First window should take the file handler from which it will read the class names and show to user.
+
+19. Adding a file siteconfig.php which will contain the path of various data directories and other things. 
+
+20. Make public_html itself a complete directory which will contain all the necessary files and other things. 
+This includes moving images, data and other items inside this
+
+21. To check the file transfer working for NSIT's intra college LAN. To check for PORT issue for transfer of file.
+
+22. To make a GUI for linux which can receive files from openmoko in the offline mode. 
+
+23. Size of different GUI windows to be taken care of.
+
+24. Check for killing of a child process by a parent process or to communicate between processes.
+
