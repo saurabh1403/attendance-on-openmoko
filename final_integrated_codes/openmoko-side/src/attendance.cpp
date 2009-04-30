@@ -60,7 +60,7 @@ static void final_button_clicked(GtkWidget *button,gpointer student)
 }
 
 
-int create_take_attendance(std::string &FileName,std::string RollList)
+int create_take_attendance(std::string &FileName,std::string &RollList)
 {
 	GtkWidget * window;
 	int no_student;
@@ -75,13 +75,15 @@ int create_take_attendance(std::string &FileName,std::string RollList)
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
 
 
-//	ifstream f((get_data_folder() + RollList).c_str());//THIS FILE CONTAINS THE ATTENDANCE LIST OF THE CLASS.
-//	f>>no_student;
 	vector<string> current(0);
-	read_file((get_data_folder() + RollList + ".txt"), no_student , current);
+	std::string temp = get_data_folder();
+	temp += RollList;
+	temp += ".txt";
+	
+	read_file(temp, no_student , current);
 	int i;
 
-	//CREATING A TABLE OF 50X3.
+	//CREATING A TABLE OF (no_students x 3 ).
 	table1=gtk_table_new(no_student,3,TRUE);
 	gtk_table_set_row_spacings(GTK_TABLE(table1),5);
 	gtk_table_set_col_spacings(GTK_TABLE(table1),5);
@@ -135,4 +137,5 @@ int create_take_attendance(std::string &FileName,std::string RollList)
 
 	return 1;
 }
+
 

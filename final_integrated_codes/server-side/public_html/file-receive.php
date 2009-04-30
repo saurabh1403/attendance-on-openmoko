@@ -5,7 +5,11 @@ include "parse.php";
 $host = "127.0.0.1";
 $port = 3491;
 $term_string = "EOF";
+$data_string = "data";			//string which indicates that data is coming
 $DATABASE_DIR = "./";
+
+$action_type['FILE']=1;
+$action_type['UPDATE']=2;
 
 require_once 'lib-common.php';
 
@@ -22,15 +26,19 @@ function recv_string($spawn)
 }
 
 
+
+function communicate($spawn)
+{
+	global $action_type;
+	$input = recv_string($spawn);
+	return $action_type[$input];
+
+}
+
+
 function recv_file($spawn)
 {
 	global $_CONF;
-	$input = recv_string($spawn);
-
-	while($input != "FILE")
-	{
-		$input = recv_string($spawn);
-	}
 
 	$input = recv_string($spawn);
 	echo $input . "  file is coming\n";
@@ -43,11 +51,13 @@ function recv_file($spawn)
 	echo $file_created. "\n";
 
 	$file = fopen($file_created,"w") or exit("file can't be opened");
+	echo "\nhere";
 
 	while($flag == 1)
 	{
 		$input = recv_string($spawn);
 
+//		if($input ==$data_string)
 		if($input =="data")
 			$flag=1;
 
@@ -63,7 +73,7 @@ function recv_file($spawn)
 	}
 
 	fclose($file);
-	
+
 	return $file_created;
 }
 
@@ -83,10 +93,21 @@ $result = socket_listen($socket, 3) or die("Could not set up socket listener\n")
 // spawn another socket to handle communication
 while(1)
 {
-$spawn = socket_accept($socket) or die("Could not accept incoming connection\n");
-$file_name = recv_file($spawn);
-parse_file($file_name);
+	$spawn = socket_accept($socket) or die("Could not accept incoming connection\n");
+	$action = communicate($spawn);
 
+//	$action = 1;
+
+	switch($action)
+	{
+		case $action_type['FILE']: 
+			$file_name = recv_file($spawn);
+			parse_file($file_name);
+			break;
+
+		default:
+			break;
+	}
 }
 
 socket_close($spawn);

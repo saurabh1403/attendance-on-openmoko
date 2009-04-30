@@ -28,7 +28,6 @@ static int send_string(int sockfd, const char *buff);
 static int send_string(int, char* , int);
 
 
-
 void delay()
 {
 	int i = 100000;
@@ -78,7 +77,6 @@ int send_file(const std::string file_path, const std::string file_name, const ch
 	// loop through all the results and bind to the first we can
 	for(p = servinfo; p != NULL; p = p->ai_next) 
 	{
-
 		if ( (sockfd = socket(p->ai_family, p->ai_socktype,p->ai_protocol) ) == -1) 
 		{
 			perror("client: socket");
@@ -110,7 +108,8 @@ int send_file(const std::string file_path, const std::string file_name, const ch
 	status = transfer_file(sockfd, file_path, file_name, ErrMsg);
 
     close(sockfd);
-    return (status < 0)? -1: 1;
+	return status;
+
 }
 
 
@@ -124,7 +123,8 @@ static int transfer_file(int sockfd,const std::string file_path, const std::stri
 	if(!filehandle)
 	{
 //		cerr<<"error in opening the file\n";
-		ErrMsg+= "error in opening the file";
+		ErrMsg+= "error in opening the file ";
+		ErrMsg+=file_name.c_str();
 		return -1;
 	}
 
@@ -138,7 +138,7 @@ static int transfer_file(int sockfd,const std::string file_path, const std::stri
 
 	while(!filehandle.eof())
 	{
-		send_string(sockfd,"data");
+		send_string(sockfd,data_string);
 		filehandle.get(data);
 		send_data(sockfd, &data);
 	}
