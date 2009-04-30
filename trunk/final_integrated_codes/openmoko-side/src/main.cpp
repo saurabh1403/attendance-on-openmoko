@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void take_new_attendance(string class_selected)
+void take_new_attendance(std::string class_selected)
 {
 
 	string file_name, ErrMsg;
@@ -62,6 +62,23 @@ int main(int argc, char* argv[])
 //	this is  the main window creating the combo box.
 	string class_selected, ErrMsg;
 	
+/*	string config_file = get_data_folder();
+	config_file+= CONFIG_FILE_NAME;
+
+	vector<string> list_files;
+	int size_file;
+
+	read_file(config_file, size_file,list_files);
+
+	for(int i =0;i<size_file;i++)
+	{
+//	cout<<list_files[i]<<endl;
+	}
+
+	return 0;
+*/	
+
+
 	UserOptions option_selected;
 	int status = begin_window(argc, argv,option_selected);
 	switch (option_selected)

@@ -54,3 +54,4 @@ This includes moving images, data and other items inside this
 
 25. Addition of roll numbers in the names list file and proper parsing of it in C as well as in php.
 
+26. Addition of facility to send the pendind data without taking the new attendance.

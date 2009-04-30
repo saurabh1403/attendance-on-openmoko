@@ -86,17 +86,19 @@ std::string get_local_folder()
 	
 }
 
-int read_file(string file_path,int &file_size,vector<string> &line_data)
+int read_file(const std::string &file_path,int &file_size,vector<string> &line_data)
 {
+
 	ifstream f(file_path.c_str());
 	string temp;
 	while(getline(f,temp))
 		line_data.push_back(temp);
 	file_size=line_data.size();
 	return 1;
+
 }
 
-int update_config_file(std::string file_name, ConfigFileActions action)
+int update_config_file(const std::string &file_name, ConfigFileActions action)
 {
 	std::string config_file = get_data_folder();
 	config_file+=CONFIG_FILE_NAME;
@@ -179,7 +181,7 @@ int update_config_file(std::string file_name, ConfigFileActions action)
 }
 
 
-int update_log_file(std::string LogMsg)
+int update_log_file(const std::string &LogMsg)
 {
 	std::string log_file = get_data_folder();
 	log_file+=LOG_FILE_NAME;
@@ -198,8 +200,6 @@ int update_log_file(std::string LogMsg)
 	logFile<<get_current_time_str().c_str()<<" : "<<LogMsg<<endl;
 
 	return 1;
-	
+
 }
-
-
 

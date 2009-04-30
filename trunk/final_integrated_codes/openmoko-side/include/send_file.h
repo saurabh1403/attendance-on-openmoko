@@ -26,8 +26,11 @@
  * PORT: port number */
 int send_file(const std::string file_path, const std::string file_name, const char* ip_address, const char *PORT, std::string &ErrMsg);
 
+//string which indicates that transfer of data is completed
 const char term_string[]= "EOF";
 
+//string which indicates that data is sent or received
+const char data_string[]= "data";
 
 
 
