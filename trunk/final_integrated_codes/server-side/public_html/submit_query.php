@@ -46,6 +46,7 @@
             </tr>
             <tr>
               <td height="39">MONTH</td>
+              
               <td><select name="month">
                 <option value="Jan">JAN</option>
                 <option value="Feb">FEB</option>
@@ -60,6 +61,7 @@
                 <option value="Nov">NOV</option>
                 <option value="Dec">DEC</option>
                             </select></td>
+
             </tr>
           </table>
             <table width="371" height="40" border="1">

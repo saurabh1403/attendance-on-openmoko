@@ -1,7 +1,7 @@
 
 1. see the result according to months, subject codes, year, branch and section
 
-2. See the graph, histogram, percentage and other statistics for whole class or some students.
+2. See the graph, histogram, pie charts, percentage and other statistics for whole class or some students.
 
 3. upload the result, attendance through intra college website.
 
@@ -10,3 +10,5 @@
 5. view the available classes, students names etc.
 
 6. Facility to change the subject codes and corresponding teachers. 
+
+7. Facility to add notes or even update attendance for a class online.

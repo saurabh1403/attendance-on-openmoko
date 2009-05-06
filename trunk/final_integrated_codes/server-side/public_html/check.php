@@ -21,7 +21,6 @@
 		retrieve_attendance_data($branch, $section, $year, $month, $sub_code, &$no_students, &$arr_date, &$arr_attnd, &$arr_name, &$arr_roll);
 
 		?>
-
 	<H1>Attendance Table</H1>
 
 	<table width="200" border="1">

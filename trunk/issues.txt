@@ -22,3 +22,5 @@ Change the following things:
 	=> configure.ac    : change AC_PROG_CC to AC_PROG_CXX    
 
 run "make distclean" and then "make"
+
+8) While using glfusion, when we call our own defined functions, it simply disturbs the whole site layout. in check.php

@@ -3,6 +3,42 @@
 
 using namespace std;
 
+
+void send_pending_files()
+{
+	int status;
+	string ErrMsg;
+
+	//sending of all previous files should be done here. TO DO
+	string config_file = get_data_folder();
+	config_file+= CONFIG_FILE_NAME;
+
+	vector<string> list_files;
+	int no_file;
+
+	read_file(config_file, no_file,list_files);
+
+	for(int i =0;i<no_file;i++)
+	{
+		status = send_file(get_local_folder(), list_files[i], IP_LOCAL_LOOPBACK, PORT, ErrMsg);
+
+		if(status<0)
+		{
+			update_log_file(ErrMsg);
+		}
+
+		else
+		{
+			ErrMsg = list_files[i];
+			ErrMsg+= " sent to server";
+			update_log_file(ErrMsg);
+			update_config_file(list_files[i], DELETE_ENTRY);
+		}
+	}
+
+}
+
+
 void take_new_attendance(std::string class_selected)
 {
 
@@ -19,23 +55,8 @@ void take_new_attendance(std::string class_selected)
 	else
 	{
 		update_config_file(file_name, ADD_ENTRY);
-
-		//sending of all previous files should be done here. TO DO
-		status = send_file(get_local_folder(), file_name, IP_LOCAL_LOOPBACK, PORT, ErrMsg);
-
-		if(status<0)
-		{
-			update_log_file(ErrMsg);
-		}
-
-		else
-		{
-			ErrMsg = file_name;
-			ErrMsg+= " sent to server";
-			update_log_file(ErrMsg);
-			update_config_file(file_name, DELETE_ENTRY);
-		}
-
+		
+		send_pending_files();
 	}
 
 }
@@ -62,21 +83,9 @@ int main(int argc, char* argv[])
 //	this is  the main window creating the combo box.
 	string class_selected, ErrMsg;
 	
-/*	string config_file = get_data_folder();
-	config_file+= CONFIG_FILE_NAME;
 
-	vector<string> list_files;
-	int size_file;
 
-	read_file(config_file, size_file,list_files);
-
-	for(int i =0;i<size_file;i++)
-	{
-//	cout<<list_files[i]<<endl;
-	}
-
-	return 0;
-*/	
+	
 
 
 	UserOptions option_selected;

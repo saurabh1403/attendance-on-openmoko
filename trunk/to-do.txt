@@ -1,7 +1,7 @@
 
 1. attendance.cpp doesn't read the full names written in a row in the class roll number list. <done>
 
-2. combo.cpp is not robust at all. IF a user terminates the window, it should indicate the master program
+2. combo.cpp is not robust at all. IF a user terminates the window, it should indicate the master program. Addition of cancel button.
 
 3. Make a function which will read a given file and reads the strings from it line by line and returns the strings in the  form 
 of a <vector> and the number of lines in that file(number of strings). 
@@ -39,10 +39,10 @@ Reading of file in this manner is needed at many places.
 
 18. First window should take the file handler from which it will read the class names and show to user.
 
-19. Adding a file siteconfig.php which will contain the path of various data directories and other things. 
+19. Adding a file siteconfig.php which will contain the path of various data directories and other things. <done>
 
 20. Make public_html itself a complete directory which will contain all the necessary files and other things. 
-This includes moving images, data and other items inside this
+This includes moving images, data and other items inside this.<done>
 
 21. To check the file transfer working for NSIT's intra college LAN. To check for PORT issue for transfer of file.
 
@@ -55,3 +55,15 @@ This includes moving images, data and other items inside this
 25. Addition of roll numbers in the names list file and proper parsing of it in C as well as in php.
 
 26. Addition of facility to send the pendind data without taking the new attendance.
+
+27. transfer of whole site from localhost to some IP. It needs javascript to use some global variables so that images can be loaded at the client side.
+
+28. Testing of local wifi working in lab. Testing of MTNL's wifi for working without connecting it to external internet. (for saurabh).
+
+29. 
+
+
+
+
+
+
