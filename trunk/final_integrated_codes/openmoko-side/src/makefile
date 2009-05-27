@@ -11,7 +11,7 @@ OM_FLAGS_USED_C = $(MY_FLAGS_C)
 
 
 OBJ = attendance.o combo.o main.o utils.o send_file.o begin_window.o notes.o notes_list.o final_window.o
-OBJ_OM = attendance_OM.o combo_OM.o main_OM.o utils_OM.o send_file_OM.o begin_window_OM.o
+OBJ_OM = attendance_OM.o combo_OM.o main_OM.o utils_OM.o send_file_OM.o begin_window_OM.o notes_OM.o notes_list_OM.o final_window_OM.o
 
 
 MY_FLAGS =  `pkg-config --cflags --libs gtk+-2.0 libglade-2.0` -export-dynamic
@@ -27,6 +27,9 @@ OM_FLAGS_TOOLCHAIN = \
 	`pkg-config --cflags --libs gtk+-2.0 libglade-2.0` -export-dynamic
 
 INCLUDE_DIR = ../include/
+
+all: test neo_gui
+
 
 test: $(OBJ)
 	$(GCC) $(MY_FLAGS) -o $@ $(OBJ)
@@ -58,6 +61,8 @@ begin_window.o: begin_window.cpp $(INCLUDE_DIR)begin_window.h
 final_window.o: begin_window.cpp $(INCLUDE_DIR)final_window.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS) -c final_window.cpp
 
+
+
 #build commands for openmoko
 
 neo_gui: $(OBJ_OM)
@@ -81,6 +86,16 @@ send_file_OM.o: send_file.cpp $(INCLUDE_DIR)send_file.h
 
 begin_window_OM.o: begin_window.cpp $(INCLUDE_DIR)begin_window.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c begin_window.cpp -o begin_window_OM.o
+	
+notes_OM.o: notes.cpp $(INCLUDE_DIR)notes.h
+	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  notes.cpp -o notes_OM.o
+	
+notes_list_OM.o: notes_list.cpp $(INCLUDE_DIR)notes_list.h
+	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  notes_list.cpp -o notes_list_OM.o
+	
+final_window_OM.o: begin_window.cpp $(INCLUDE_DIR)final_window.h
+	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c final_window.cpp -o final_window_OM.o
+
 
 clean:
 	rm *.o *_OM.o test neo_gui

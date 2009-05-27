@@ -76,3 +76,5 @@ Wed May 27 10:52:29 2009 : 1243401723.txt sent to server
 Wed May 27 18:32:54 2009 : client: failed to connect
 Wed May 27 18:33:55 2009 : client: failed to connect
 Wed May 27 18:33:55 2009 : client: failed to connectclient: failed to connect
+Wed May 27 18:52:46 2009 : client: failed to connect
+Wed May 27 19:14:55 2009 : failed to take notes
