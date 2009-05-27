@@ -29,9 +29,9 @@ int file_write(GtkWidget *button,gpointer student,std::ofstream &g)
 	//this is called when the attendance is finished.
 	Widgets *a=(Widgets *)student;
 	GtkWidget *toggle_button=a->toggle_button;
-	GtkWidget *label=a->label;
+	GtkWidget *roll_label=a->roll_label;
 	char *b;
-	gtk_label_get((GtkLabel *)label,(gchar **)&b);
+	gtk_label_get((GtkLabel *)roll_label,(gchar **)&b);
 	string vijay=b;
 	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
 	{
@@ -40,6 +40,24 @@ int file_write(GtkWidget *button,gpointer student,std::ofstream &g)
 	else
 	{
 		g<<vijay<<endl<<"ABSENT"<<endl;
+	}
+	return 1;
+}
+
+int notes_file_write(GtkWidget *button,gpointer student,std::ofstream &g)
+{
+	//this is called when the attendance is finished.
+	Toggle_Widgets *a=(Toggle_Widgets *)student;
+	GtkWidget *toggle_button=a->toggle_button;
+	GtkWidget *roll_label= a->roll_label;
+	char *b;
+//	gtk_label_get((GtkLabel *)label,(gchar **)&b);
+//	string name = b;
+	gtk_label_get((GtkLabel *)roll_label,(gchar **)&b);
+	string roll_no = b;
+	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
+	{
+		g<<roll_no<<endl;
 	}
 	return 1;
 }
@@ -74,7 +92,6 @@ int file_head_stamp(std::ofstream &g)
 std::string get_data_folder()
 {
 //	return string("/media/D/BTP/test_codes/attendance-on-openmoko/final_integrated_codes/database/");	
-
 	return string("../database/");				//relative database path
 }
 
@@ -86,6 +103,9 @@ std::string get_local_folder()
 	
 }
 
+
+//function overloading used here.
+//this function will only read the file line by line and store in line_data vector
 int read_file(const std::string &file_path,int &file_size,vector<string> &line_data)
 {
 
@@ -98,11 +118,29 @@ int read_file(const std::string &file_path,int &file_size,vector<string> &line_d
 
 }
 
-int update_config_file(const std::string &file_name, ConfigFileActions action)
+//this file reads the roll number and name line by line
+int read_file(std::string file_path,int &file_size,vector<string> &name_list, vector<string> &roll_list)
+{
+	ifstream f(file_path.c_str());
+	string temp;
+	while(getline(f,temp))
+	{
+		roll_list.push_back(temp);
+		getline(f,temp);
+		name_list.push_back(temp);
+	}
+
+	file_size=name_list.size();
+	return 1;
+}
+
+
+int update_config_file(std::string file_name, ConfigFileActions action)
 {
 	std::string config_file = get_data_folder();
 	config_file+=CONFIG_FILE_NAME;
 
+	
 	if(ADD_ENTRY==action)
 	{
 		ofstream configFile;
@@ -145,7 +183,7 @@ int update_config_file(const std::string &file_name, ConfigFileActions action)
 
 			if(data_st != string(""))
 			{
-//				cout<<data_st.c_str()<<endl;
+				cout<<data_st.c_str()<<endl;
 				list_files.push_back(data_st);
 		}
 		}
@@ -172,7 +210,7 @@ int update_config_file(const std::string &file_name, ConfigFileActions action)
 
 		OutconfigFile.close();
 	}
-
+	
 	else
 	{
 	}
@@ -181,7 +219,7 @@ int update_config_file(const std::string &file_name, ConfigFileActions action)
 }
 
 
-int update_log_file(const std::string &LogMsg)
+int update_log_file(std::string LogMsg)
 {
 	std::string log_file = get_data_folder();
 	log_file+=LOG_FILE_NAME;
@@ -200,6 +238,8 @@ int update_log_file(const std::string &LogMsg)
 	logFile<<get_current_time_str().c_str()<<" : "<<LogMsg<<endl;
 
 	return 1;
-
+	
 }
+
+
 

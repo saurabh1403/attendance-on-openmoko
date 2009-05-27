@@ -22,108 +22,57 @@ Sat Apr  4 22:59:13 2009 : 1238866146.txt sent to server
 Sat Apr  4 23:08:34 2009 : 1238866691.txt sent to server
 Sat Apr  4 23:34:23 2009 : 1238868257.txt sent to server
 Sat Apr  4 23:36:21 2009 : 1238868376.txt sent to server
-Sat Apr 25 16:54:45 2009 : client: failed to connect
-Sat Apr 25 16:56:36 2009 : 1240658789.txt sent to server
-Sat Apr 25 16:57:11 2009 : 1240658824.txt sent to server
-Tue Apr 28 14:09:54 2009 : client: failed to connect
-Tue Apr 28 14:10:40 2009 : 1240908026.txt sent to server
-Tue Apr 28 14:11:12 2009 : 1240908062.txt sent to server
-Tue Apr 28 14:29:01 2009 : 1240909130.txt sent to server
-Tue Apr 28 14:34:09 2009 : 1240909439.txt sent to server
-Tue Apr 28 14:36:27 2009 : 1240909578.txt sent to server
-Tue Apr 28 14:37:25 2009 : 1240909637.txt sent to server
-Tue Apr 28 15:21:51 2009 : 1240912291.txt sent to server
-Tue Apr 28 17:42:42 2009 : 1240920743.txt sent to server
-Wed Apr 29 00:06:00 2009 : 1240943749.txt sent to server
-Wed Apr 29 00:18:09 2009 : 1240944477.txt sent to server
-Wed Apr 29 00:20:07 2009 : 1240944598.txt sent to server
-Wed Apr 29 00:21:42 2009 : 1240944693.txt sent to server
-Wed Apr 29 00:24:08 2009 : 1240944831.txt sent to server
-Wed Apr 29 00:25:28 2009 : 1240944910.txt sent to server
-Wed Apr 29 00:25:57 2009 : 1240944950.txt sent to server
-Wed Apr 29 00:29:03 2009 : 1240945136.txt sent to server
-Wed Apr 29 00:29:29 2009 : 1240945160.txt sent to server
-Wed Apr 29 00:31:31 2009 : 1240945285.txt sent to server
-Wed Apr 29 00:35:17 2009 : 1240945506.txt sent to server
-Wed Apr 29 00:37:12 2009 : 1240945625.txt sent to server
-Wed Apr 29 00:38:20 2009 : 1240945693.txt sent to server
-Wed Apr 29 00:39:48 2009 : 1240945781.txt sent to server
-Wed Apr 29 00:40:36 2009 : 1240945827.txt sent to server
-Wed Apr 29 00:49:47 2009 : 1240946378.txt sent to server
-Wed Apr 29 00:52:27 2009 : 1240946536.txt sent to server
-Wed Apr 29 00:55:43 2009 : 1240946731.txt sent to server
-Wed Apr 29 00:56:02 2009 : 1240946753.txt sent to server
-Wed Apr 29 00:58:46 2009 : 1240946918.txt sent to server
-Thu Apr 30 23:31:01 2009 : 1241114456.txt sent to server
-Thu Apr 30 23:33:30 2009 : 1241114602.txt sent to server
-Thu Apr 30 23:39:59 2009 : 1241114990.txt sent to server
-Thu Apr 30 23:40:24 2009 : 1241115018.txt sent to server
-Thu Apr 30 23:44:00 2009 : 1241115233.txt sent to server
-Thu Apr 30 23:44:41 2009 : 1241115275.txt sent to server
-Thu Apr 30 23:45:54 2009 : 1241115347.txt sent to server
-Thu Apr 30 23:46:34 2009 : 1241115387.txt sent to server
-Thu Apr 30 23:48:43 2009 : 1241115517.txt sent to server
-Thu Apr 30 23:52:58 2009 : 1241115771.txt sent to server
-Thu Apr 30 23:53:08 2009 : 1241115782.txt sent to server
-Fri May  1 00:13:58 2009 : 1241117030.txt sent to server
-Fri May  1 00:14:53 2009 : 1241117086.txt sent to server
-Fri May  1 00:16:01 2009 : 1241117154.txt sent to server
-Fri May  1 00:16:33 2009 : 1241117183.txt sent to server
-Fri May  1 00:20:01 2009 : 1241117390.txt sent to server
-Fri May  1 01:55:22 2009 : 1241123116.txt sent to server
-Fri May  1 03:08:45 2009 : 1241127519.txt sent to server
-Fri May  1 03:13:15 2009 : 1241127789.txt sent to server
-Fri May  1 03:13:27 2009 : 1241127799.txt sent to server
-Fri May  1 03:14:08 2009 : 1241127841.txt sent to server
-Fri May  1 03:28:43 2009 : 1241128715.txt sent to server
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txterror in opening the file 1241123277.txt
-Fri May  1 03:47:33 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txterror in opening the file 1241123277.txterror in opening the file 1241124065.txt
-Fri May  1 03:47:33 2009 : 1241129843.txt sent to server
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txterror in opening the file 1241123277.txt
-Fri May  1 04:12:56 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txterror in opening the file 1241123277.txterror in opening the file 1241124065.txt
-Fri May  1 04:12:56 2009 : 1241131365.txt sent to server
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txterror in opening the file 1241123277.txt
-Wed May  6 21:31:36 2009 : error in opening the file 1241112892.txterror in opening the file 1241114054.txterror in opening the file 1241114166.txterror in opening the file 1241114247.txterror in opening the file 1241114363.txterror in opening the file 1241115639.txterror in opening the file 1241122486.txterror in opening the file 1241122530.txterror in opening the file 1241122578.txterror in opening the file 1241122708.txterror in opening the file 1241122730.txterror in opening the file 1241122923.txterror in opening the file 1241122971.txterror in opening the file 1241123150.txterror in opening the file 1241123277.txterror in opening the file 1241124065.txt
-Wed May  6 21:31:36 2009 : 1241625690.txt sent to server
+Tue May  5 01:18:19 2009 : client: failed to connect
+Mon May 25 22:09:22 2009 : client: failed to connect
+Mon May 25 22:09:42 2009 : client: failed to connect
+Mon May 25 22:09:58 2009 : client: failed to connect
+Tue May 26 12:40:58 2009 : failed to take notes
+Tue May 26 12:42:41 2009 : failed to take notes
+Tue May 26 12:45:23 2009 : failed to take notes
+Tue May 26 12:47:09 2009 : failed to take notes
+Tue May 26 12:50:05 2009 : failed to take notes
+Tue May 26 12:56:45 2009 : failed to take notes
+Tue May 26 12:59:13 2009 : failed to take notes
+Tue May 26 13:02:17 2009 : failed to take notes
+Tue May 26 13:04:12 2009 : failed to take notes
+Tue May 26 13:04:31 2009 : failed to take notes
+Tue May 26 13:04:33 2009 : failed to take notes
+Tue May 26 13:05:15 2009 : failed to take notes
+Tue May 26 13:05:25 2009 : failed to take notes
+Tue May 26 13:36:42 2009 : failed to take notes
+Tue May 26 13:38:26 2009 : failed to take notes
+Tue May 26 13:38:40 2009 : failed to take notes
+Tue May 26 13:39:44 2009 : failed to take notes
+Tue May 26 13:40:40 2009 : failed to take notes
+Tue May 26 13:41:46 2009 : failed to take notes
+Tue May 26 13:43:23 2009 : failed to take notes
+Tue May 26 13:44:02 2009 : failed to take notes
+Tue May 26 13:45:31 2009 : failed to take notes
+Tue May 26 13:47:16 2009 : failed to take notes
+Tue May 26 13:49:52 2009 : failed to take notes
+Tue May 26 16:02:13 2009 : failed to take notes
+Tue May 26 16:02:24 2009 : failed to take notes
+Tue May 26 20:02:14 2009 : failed to take notes
+Tue May 26 20:02:32 2009 : failed to take notes
+Wed May 27 09:03:56 2009 : client: failed to connect
+Wed May 27 09:08:11 2009 : client: failed to connect
+Wed May 27 09:08:11 2009 : client: failed to connectclient: failed to connect
+Wed May 27 09:32:15 2009 : client: failed to connect
+Wed May 27 09:32:15 2009 : client: failed to connectclient: failed to connect
+Wed May 27 09:32:15 2009 : client: failed to connectclient: failed to connectclient: failed to connect
+Wed May 27 10:12:25 2009 : 1243395214.txt sent to server
+Wed May 27 10:12:26 2009 : 1243395468.txt sent to server
+Wed May 27 10:12:26 2009 : 1243395468.txt sent to servererror in opening the file
+Wed May 27 10:12:26 2009 : 1243399317.txt sent to server
+Wed May 27 10:13:31 2009 : error in opening the file
+Wed May 27 10:13:32 2009 : error in opening the fileerror in opening the file
+Wed May 27 10:25:36 2009 : 1243400123.txt sent to server
+Wed May 27 10:26:23 2009 : error in opening the file
+Wed May 27 10:32:36 2009 : error in opening the file
+Wed May 27 10:34:55 2009 : 1243400683.txt sent to server
+Wed May 27 10:40:09 2009 : 1243400995.txt sent to server
+Wed May 27 10:41:37 2009 : 1243401086.txt sent to server
+Wed May 27 10:52:29 2009 : 1243401723.txt sent to server
+Wed May 27 18:32:54 2009 : client: failed to connect
+Wed May 27 18:33:55 2009 : client: failed to connect
+Wed May 27 18:33:55 2009 : client: failed to connectclient: failed to connect

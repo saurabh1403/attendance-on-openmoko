@@ -10,7 +10,7 @@ OM_FLAGS_USED = $(OM_FLAGS_TOOLCHAIN)
 OM_FLAGS_USED_C = $(MY_FLAGS_C)
 
 
-OBJ = attendance.o combo.o main.o utils.o send_file.o begin_window.o
+OBJ = attendance.o combo.o main.o utils.o send_file.o begin_window.o notes.o notes_list.o final_window.o
 OBJ_OM = attendance_OM.o combo_OM.o main_OM.o utils_OM.o send_file_OM.o begin_window_OM.o
 
 
@@ -43,12 +43,20 @@ main.o: main.cpp $(INCLUDE_DIR)include.h
 utils.o: utils.cpp $(INCLUDE_DIR)utils.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  utils.cpp
 
+notes.o: notes.cpp $(INCLUDE_DIR)notes.h
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  notes.cpp
+	
+notes_list.o: notes_list.cpp $(INCLUDE_DIR)notes_list.h
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  notes_list.cpp
+
 send_file.o: send_file.cpp $(INCLUDE_DIR)send_file.h
 	$(GCC) -I$(INCLUDE_DIR) -lm -c send_file.cpp
 
 begin_window.o: begin_window.cpp $(INCLUDE_DIR)begin_window.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS) -c begin_window.cpp
 
+final_window.o: begin_window.cpp $(INCLUDE_DIR)final_window.h
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS) -c final_window.cpp
 
 #build commands for openmoko
 

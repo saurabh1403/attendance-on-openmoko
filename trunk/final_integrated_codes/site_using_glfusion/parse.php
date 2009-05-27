@@ -28,7 +28,7 @@ function parse_file($file_name)
 		$trash=fgets($file_handle);
 		$info['TeacherName']=chop(fgets($file_handle));
 //		echo $info['TeacherName']."<br/>\n";
-
+;;;
 		$trash=fgets($file_handle);
 		$trash=chop(fgets($file_handle));
 

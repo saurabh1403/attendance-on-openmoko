@@ -60,10 +60,15 @@ This includes moving images, data and other items inside this.<done>
 
 28. Testing of local wifi working in lab. Testing of MTNL's wifi for working without connecting it to external internet. (for saurabh).
 
-29. 
+29. Facility for taking different notes about more than one student repeatdly so that choosing class and other things can be escaped. (on openmoko side)
 
+30. Facility to provide the available classes and subject codes on php side. A table in database can be created for this thing.
 
+31. The file generated on openmoko side should contain an arrow sign before each header of values.
+e.g.
+=>Teacher Name
+Mr. Dhananjay V. Gadre
 
-
+32. While taking notes, general option should be given when no subject code is used.
 
 
