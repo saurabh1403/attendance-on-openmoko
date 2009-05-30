@@ -3,8 +3,11 @@
 
 using namespace std;
 
+Comm_Mode Current_mode = Via_WiFi;			//default communication mode
+
 void send_pending_files(Comm_Mode Current_Mode = Via_WiFi)
 {
+
 	int status;
 	string ErrMsg;
 
@@ -57,7 +60,7 @@ void take_new_attendance(string class_selected, string sub_selected)
 	else
 	{
 		update_config_file(file_name, ADD_ENTRY);
-		send_pending_files();
+		send_pending_files(Current_mode);
 	}
 
 }
@@ -88,33 +91,9 @@ void enter_new_notes(int argc, char * argv[],string RollList, string sub_selecte
 		else
 		{
 			update_config_file(file_name, ADD_ENTRY);
-			send_pending_files();
+			send_pending_files(Current_mode);
 		}
 
-		/*if(status<0)
-		{
-			update_log_file("failed to take attendance");	
-		}
-		else
-		{
-			update_config_file(file_name, ADD_ENTRY);
-
-			//sending of all previous files should be done here. TO DO
-			status = send_file(get_local_folder(), file_name, IP_CONNECT, PORT, ErrMsg);
-
-			if(status<0)
-			{
-				update_log_file(ErrMsg);
-			}
-
-			else
-			{
-				ErrMsg = file_name;
-				ErrMsg+= " sent to server";
-				update_log_file(ErrMsg);
-				update_config_file(file_name, DELETE_ENTRY);
-			}
-		}*/
 	}
 
 }

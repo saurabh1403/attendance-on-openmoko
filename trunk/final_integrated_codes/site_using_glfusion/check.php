@@ -1,6 +1,6 @@
 <?php
-require_once ('../lib-common.php');
-require_once './lib-common1.php';	
+//require_once ('../lib-common.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 require_once $_CONF1['path'] . 'db.php';
 
 
@@ -24,14 +24,6 @@ echo '
 
 <body>';
 
-
-echo'
-	<H1>Attendance Table</H1>
-
-	<table width="200" border="1">
-	<tr>
-    	<td>Roll No</td>
-    	<td>Name</td>';
    		$teacher_name = $_POST['teacher_name'];
 		$branch = $_POST['branch'];
 		 $section = $_POST['section'];
@@ -39,7 +31,23 @@ echo'
 		 $sub_code = $_POST['sub_code'];
 		 $month = $_POST['month'];
 
-		$i = retrieve_attendance_data($branch, $section, $year, $month, $sub_code, &$no_students, &$arr_date, &$arr_attnd, &$arr_name, &$arr_roll);
+echo'
+	<H1>Attendance Table</H1>';
+
+echo'
+	<H2>Teacher Name: ' . $teacher_name .'</H2>
+	<H2>Branch: ' . $branch .'</H2>
+	<H2>Section: ' . $section .'</H2>
+	<H2>Year of Entry: ' . $year .'</H2>
+	<H2>Subject Code: ' . $sub_code .'</H2>';
+
+
+echo'<table width="200" border="1">
+	<tr>
+    	<td>Roll No</td>
+    	<td>Name</td>';
+
+		$i = retrieve_attendance_data($branch, $section, $year, $month, $sub_code, $no_students, $arr_date, $arr_attnd, $arr_name, $arr_roll);
 
 		for($i = 0; $i < count($arr_date); $i++)
 		{

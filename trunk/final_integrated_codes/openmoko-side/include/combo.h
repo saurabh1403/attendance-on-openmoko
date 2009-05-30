@@ -16,8 +16,8 @@ typedef struct
 	GtkWidget *window;
 	GtkWidget *combo_class;
 	GtkWidget *combo_sub;
-	char *Class;
-	char *Sub;
+	string Class;
+	string Sub;
 	
 }Data;
 

@@ -2,14 +2,15 @@
 #include "notes_list.h"
 
 using namespace std;
-Option option_notes = YES;
+Option option_notes = NO;
 
 std::string file_name_notes= get_current_time_sec();
 ofstream g_notes((get_local_folder() + file_name_notes + ".txt").c_str(), ios::out);
 
 static void file_head_clicked(GtkWidget *button,gpointer File_ptr);
-
+static void all_selected(GtkWidget *button, gpointer File_ptr);
 static void final_button_clicked(GtkWidget *button,gpointer student);
+
 static void file_head_clicked(GtkWidget *button,gpointer sub_selected_ptr)
 {
 	g_notes<<"NOTES"<<endl;
@@ -25,6 +26,9 @@ static void file_head_clicked(GtkWidget *button,gpointer sub_selected_ptr)
 	gtk_main_quit();	
 }
 
+
+
+
 static void final_button_clicked(GtkWidget *button,gpointer student)
 {
 	//this is called when the attendance is finished.
@@ -34,17 +38,26 @@ static void final_button_clicked(GtkWidget *button,gpointer student)
 
 static void gui_destroy(GtkWidget *window, gpointer _null)
 {
-	option_notes = NO;
 	gtk_main_quit();
 }
 
+static void all_selected(GtkWidget *button, gpointer File_ptr)
+{
+	g_notes<<"0"<<endl;
+	gtk_main_quit();
+}
 
+static void job_done(GtkWidget *button, gpointer File_ptr)
+{
+	option_notes = YES;
+	gtk_main_quit();
+}
 int create_take_notes(int argc, char *argv[], std::string &file_name, string RollList, string sub_selected, Option &return_code)
 {
 	GtkWidget * window;
 	int no_student;
 	file_name_notes += ".txt";
-	gtk_init(&argc, &argv);
+//	gtk_init(&argc, &argv);
 	GtkWidget *vbox, *swin, *table1, *table2, *toggle_button[100], *v_separator[100], *roll_label[100];
 	GtkAdjustment *horizontal,*vertical;
 	
@@ -75,11 +88,13 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 		gtk_table_attach_defaults(GTK_TABLE(table1),toggle_button[i],2,3,i,i+1);	
 	}
 
-	GtkWidget *Button_finish;
+	GtkWidget *Button_finish, *Button_all;
 	//this has been done to limit the size of the button.
-	table2 = gtk_table_new(1,3,TRUE);
+	table2 = gtk_table_new(1,5,TRUE);
 	Button_finish = gtk_button_new_with_label("DONE");
-	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish,1,2,0,1);
+	Button_all = gtk_button_new_with_label("Select All");
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_all,1,2,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish,3,4,0,1);
 
 
 	//Creating a new scrolled window
@@ -96,7 +111,10 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 		student[i]->toggle_button = toggle_button[i];
 		g_signal_connect(G_OBJECT(Button_finish),"clicked",G_CALLBACK(final_button_clicked),student[i]);
 	}
-
+	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(file_head_clicked), &class_code);
+	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(all_selected), NULL);
+	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(job_done), NULL);
+	g_signal_connect(G_OBJECT(Button_finish),"clicked",G_CALLBACK(job_done), NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(swin),5);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swin),GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swin),table1);
@@ -108,6 +126,7 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 	gtk_container_add(GTK_CONTAINER(window),vbox);
 	gtk_widget_show_all(window);
 	gtk_main();
+	cout<<"vijay";
 	g_notes.close();
 	file_name = file_name_notes;	
 	return_code = option_notes;

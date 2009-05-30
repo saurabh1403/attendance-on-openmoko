@@ -1,6 +1,7 @@
 <?php
 
-require_once 'siteconfig1.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/siteconfig1.php';
+//require_once 'siteconfig1.php';
 
 function LogErrMsg($ErrMsg)
 {
@@ -37,6 +38,38 @@ function file_read_linewise($file_name, &$data, &$no)
 	fclose($file_handle);
 
 }
+
+
+function read_file_names($class_names_file, &$names, &$roll_no, &$no_students)
+{
+
+	file_read_linewise($class_names_file,$data,$no);
+
+	$no_students = 0;
+
+	for($i=0 ; $i<$no ; $i+=2)
+	{
+		$roll_no[$no_students] = $data[$i];
+		$names[$no_students] = $data[$i+1];
+		$no_students +=1;
+	}
+
+}
+
+
+function show1($string1)
+{
+	global $_CONF1;
+	$file_created = $_CONF1['LocalDir']. 'temp.txt';
+
+	$file = fopen($file_created,"a+") or exit("file can't be opened");
+	fputs($file, $string1."\n");
+
+	fclose($file);
+}
+
+
+
 
 
 

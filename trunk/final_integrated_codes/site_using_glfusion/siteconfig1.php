@@ -1,14 +1,17 @@
 <?php
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'siteconfig.php') !== false) {
-    die('This file can not be used on its own!');
-}
+//if (strpos(strtolower($_SERVER['PHP_SELF']), 'siteconfig.php') !== false) {
+//    die('This file can not be used on its own!');
+//}
+
+//echo "\nfor siteconfig" . $_SERVER['DOCUMENT_ROOT'] . "\n\n";
 
 global $_CONF1;
 
 // To disable your site quickly, simply set this flag to false
 $_CONF1['site_enabled'] = true;
-$_CONF1['path'] = '/var/www/gl/btp/';				//for use of php
+//$_CONF1['path'] = '/var/www/gl/btp/';				//for use of php..should be absolute path
+$_CONF1['path'] = $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/';				//for use of php..should be absolute path
 $_CONF1['path_system'] = $_CONF1['path'] . 'system/';
 $_CONF1['default_charset'] = 'utf-8';
 
