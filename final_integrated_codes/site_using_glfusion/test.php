@@ -1,7 +1,7 @@
 <?php
 
-require_once ('../lib-common.php');
-require_once 'lib-common1.php';	
+//require_once ('../lib-common.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 //require_once 'db.php';	
 
 $display =  COM_siteHeader('menu','test');

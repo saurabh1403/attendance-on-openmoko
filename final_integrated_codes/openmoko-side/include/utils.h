@@ -28,6 +28,7 @@ typedef enum ConfigFileActions
 	MODIFY_ENTRY = 3
 }ConfigFileActions;
 
+
 typedef enum UserOptions
 {
 	TakeAttendance 		= 1,		//for taking attendance for a class
@@ -36,6 +37,9 @@ typedef enum UserOptions
 }UserOptions;
 
 
+/* 
+ * the communication mode between openmoko and target device
+ */
 typedef enum comm_mode
 {
 	Via_WiFi = 1,	//data is sent via wifi
@@ -50,11 +54,13 @@ typedef struct
 	GtkWidget *toggle_button;
 }Widgets;
 
+
 typedef struct
 {
 	GtkWidget *roll_label;
 	GtkWidget *toggle_button;
 }Toggle_Widgets;
+
 
 typedef enum Option
 {

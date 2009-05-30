@@ -1,9 +1,10 @@
-
 <?php
 
-include "parse.php";
-$host = "127.0.0.1";
-$port = 3491;
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
+require_once $_CONF1['path'] . 'parse.php';
+//$host = "127.0.0.1";
+$host = "192.168.0.200";
+$port = 3494;
 $term_string = "EOF";
 $data_string = "data";			//string which indicates that data is coming
 $DATABASE_DIR = "./";
@@ -11,7 +12,6 @@ $DATABASE_DIR = "./";
 $action_type['FILE']=1;
 $action_type['UPDATE']=2;
 
-require_once 'lib-common1.php';
 
 // read client input
 function recv_string($spawn)
@@ -48,10 +48,9 @@ function recv_file($spawn)
 //	$file_created = DATABASE_DIR. $input;
 	$file_created = $_CONF1['LocalDir']. $input;
 
-	echo $file_created. "\n";
+//	echo $file_created. "\n";
 
 	$file = fopen($file_created,"w") or exit("file can't be opened");
-	echo "\nhere";
 
 	while($flag == 1)
 	{
@@ -114,4 +113,3 @@ socket_close($spawn);
 socket_close($socket);
 
 ?>
-

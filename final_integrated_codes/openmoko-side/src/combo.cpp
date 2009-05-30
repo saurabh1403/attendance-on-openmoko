@@ -14,8 +14,13 @@ static void combo_button_clicked(GtkWidget *button, gpointer struct_handle)
 	gpoint = (Data *) struct_handle;
 	gchar * data = gtk_combo_box_get_active_text((GtkComboBox *)gpoint->combo_class);
 	gpoint->Class= data;
+	
 	data = gtk_combo_box_get_active_text((GtkComboBox *)gpoint->combo_sub);
 	gpoint->Sub= data;
+	if(gpoint->Sub == "GENERAL")
+	{
+			gpoint->Sub = "0" ;
+	}
 	gtk_object_destroy((GtkObject *)gpoint->window);
 }
 

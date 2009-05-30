@@ -20,7 +20,7 @@ std::string get_current_time_str()
 	time_t seconds;
 	seconds=time(NULL);
 	std::string time_str(ctime(&seconds));
-	cout<<time_str.c_str()<<endl;
+//	cout<<time_str.c_str()<<endl;
 	return time_str.substr(0,time_str.length()-1);
 }
 
@@ -183,7 +183,7 @@ int update_config_file(std::string file_name, ConfigFileActions action)
 
 			if(data_st != string(""))
 			{
-				cout<<data_st.c_str()<<endl;
+//				cout<<data_st.c_str()<<endl;
 				list_files.push_back(data_st);
 		}
 		}

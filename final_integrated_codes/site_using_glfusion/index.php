@@ -1,101 +1,191 @@
 <?php
 
-require_once ('../lib-common.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
+
 $display =  COM_siteHeader('menu','test');
-echo $display;
+//echo $_CONF['site_url'];
+
+USES_lib_widgets();
+
+//call the WIDGET_moorotator function from lib-widgets.php
+echo WIDGET_moorotator();
+?>
 
 
-//printing of Header of the webpage
+<script type="text/javascript">
+	window.addEvent('domready', function() {
+		var rotator = new gl_mooRotator('gl_moorotator', {
+			controls: true,
+			delay: 7000,
+			duration: 800,
+			autoplay: true
+		});
+	});
+</script>
+
+<?php
+
+
 echo '
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>DASO</title>
-<style type="text/css">
-<!--
-.style3 {font-size: 36px}
--->
-</style>
-</head>
+<div id="gl_moorotator">
+	<div class="gl_moorotator">
+		<div class="gl_moorotatorimage">
+			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission" target="_blank">
+				<img src="' . $_CONF1['ImageDir'] . 'moorotator1.jpg" alt="Welcome to NSIT" title="Welcome to NSIT" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext">
+					<b>Welcome to NSIT!</b>
+				<p>
+				Know more about NSIT!!
+				</p>
+		</div>
+	</div>
+
+	<div class="gl_moorotator">
+		<div class="gl_moorotatorimage">
+			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:nouveau#custom_header_images" target="_blank">
+				<img src="' . $_CONF1['ImageDir'] . 'moorotator3.jpg" alt="ECE,NSIT" title="ECE,NSIT" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext">
+					<b>Welcome to ECE block</b>
+				<p>
+				Electronics and Communication Engineering!
+				</p>
+		</div>
+	</div>
+
+	<div class="gl_moorotator">
+		<div class="gl_moorotatorimage">
+			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:language" target="_blank">
+				<img src="' . $_CONF1['ImageDir'] . 'moorotator2.jpg" alt="glFusion Mission" title="glFusion Mission" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext">
+					<b>Automatic time management</b>
+				<p>
+				Take attendance and notes at any time!!
+				</p>
+		</div>
+	</div>
 
 
-<body> ';
+	<div class="gl_moorotator">
+		<div class="gl_moorotatorimage">
+			<a href="http://tracker.glfusion.org" target="_blank">
+				<img src="' . $_CONF1['ImageDir'] . 'moorotator4.jpg" alt="glFusion Mission" title="glFusion Mission" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext">
+					<b>Bugs Belong in Nature, not DASO</b>
+				<p>
+				Features will continue to be added
+				</p>
+		</div>
+	</div>
 
+	<!-- repeat as needed -->
+</div>';
+
+
+?>
+
+
+<?php
+
+echo WIDGET_moospring();
 
 echo '
-<form id="form1" name="form1" method="post" action="check.php">
-  <table width="702" border="1">
-<!--    <tr>
-      <td width="692" height="79"><span class="style3">Data Acquisition System On OpenMoko</span></td>
-    </tr>
--->
-    <tr>
-      <td height="364"><table width="693" border="1">
-        <tr>
-          <td width="315" height="459"><img src="http://localhost/gl/btp/kupochart.php?cht=p&chd=t:1,2,3,4,5&chco=220099,7733DD,violet,purple,indigo&chs=125x125" width="315" height="350" /></td>
-          <td width="362"><table width="367" border="1">
-            <tr>
-              <td width="176" height="42">TEACHER NAME </td>
-              <td width="175"><input type="text" name="teacher_name" /></td>
-            </tr>
-            <tr>
-              <td height="43">BRANCH</td>
-              <td><input type="text" name="branch" /></td>
-            </tr>
-            <tr>
-              <td height="42">SECTION</td>
-              <td><input type="text" name="section" /></td>
-            </tr>
-            <tr>
-              <td height="43">YEAR</td>
-              <td><input type="text" name="year" /></td>
-            </tr>
-            <tr>
-              <td height="41">SUBJECT CODE </td>
-              <td><input type="text" name="sub_code" /></td>
-            </tr>
-            <tr>
-              <td height="39">MONTH</td>
-              
-              <td><select name="month">
-                <option value="Jan">JAN</option>
-                <option value="Feb">FEB</option>
-                <option value="Mar">MAR</option>
-                <option value="Apr">APR</option>
-                <option value="May">MAY</option>
-                <option value="Jun">JUN</option>
-                <option value="Jul">JUL</option>
-                <option value="Aug">AUG</option>
-                <option value="Sep">SEP</option>
-                <option value="Oct">OCT</option>
-                <option value="Nov">NOV</option>
-                <option value="Dec">DEC</option>
-                            </select></td>
+<center>
+<div id="gl_moospring">
+	<ul class="gl_moosprings">
+		<li>
+			<a class="gl_moospring gl_moospring1" href="http://www.glfusion.org/filemgmt/index.php">
+				<span>Grab It</span>
+			</a>
+		</li>
+		<li>
+			<a class="gl_moospring gl_moospring2" href="http://glfusion.org/wiki/doku.php">
+				<span>Grab It</span>
+			</a>
+		</li>
+		<li>
+			<a class="gl_moospring gl_moospring3" href="http://www.glfusion.org/forum/">
+				<span>Say It</span>
+			</a>
+		</li>
+		<li>
+			<a class="gl_moospring gl_moospring5" href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission">
+				<span>Join Us</span>
+			</a>
+		</li>
+	</ul>
+</div>
+</center>';
 
-            </tr>
-          </table>
-            <table width="371" height="40" border="1">
-              <tr>
-                <td width="137">&nbsp;</td>
-                <td width="94"><input type="submit" name="Submit" value="Submit Query" /></td>
-                <td width="118">&nbsp;</td>
-              </tr>
-            </table></td>
-        </tr>
-      </table></td>
-    </tr>
-  </table>
-</form> ';
+?>
 
+<script type="text/javascript" src="http://localhost/gl-test/javascript/mootools/gl_moorotator-block.js"></script>
+<script type="text/javascript">
+	window.addEvent('domready', function() {
+		var rotator = new gl_mooRotator_block('gl_moorotator_block', {
+			controls: false,  //if true, make sure to specify the absolute URL to blankimage var in gl_moorotator-block.js above.
+			delay: 4000,
+			duration: 800,
+			autoplay: true,
+			blankimage: 'http://localhost/gl-test/images/speck.gif'
+		});
+	});
+</script>
 
-//printing of footer of the webpage
-echo '
+<?php
 
-</body>
-</html>
+//USES_lib_widgets();	
 
-';
+/*
+echo'
+
+<div id="gl_moorotator_block">
+	<div class="gl_moorotator_block">
+		<div class="gl_moorotatorimage_block">
+			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:start" target="_blank">
+				<img alt="Documentation Wiki" title="Documentation Wiki" src="http://localhost/gl-test/images/library/Image/moorotatorblock1.jpg" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext_block">&nbsp;</div>
+	</div>
+
+	<div class="gl_moorotator_block">
+		<div class="gl_moorotatorimage_block">
+			<a href="http://www.glfusion.org/wiki/doku.php?id=roadmap" target="_blank">
+				<img alt="glFusion Roadmap" title="glFusion Roadmap" src="http://localhost/gl-test/images/library/Image/moorotatorblock2.jpg" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext_block">&nbsp;</div>
+	</div>
+
+	<div class="gl_moorotator_block">
+		<div class="gl_moorotatorimage_block">
+			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission" target="_blank">
+				<img alt="Join Us" title="Join Us" src="http://localhost/gl-test/images/library/Image/moorotatorblock4.jpg" />
+			</a>
+		</div>
+		<div class="gl_moorotatortext_block">&nbsp;</div>
+	</div>
+
+<!-- repeat as needed -->
+</div>';
+*/
+
+// add your static page IDs, order here is order they appear on the mooslide tabs
+//$slides = Array('mooslide_whatsnew', 'mooslide_cachetech', 'mooslide_integratedplugins', 'mooslide_mootools', 'mooslide_widgets');
+ 
+//call the WIDGET_mooslide function from lib-widgets.php
+// last 3 options below are width, height, and css id
+//return WIDGET_mooslide($slides, 560, 160, 'gl_slide');
+
+//echo '<img id="gl_moosimplebox_trigger1" src="http://192.168.1.2/gl-test/layout/nouveau/images/pgpkey.png" alt="mooSimpleBox" title="mooSimpleBox"{xhtml}>';
 
 $display = COM_siteFooter();
 echo $display;

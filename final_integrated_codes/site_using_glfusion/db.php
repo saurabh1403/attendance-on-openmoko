@@ -1,6 +1,6 @@
 <?php
-require_once ('../lib-common.php');
-require_once 'lib-common1.php';	
+//require_once ('../lib-common.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 require_once $_CONF1['path'] . 'schema_database.php';
 
 
@@ -19,7 +19,6 @@ function connect_database(&$con)
 }
 
 
-
 function create_database($db_name, $con)
 {
 	$sql_query=	"CREATE DATABASE ". $db_name;
@@ -35,16 +34,15 @@ function create_database($db_name, $con)
 }
 
 
-
-
 //create a class information having roll numbers and names of the student
 function create_class_names($db_name, $con, $class_name)
 {
 
 	$sql_query=	"DROP table " . $class_name;
 	execute_query_NR($_DB1['name'],$con,$sql_query);	
+	echo "table dropped";
 
-	$sql_query=	"CREATE TABLE  $class_name (roll_number INT NOT NULL AUTO_INCREMENT, name TEXT NOT NULL, PRIMARY KEY(roll_number) )";
+	$sql_query=	"CREATE TABLE  $class_name (roll_number varchar(10) NOT NULL, name TEXT NOT NULL, PRIMARY KEY(roll_number) )";
 
 	mysql_select_db($db_name, $con);
 
@@ -102,7 +100,6 @@ function create_attendance_table($db_name, $con, $table_name, $class_name)
 	$sql_query=	"DROP table " . $table_name;
 	execute_query_NR($_DB1['name'],$con,$sql_query);	
 
-
 	global $_SCHEMA;
 
 	$sql_query = "SELECT * from $class_name";
@@ -132,7 +129,7 @@ function create_attendance_table($db_name, $con, $table_name, $class_name)
 }
 
 
-function update_database($info, $attendance)
+function update_att_database($info, $attendance)
 {
 	global $_DB1;
 
@@ -181,9 +178,39 @@ function update_attendance_table($db_name, $con, $table_name, $info_array, $atte
 }
 
 
+function update_notes_database($info, $roll_no, $notes)
+{
+	global $_DB1;
+
+	connect_database($con);
+
+	update_notes_table($_DB1['name'], $con, $info['ClassName'],$info, $roll_no, $notes);
+
+//	mysql_close($con);
+
+}
+
+
+//update an notes for a class in the corresponding table
+function update_notes_table($db_name, $con, $table_name, $info_array, $roll_no, $notes)
+{
+	global $_DB1;
+
+	$sql_query = "SELECT notes_file from " . $_DB1['table_prefix'] . "ODASI where Branch = '". $info_array['Branch'] . "' and Section = '". $info_array['Section']. "' and Year = '". $info_array['EntryYear'] . "'";
+
+	$i = execute_query_single($db_name,$con,$sql_query, &$table_name);
+
+	for($i = 0; $i < count($roll_no); $i++)
+	{
+		$sql_query  = "INSERT INTO $table_name values('". $info_array['TeacherName']. "', '" . $info_array['SubjectCode']. "', '" . $info_array['OpenmokoID']. "', '" . $info_array['Date']. "', '" . $info_array['Month']. "', '" . $info_array['Year']. "', '" . $info_array['Time'] . "', '" . $info_array['TimeStamp']. "', '" . $roll_no[$i]. "', '" . $notes ."')";
+		execute_query_NR($db_name, $con, $sql_query);
+	
+	}
+}
+
+
 function create_notes_table($db_name, $con, $table_name, $class_name)
 {
-
 	mysql_select_db($db_name, $con);
 
 	$sql_query=	"DROP table " . $table_name;
@@ -195,19 +222,19 @@ function create_notes_table($db_name, $con, $table_name, $class_name)
 
 	$result = mysql_query($sql_query);
 
-	$sql_query = "CREATE TABLE ". $table_name ."(". $_SCHEMA['attendance']  ;
+	$sql_query = "CREATE TABLE ". $table_name ."(". $_SCHEMA['notes']  ;
 
-	while($row  = mysql_fetch_array($result))
-	{
+//	while($row  = mysql_fetch_array($result))
+//	{
 //		$sql_query.= ", ". $row['name'] . "  varchar(5) DEFAULT 'A'";
-		$sql_query.= ", ". "roll_". $row['roll_number']. "  TEXT ";
-	}
+//		$sql_query.= ", ". "roll_". $row['roll_number']. "  TEXT ";
+//	}
 
-	$sql_query.= ", ". $_SCHEMA['attendance_key'] . ")";
+	$sql_query.= ", ". $_SCHEMA['notes_key'] . ")";
 
 	if (mysql_query($sql_query))
 	{
-		echo "attendance table for class $table_name created \n";
+		echo "notes table for class $table_name created \n";
 	}
 
 	else
@@ -216,8 +243,6 @@ function create_notes_table($db_name, $con, $table_name, $class_name)
 	}
 
 }
-
-
 
 
 function create_ODASI_table($db_name, $con)
@@ -232,8 +257,50 @@ function update_ODASI_table($db_name, $con, $info_array)
 {
 	$sql_query  = "INSERT INTO " . $_DB1['table_prefix'] . "ODASI values('". $info_array['Branch']. "', '" . $info_array['Section']. "', '" . $info_array['Year']. "', '" . $info_array['name_file']. "', '" . $info_array['attendance_file']. "')";
 	return execute_query_NR($db_name, $con, $sql_query);
+}
+
+
+function get_class_info($branch, $section, $year_of_entry, &$student_names,&$students_roll_no)
+{
+
+	global $_DB1;
+	$db_name = $_DB1['name'];
+	connect_database($con);
+
+	$sql_query = "SELECT name_file from ". $_DB1['table_prefix'] . "ODASI where Branch = '". $branch . "' and Section = '". $section. "' and Year = '". $year_of_entry . "'";
+	execute_query_single($db_name, $con, $sql_query, &$name_file);
+
+	$sql_query = "SELECT * from ". $name_file;
+	execute_query_list($db_name, $con, $sql_query, &$no_rows, &$no_col, &$names_list);
+
+	for($i = 0;$i<$no_rows;$i++)
+	{
+		$student_names[$i] = $names_list[$i][1];
+		$students_roll_no[$i] = $names_list[$i][0];
+	}
 
 }
+
+
+function get_available_classes(&$branch, &$section, &$year_of_entry)
+{
+
+	global $_DB1;
+	$db_name = $_DB1['name'];
+	connect_database($con);
+
+	$sql_query = "SELECT Branch,Section,Year from ". $_DB1['table_prefix'] . "ODASI";
+	execute_query_list($db_name, $con, $sql_query, &$no_rows, &$no_col, &$data);
+
+	for($i = 0;$i<$no_rows;$i++)
+	{
+		$branch[$i] = $data[$i][0];
+		$section[$i] = $data[$i][1];
+		$year_of_entry[$i] = $data[$i][2];
+	}
+
+}
+
 
 
 /*
@@ -242,7 +309,7 @@ function update_ODASI_table($db_name, $con, $info_array)
  * @param
  * @return
  */
-function retrieve_attendance_data($branch, $section, $year, $month, $subject_code, $no_students, $time_stamp, $attend_stats, $student_names, $students_roll_no)
+function retrieve_attendance_data($branch, $section, $year, $month, $subject_code, &$no_students, &$time_stamp, &$attend_stats, &$student_names, &$students_roll_no)
 {
 
 	global $_DB1;
@@ -296,6 +363,127 @@ function retrieve_attendance_data($branch, $section, $year, $month, $subject_cod
 		mysql_free_result($result);
 //		mysql_close($con);
 //		mysql_select_db("glfusion", $con);
+		return 1;
+	}
+
+	else
+	{
+//		mysql_close($con);
+//		mysql_select_db("glfusion", $con);
+		return -1;
+	}
+
+}
+
+
+/*
+ * returns the daywise percentage of attendance for a month 
+ * $no_present: an array having the number of present students for each day
+ * $date: the date for which the attendance is calculated (in form of time stamp)
+ * $arr_roll_stat: an array for each roll number and it has the number of days for which the corresponding roll number is present
+ */
+function calculate_att_day_percent($branch, $section, $year_of_entry, $month, $year, $subject_code, &$no_students, &$date, &$no_present, &$no_students, &$arr_roll, &$arr_name, &$arr_roll_stat)
+{
+	$i = retrieve_attendance_data($branch, $section, $year_of_entry, $month, $subject_code, $no_students, $date, $arr_attnd, $arr_name, $arr_roll);
+
+	for($j = 0; $j < count($arr_roll); $j++)	//spanning all roll numbers
+	{
+		$arr_roll_stat[$j] =0;
+	}
+
+	for($i=0 ; $i < count($date); $i++)			//spanning all dates
+	{
+		$no_present[$i] = 0;
+		for($j = 0; $j < count($arr_roll); $j++)	//spanning all roll numbers
+		{
+			if($arr_attnd[$i][$j]==1)
+			{
+				$no_present[$i] +=1;
+				$arr_roll_stat[$j] +=1;
+			}	
+		}
+	}
+	
+//	print_r($no_present);
+	print_r($arr_roll_stat);
+}
+
+
+/*
+ * name: retrieve_notes_data_student
+ * @param
+ * $Teacher_Name: the name of the teacher who marked the comment about this paticular student
+ * $Subject_Code
+ * @return
+ */
+function retrieve_notes_data_student($branch, $section, $year_of_entry, $month, $year, $subject_code, $roll_no, &$student_name, &$time_stamp, &$notes_stats, &$ErrMsg, &$Teacher_name)
+{
+
+	global $_DB1;
+	$db_name = $_DB1['name'];
+	connect_database($con);
+
+	$sql_query = "SELECT name_file, notes_file from ". $_DB1['table_prefix'] . "ODASI where Branch = '". $branch . "' and Section = '". $section. "' and Year = '". $year_of_entry . "'";
+
+	execute_query_list($db_name, $con, $sql_query, &$no_rows, &$no_col, &$file_names);
+
+	if($no_col == 2 && $no_rows ==1)
+	{
+
+		$notes_file_name = $file_names[0][1];
+		$name_file = $file_names[0][0];
+
+		$sql_query = "SELECT name from ". $name_file . " where roll_number = '" . $roll_no . "'";
+
+		execute_query_single($db_name, $con, $sql_query, &$student_name);
+		
+		mysql_select_db($db_name, $con);
+
+		if($month == 0)
+		{
+
+			if($year==0)
+				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0')'";
+			else	
+				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0') and Year = '" . $year . "'";
+
+		}
+
+		else
+		{
+
+			if($year==0)
+				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0') and Month = '" . $month . "'";
+			else
+				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0') and Month = '" . $month . "' and Year = '" . $year . "'";
+
+		}
+		
+
+
+		$result = mysql_query($sql_query);
+		echo $sql_query."\n\n";
+		$no_col =mysql_num_fields($result) ;
+		$no_rows = mysql_num_rows($result);
+		echo "no of col are $no_col\n";
+
+		$no_students = $no_col -8;
+
+		$row_no = 0;
+
+		while($row = mysql_fetch_array($result))
+		{
+			$time_stamp[] = $row['TimeStamp'];
+			$Teacher_name[]=$row['TeacherName'];
+			$notes_stats[]=$row['Notes'];
+
+			$row_no++;
+		}
+		
+
+		mysql_free_result($result);
+//		mysql_close($con);
+//		mysql_select_db("glfusion", $con);
 
 		return 1;
 
@@ -309,6 +497,76 @@ function retrieve_attendance_data($branch, $section, $year, $month, $subject_cod
 	}
 
 }
+
+
+
+/*
+ * name: retrieve_notes_data_student
+ * find all remarks given for a particular student
+ * @param
+ * $Teacher_Name: the name of the teacher who marked the comment about this paticular student
+ * $Subject_Code
+ * @return
+ */
+function retrieve_notes_student_all($branch, $section, $year_of_entry, $roll_no, &$subject_code, &$student_name, &$time_stamp, &$notes_stats, &$ErrMsg, &$Teacher_name)
+{
+
+	global $_DB1;
+	$db_name = $_DB1['name'];
+	connect_database($con);
+
+	$sql_query = "SELECT name_file, notes_file from ". $_DB1['table_prefix'] . "ODASI where Branch = '". $branch . "' and Section = '". $section. "' and Year = '". $year_of_entry . "'";
+
+	execute_query_list($db_name, $con, $sql_query, &$no_rows, &$no_col, &$file_names);
+
+	if($no_col == 2 && $no_rows ==1)
+	{
+
+		$notes_file_name = $file_names[0][1];
+		$name_file = $file_names[0][0];
+
+		$sql_query = "SELECT name from ". $name_file . "where roll_number = '" . $roll_no . "'";
+		execute_query_single($db_name, $con, $sql_query, &$student_name);
+
+		mysql_select_db($db_name, $con);
+
+		$sql_query = "SELECT * from ". $notes_file_name . " where (Roll_No = '" . $roll_no . "' or Roll_No = '0')'";
+
+		$result = mysql_query($sql_query);
+
+		$no_col =mysql_num_fields($result) ;
+		$no_rows = mysql_num_rows($result);
+
+		$row_no = 0;
+
+		while($row = mysql_fetch_array($result))
+		{
+			$time_stamp[] = $row['TimeStamp'];
+			$Teacher_name[]=$row['TeacherName'];
+			$notes_stats[]=$row['notes'];
+			$subject_code[]=$row['SubjectCode'];
+
+			$row_no++;
+		}
+
+		mysql_free_result($result);
+//		mysql_close($con);
+//		mysql_select_db("glfusion", $con);
+
+		return 1;
+
+	}
+
+	else
+	{
+//		mysql_close($con);
+//		mysql_select_db("glfusion", $con);
+		return -1;
+	}
+
+}
+
+
 
 /*
  * name: execute_query_NR
@@ -324,7 +582,7 @@ function execute_query_NR($db_name, $con, $sql_query)
 
 	if (mysql_query($sql_query))
 	{
-		echo "query executed\n";
+//		echo "query executed\n";
 		return 1;
 	}
 
@@ -378,10 +636,10 @@ function execute_query_single($db_name, $con, $sql_query, $op)
 	
 	if ($result = mysql_query($sql_query))
 	{
-		echo "query executed\n";
+//		echo "query executed\n";
 		$row = mysql_fetch_array($result);
 		$op = $row[0];
-		echo "\nrsult is $op\n\n";
+
 		return 1;
 	}
 
@@ -425,7 +683,5 @@ function populate_table ($db_name, $con, $no_students, $names1)
 	}
 
 }
-
-
 
 ?>
