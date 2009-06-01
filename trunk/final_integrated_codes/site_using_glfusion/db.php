@@ -302,6 +302,13 @@ function get_available_classes(&$branch, &$section, &$year_of_entry)
 }
 
 
+//returns all the subjects available for all branches
+function get_all_subjects(&$branch,&$subject)
+{
+	
+	
+	
+}
 
 /*
  * 
@@ -403,14 +410,12 @@ function calculate_att_day_percent($branch, $section, $year_of_entry, $month, $y
 			}	
 		}
 	}
-	
-//	print_r($no_present);
-	print_r($arr_roll_stat);
+
 }
 
 
 /*
- * name: retrieve_notes_data_student
+ * name: retrieve_notes_data_student: finds  remarks for a student for a particular subject
  * @param
  * $Teacher_Name: the name of the teacher who marked the comment about this paticular student
  * $Subject_Code
@@ -443,7 +448,7 @@ function retrieve_notes_data_student($branch, $section, $year_of_entry, $month, 
 		{
 
 			if($year==0)
-				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0')'";
+				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0')";
 			else	
 				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0') and Year = '" . $year . "'";
 
@@ -458,14 +463,10 @@ function retrieve_notes_data_student($branch, $section, $year_of_entry, $month, 
 				$sql_query = "SELECT * from ". $notes_file_name . " where (SubjectCode = '". $subject_code . "' or SubjectCode = '0') and (Roll_No = '" . $roll_no . "' or Roll_No = '0') and Month = '" . $month . "' and Year = '" . $year . "'";
 
 		}
-		
-
 
 		$result = mysql_query($sql_query);
-		echo $sql_query."\n\n";
 		$no_col =mysql_num_fields($result) ;
 		$no_rows = mysql_num_rows($result);
-		echo "no of col are $no_col\n";
 
 		$no_students = $no_col -8;
 
@@ -473,9 +474,9 @@ function retrieve_notes_data_student($branch, $section, $year_of_entry, $month, 
 
 		while($row = mysql_fetch_array($result))
 		{
-			$time_stamp[] = $row['TimeStamp'];
-			$Teacher_name[]=$row['TeacherName'];
-			$notes_stats[]=$row['Notes'];
+			$time_stamp[$row_no] = $row['TimeStamp'];
+			$Teacher_name[$row_no]=$row['TeacherName'];
+			$notes_stats[$row_no]=$row['Notes'];
 
 			$row_no++;
 		}
@@ -501,7 +502,7 @@ function retrieve_notes_data_student($branch, $section, $year_of_entry, $month, 
 
 
 /*
- * name: retrieve_notes_data_student
+ * name: retrieve_notes_student_all
  * find all remarks given for a particular student
  * @param
  * $Teacher_Name: the name of the teacher who marked the comment about this paticular student
@@ -525,12 +526,12 @@ function retrieve_notes_student_all($branch, $section, $year_of_entry, $roll_no,
 		$notes_file_name = $file_names[0][1];
 		$name_file = $file_names[0][0];
 
-		$sql_query = "SELECT name from ". $name_file . "where roll_number = '" . $roll_no . "'";
+		$sql_query = "SELECT name from ". $name_file . " where roll_number = '" . $roll_no . "'";
 		execute_query_single($db_name, $con, $sql_query, &$student_name);
 
 		mysql_select_db($db_name, $con);
 
-		$sql_query = "SELECT * from ". $notes_file_name . " where (Roll_No = '" . $roll_no . "' or Roll_No = '0')'";
+		$sql_query = "SELECT * from ". $notes_file_name . " where (Roll_No = '" . $roll_no . "' or Roll_No = '0' )";
 
 		$result = mysql_query($sql_query);
 
@@ -541,10 +542,10 @@ function retrieve_notes_student_all($branch, $section, $year_of_entry, $roll_no,
 
 		while($row = mysql_fetch_array($result))
 		{
-			$time_stamp[] = $row['TimeStamp'];
-			$Teacher_name[]=$row['TeacherName'];
-			$notes_stats[]=$row['notes'];
-			$subject_code[]=$row['SubjectCode'];
+			$time_stamp[$row_no] = $row['TimeStamp'];
+			$Teacher_name[$row_no]=$row['TeacherName'];
+			$notes_stats[$row_no]=$row['Notes'];
+			$subject_code[$row_no]=$row['SubjectCode'];
 
 			$row_no++;
 		}

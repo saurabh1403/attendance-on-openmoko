@@ -24,21 +24,27 @@ echo '
 
 <body>';
 
-   		$teacher_name = $_POST['teacher_name'];
-		$branch = $_POST['branch'];
-		 $section = $_POST['section'];
-		 $year = $_POST['year'];
-		 $sub_code = $_POST['sub_code'];
-		 $month = $_POST['month'];
+$teacher_name = $_POST['teacher_name'];
+$branch = $_POST['branch'];
+$section = $_POST['section'];
+$year = $_POST['year'];
+$sub_code = $_POST['sub_code'];
+$month = $_POST['month'];
 
+$att_menu_script = $_CONF['site_url'] . '/btp/' . 'att_menu.php';
 $att_stats_script = $_CONF['site_url'] . '/btp/' . 'att_stats.php';
+$self_script=$_CONF['site_url'] . '/btp/' . 'att_check.php';
+$print_script = $_CONF['site_url'] . '/btp/' . 'att_print.php';
+
+$att_stats_script.="?branch=".$branch."&section=".$section."&year=".$year."&sub_code=".$sub_code."&month=".$month;
 
 echo'
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-g">
 	<div class="yui-u first">
+	<br />
 		<span class="info">
 			<H2>
-				<center><strong>Attendance Table</strong>
+				<center><H1><strong>Attendance Table</strong></H1>
 				</center>
 			</H2>
 			<ul class="arrow">
@@ -46,43 +52,54 @@ echo'
 				<li>Section: ' . $section .'</li>
 				<li>Year of Entry: ' . $year .'</li>
 				<li>Subject Code: ' . $sub_code .'</li>
+				<li>Data for the month: ' . $month .'</li>
 			</ul>
 		</span> 
-	</div>
+	</div>';
 
-	<div class="yui-u">
 
-		<ul class="script">
+
+echo'	<div class="yui-u">	
+
+		<ul class="script"><li>
 		<strong>
-			<a href="http://www.nsit.com">
+			<a href="'. $print_script .'">
 				<li>Print It</li>
 			</a>
-			</strong>
+			</strong></li>
 		</ul>
 		<br />
-		<ul class="bullet-star">
+
+		<ul class="bullet-star"><li>
+		<strong>
+			<a href="'. $att_menu_script .'">
+				<li>View Attendance data for a different month</li>
+			</a>
+			</strong></li>
+		</ul>
+		<br />
+		
+		
+		<ul class="bullet-star"><li>
 		<strong>
 			<a href="'. $att_stats_script .'">
 				<li>View overall Statistics of attendance data</li>
 			</a>
-			</strong>
+			</strong></li>
 		</ul>
 		<br />
 
-		<ul class="bullet-plus">
-		<strong>
-			<a href="http://www.nsit.com">
-				<li>Refresh the result</li>
-			</a>
-			</strong>
-		</ul>
-		
+		<form action="'. $_SERVER['PHP_SELF'] .'" method="post">
+		<input type="hidden" name="branch" value='. $branch .' />
+		<input type="hidden" name="section" value='. $section .' />
+		<input type="hidden" name="year" value='. $year .' />
+		<input type="hidden" name="sub_code" value='. $sub_code .' />
+		<input type="hidden" name="month" value='. $month .' />
+				<ul class="bullet-plus"><li>
+		<input type="submit" name="submit" value="Refresh The Result" /></li>
+				</ul>		
+		</form>
 	</div>
-
-
-
-
-
 </div>';
 
 

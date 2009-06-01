@@ -22,7 +22,7 @@ function draw_my_bar($vals,$xlabel,$ylabel)
 //	if (isset($_POST['h_yaxislabel'])) $h_yaxislabel = $_POST['h_yaxislabel']; else $h_yaxislabel = "Beers";
 	if (isset($_POST['h_xaxislabel'])) $h_xaxislabel = $_POST['h_xaxislabel']; else $h_xaxislabel = $xlabel;
 	if (isset($_POST['h_yaxislabel'])) $h_yaxislabel = $_POST['h_yaxislabel']; else $h_yaxislabel = $ylabel;
-	
+
 	if (!isset($_POST['h_width']))
 	{
 		$h_drawscale = "checked";
@@ -36,7 +36,7 @@ function draw_my_bar($vals,$xlabel,$ylabel)
 	$H->bgcolor = "#EFFFDD";                     // #FFFFFF par défaut
 	$H->DrawScale = ($h_drawscale != "");        // true par défaut
 //	$H->DrawGradLine = ($h_drawgradline != "");  // false par défaut     
-	$H->DrawGradLine = 1;  // false par défaut     
+	$H->DrawGradLine = 0;  // false par défaut     
 	$H->border=$h_border;                        // 0 par défaut
 //	$H->ShowValue = ($h_showvalue != "");        // false par défaut
 	$H->ShowValue = 1;        // false par défaut	

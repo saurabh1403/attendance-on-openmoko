@@ -46,6 +46,7 @@ echo '
 
 
 $att_menu_script = $_CONF['site_url'] . '/btp/' . 'att_menu.php';
+$remarks_menu_script = $_CONF['site_url'] . '/btp/' . 'remarks_menu.php';
 
 echo '<H1 style="color:green">
 <ul class="arrow">
@@ -57,9 +58,9 @@ View student\'s attendance data
 </a>
 <br>
 
-<a href="http://www.nsit.com">
+<a href="'.$remarks_menu_script.'">
 <li>
-View Remarks
+View Remarks for students
 </li>
 </a>
 <br>

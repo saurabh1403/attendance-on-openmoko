@@ -459,12 +459,12 @@
                               "up", "right");
       }
     }
-    
+
     function __CorrectMinMax(&$min, &$max, &$step) {
       if (($max % $step) != 0) $max += ($step - abs($max % $step));
       if (($min % $step) != 0) $min -= abs($min % $step);
     }
-    
+
     function __DrawHorizontalGridlines() {
       $maxy = $this->graph_height - $this->graph_padding['bottom'];
       $miny = $this->graph_padding['top'];

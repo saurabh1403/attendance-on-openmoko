@@ -2,9 +2,9 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 require_once $_CONF1['path'] . 'parse.php';
-//$host = "127.0.0.1";
-$host = "192.168.0.200";
-$port = 3494;
+$host = "127.0.0.1";
+//$host = "192.168.0.200";
+$port = 3491;
 $term_string = "EOF";
 $data_string = "data";			//string which indicates that data is coming
 $DATABASE_DIR = "./";
