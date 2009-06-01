@@ -5,6 +5,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 $display =  COM_siteHeader('menu','test');
 //echo $_CONF['site_url'];
 
+
+echo '<ul class="arrow"><li>
+<blockquote><center><p> Welcome to DASO</p></center></blockquote>
+</li></ul>';
+
 USES_lib_widgets();
 
 //call the WIDGET_moorotator function from lib-widgets.php
@@ -106,17 +111,17 @@ echo '
 			</a>
 		</li>
 		<li>
-			<a class="gl_moospring gl_moospring2" href="http://glfusion.org/wiki/doku.php">
+			<a class="gl_moospring gl_moospring3" href="http://glfusion.org/wiki/doku.php">
 				<span>Grab It</span>
 			</a>
 		</li>
 		<li>
-			<a class="gl_moospring gl_moospring3" href="http://www.glfusion.org/forum/">
+			<a class="gl_moospring gl_moospring2" href="http://www.glfusion.org/forum/">
 				<span>Say It</span>
 			</a>
 		</li>
 		<li>
-			<a class="gl_moospring gl_moospring5" href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission">
+			<a class="gl_moospring gl_moospring4" href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission">
 				<span>Join Us</span>
 			</a>
 		</li>
@@ -139,8 +144,96 @@ echo '
 	});
 </script>
 
+
+
+<script type="text/javascript">
+window.addEvent('domready', function() {
+//-vertical slide
+	var mySlideV = new Fx.Slide('gl_moodrawerV').hide();
+		$('toggleV').addEvent('click', function(e){
+			e = new Event(e);
+			mySlideV.toggle();
+			e.stop();
+        });
+//--horizontal
+    var mySlideH = new Fx.Slide('gl_moodrawerH', {mode: 'horizontal'}).hide();
+        $('toggleH').addEvent('click', function(e){
+            e = new Event(e);
+            mySlideH.toggle();
+            e.stop();
+        });
+});
+</script>
+
+<div style="width:300px; padding:10px; clear:both;" id="gl_moodrawerV">
+<span class="info">Using MooTools, you can place any content you want in drawers!
+<p>This is an example of a vertical drawer.</p>
+</span>
+</div>
+
+<center>
+<a href="#" style="float: left;" id="toggleV">Introducing Vertical MooDrawers</a><br />
+<a href="#" style="float: left;" id="toggleH">Introducing Horizontal MooDrawers</a><br />
+</center>
+
+
+<div style="width:300px; padding:10px; clear:both;" id="gl_moodrawerH">
+<span class="info">Using MooTools, you can place any content you want in drawers!
+<p>This is an example of a horizontal drawer.</p>
+</span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php
 
+
+
+echo'<img id="gl_moosimplebox_trigger1" src="http://localhost/gl/layout/nouveau/images/pgpkey.png" alt="mooSimpleBox" title="mooSimpleBox"{xhtml}>
+<div id="my_gl_moosimpleboxDiv">This is html content in a sample mooSimpleBox</div>';
+
+?>
+
+<script type="text/javascript" src="http://localhost/gl/javascript/mootools/gl_moosimplebox.js"></script>
+<script language="javascript" type="text/javascript">
+window.addEvent('load',function(){
+	var p = new mooSimpleBox({
+		width:430,
+		height:195,
+		btnTitle:'Test',
+		closeBtn:'myBtn',
+		btnTitle: ' ',
+		boxClass:'gl_moosimplebox',
+		id:'gl_moosimplebox',
+		fadeSpeed:500,
+		opacity:'1',
+		addContentID:'my_gl_moosimpleboxDiv',
+		boxTitle:'My mooSimpleBox Title',
+		isDrag:'false'
+	});
+	$('gl_moosimplebox_trigger1').addEvent('click',function(e){
+		e = new Event(e).stop();
+		p.fadeIn();
+	})
+})
+</script>
+
+
+
+
+
+
+<?php
 //USES_lib_widgets();	
 
 /*

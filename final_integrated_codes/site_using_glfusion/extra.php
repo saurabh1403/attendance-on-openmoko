@@ -1,27 +1,46 @@
 <?php
 
+//require_once ('../lib-common.php');
 require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
-require_once $_CONF1['path'] . 'db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/db.php';
+//require_once 'db.php';	
 
+global $_CONF1;
 $display =  COM_siteHeader('menu','test');
-//echo $_CONF['site_url'];
+echo $display;
+?>
 
-//show1("this is error", $err);
-//echo $err;
+<html> 
+	<head> 
+	    <!-- Source File --> 
+	    <link rel="stylesheet" type="text/css" href="reset-fonts-grids.css"> 
+	</head> 
+	<body> 
 
-//retrieve_notes_data_student("ECE", "2", "2008", "May", "2009", "412", "51", $student_name, $time_stamp, $notes_stats, $ErrMsg, $Teacher_name);
-//print_r($time_stamp);
-//print_r($notes_stats);
+	<div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-gc">
 
-//get_class_info("ECE", "2", "2008", &$student_names,&$students_roll_no);
-//print_r($students_roll_no);
+<div class="yui-u first">
+<span class="alert">Create it with the following html:<br />
+<strong>&lt;span class=&quot;alert&quot;&gt;....&lt;/span&gt;</strong></span> 
+<span class="info">Create it with the following html:<br />
+<strong>&lt;span class=&quot;info&quot;&gt;....&lt;/span&gt;</strong></span> 
+<span class="down">Create it with the following html:<br />
+<strong>&lt;span class=&quot;down&quot;&gt;....&lt;/span&gt;</strong></span>
+</div>
 
-//calculate_att_day_percent("COE", "1", "2007", "May", "2009", "301", $no_students, $date, $no_present, $no_students, $arr_roll, $arr_name, $arr_roll_stat);
-//print_r($date);
 
-get_available_classes($branch, $section, $year_of_entry);
-print_r($year_of_entry);
+<div class="yui-u"><span class="note">Create it with the following html:<br />
+<strong>&lt;span class=&quot;note&quot;&gt;....&lt;/span&gt;</strong></span> <span class="idea">Create it with the following html:<br />
+<strong>&lt;span class=&quot;idea&quot;&gt;....&lt;/span&gt;</strong></span> <span class="help">Create it with the following html:<br />
 
+<strong>&lt;span class=&quot;help&quot;&gt;...&gt;&lt;/span&gt;</strong></span></div>
+
+
+</div>
+	</body> 
+</html> 
+
+<?php
 $display = COM_siteFooter();
 echo $display;
 

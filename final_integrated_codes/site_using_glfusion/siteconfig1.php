@@ -6,7 +6,7 @@
 
 //echo "\nfor siteconfig" . $_SERVER['DOCUMENT_ROOT'] . "\n\n";
 
-global $_CONF1;
+global $_CONF1,$_CONF;
 
 // To disable your site quickly, simply set this flag to false
 $_CONF1['site_enabled'] = true;
@@ -18,17 +18,16 @@ $_CONF1['default_charset'] = 'utf-8';
 //as images are used in html and javascript, hence site URL is used and not $_CONF1['path']
 
 require_once $_CONF1['path']. '../lib-common.php';
-$_CONF1['ImageDir'] = $_CONF['site_url'] . '/btp/' . 'images/';			
-
+$_CONF1['ImageDir'] = $_CONF['site_url'] . '/btp/' . 'images/';
 
 //for use in php for storing of files and other local data
 $_CONF1['DataDir'] = $_CONF1['path'] . 'data/';
 $_CONF1['LogDir'] = $_CONF1['path'] . 'logs/';
 $_CONF1['LocalDir'] = $_CONF1['path'] . 'local_dir/';
 
-
 global $_DB1;
 global $_DB_host, $_DB_name, $_DB_user, $_DB_pass, $_DB_table_prefix, $_DB_dbms;
+
 /*
 $_DB1['host'] = 'localhost';
 $_DB1['name'] = 'glfusion';
