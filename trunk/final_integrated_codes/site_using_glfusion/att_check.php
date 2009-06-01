@@ -6,7 +6,7 @@ require_once $_CONF1['path'] . 'db.php';
 
 $display =  COM_siteHeader('menu','test');
 //echo $display;
-
+global $_CONF1,$_CONF;
 
 echo '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,15 +31,59 @@ echo '
 		 $sub_code = $_POST['sub_code'];
 		 $month = $_POST['month'];
 
-echo'
-	<H1>Attendance Table</H1>';
+$att_stats_script = $_CONF['site_url'] . '/btp/' . 'att_stats.php';
 
 echo'
-	<H2>Teacher Name: ' . $teacher_name .'</H2>
-	<H2>Branch: ' . $branch .'</H2>
-	<H2>Section: ' . $section .'</H2>
-	<H2>Year of Entry: ' . $year .'</H2>
-	<H2>Subject Code: ' . $sub_code .'</H2>';
+<div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-g">
+	<div class="yui-u first">
+		<span class="info">
+			<H2>
+				<center><strong>Attendance Table</strong>
+				</center>
+			</H2>
+			<ul class="arrow">
+				<li>Branch: ' . $branch .'</li>
+				<li>Section: ' . $section .'</li>
+				<li>Year of Entry: ' . $year .'</li>
+				<li>Subject Code: ' . $sub_code .'</li>
+			</ul>
+		</span> 
+	</div>
+
+	<div class="yui-u">
+
+		<ul class="script">
+		<strong>
+			<a href="http://www.nsit.com">
+				<li>Print It</li>
+			</a>
+			</strong>
+		</ul>
+		<br />
+		<ul class="bullet-star">
+		<strong>
+			<a href="'. $att_stats_script .'">
+				<li>View overall Statistics of attendance data</li>
+			</a>
+			</strong>
+		</ul>
+		<br />
+
+		<ul class="bullet-plus">
+		<strong>
+			<a href="http://www.nsit.com">
+				<li>Refresh the result</li>
+			</a>
+			</strong>
+		</ul>
+		
+	</div>
+
+
+
+
+
+</div>';
 
 
 echo'<table width="200" border="1">
@@ -88,4 +132,5 @@ echo '
 
 $display = COM_siteFooter();
 echo $display;
+
 ?>

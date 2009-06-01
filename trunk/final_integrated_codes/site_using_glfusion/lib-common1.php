@@ -69,8 +69,4 @@ function show1($string1)
 }
 
 
-
-
-
-
 ?>

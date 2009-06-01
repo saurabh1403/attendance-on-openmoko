@@ -2,10 +2,15 @@
 
 //require_once ('../lib-common.php');
 require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/db.php';
 //require_once 'db.php';	
 
+global $_CONF1;
 $display =  COM_siteHeader('menu','test');
 echo $display;
+
+
+
 
 //printing of Header of the webpage
 echo '
@@ -23,23 +28,23 @@ echo '
 
 <body> ';
 
+
 //printing of central data of webpage
 echo '
-<form id="form1" name="form1" method="post" action="check.php">
-  <table width="702" border="1">
-<!--    <tr>
-      <td width="692" height="79"><span class="style3">Data Acquisition System On OpenMoko</span></td>
-    </tr>
--->
-    <tr>
-      <td height="364"><table width="693" border="1">
+<div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-gc">
+
+<div class="yui-u first">
+
+<form id="form1" name="form1" method="post" action="att_check.php">
+
+<table width="673" border="1">
         <tr>
-          <td width="315" height="459"><img src="' . $_CONF1['ImageDir'] . 'attendance.jpg" /></td> 
+          <td width="315" height="359"><img src="' . $_CONF1['ImageDir'] . 'attendance.jpg" /></td> 
                     <td width="362"><table width="367" border="1">
-            <tr>
+            <!--tr>
               <td width="176" height="42">TEACHER NAME </td>
               <td width="175"><input type="text" name="teacher_name" /></td>
-            </tr>
+            </tr-->
             <tr>
               <td height="43">BRANCH</td>
               <td><input type="text" name="branch" /></td>
@@ -84,19 +89,42 @@ echo '
               </tr>
             </table></td>
         </tr>
-      </table></td>
-    </tr>
-  </table>
-</form> ';
+      </table>
+
+
+</form> 
+</div>';
+
+get_available_classes($branch,$section,$year_of_entry);
+
+
+echo'
+<div class="yui-u">
+<br />
+<span class="down">
+<center><strong>Available Classes</strong></center>
+<ul class="bullet-grey">';
+
+for($i = 0;$i<count($branch);$i++)
+{
+	$temp = $branch[$i] . " -".$section[$i]. " , ".$year_of_entry[$i];
+	echo '<li>'.$temp.'</li>';
+}
+
+echo'</ul>
+
+</span> 
+<br />
+<span class="note">
+<strong>Warning: Entering any wrong section or subject code will result in different data. Be careful!!</strong>
+</span> 
+</div>
+
+</div>
+';
 
 
 //printing of footer of the webpage
-echo '
-
-</body>
-</html>
-
-';
 
 $display = COM_siteFooter();
 echo $display;
