@@ -6,9 +6,6 @@ $display =  COM_siteHeader('menu','test');
 //echo $_CONF['site_url'];
 
 
-echo '<ul class="arrow"><li>
-<blockquote><center><p> Welcome to DASO</p></center></blockquote>
-</li></ul>';
 
 USES_lib_widgets();
 
@@ -231,54 +228,11 @@ window.addEvent('load',function(){
 
 
 
-
-
 <?php
-//USES_lib_widgets();	
 
-/*
-echo'
-
-<div id="gl_moorotator_block">
-	<div class="gl_moorotator_block">
-		<div class="gl_moorotatorimage_block">
-			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:start" target="_blank">
-				<img alt="Documentation Wiki" title="Documentation Wiki" src="http://localhost/gl-test/images/library/Image/moorotatorblock1.jpg" />
-			</a>
-		</div>
-		<div class="gl_moorotatortext_block">&nbsp;</div>
-	</div>
-
-	<div class="gl_moorotator_block">
-		<div class="gl_moorotatorimage_block">
-			<a href="http://www.glfusion.org/wiki/doku.php?id=roadmap" target="_blank">
-				<img alt="glFusion Roadmap" title="glFusion Roadmap" src="http://localhost/gl-test/images/library/Image/moorotatorblock2.jpg" />
-			</a>
-		</div>
-		<div class="gl_moorotatortext_block">&nbsp;</div>
-	</div>
-
-	<div class="gl_moorotator_block">
-		<div class="gl_moorotatorimage_block">
-			<a href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission" target="_blank">
-				<img alt="Join Us" title="Join Us" src="http://localhost/gl-test/images/library/Image/moorotatorblock4.jpg" />
-			</a>
-		</div>
-		<div class="gl_moorotatortext_block">&nbsp;</div>
-	</div>
-
-<!-- repeat as needed -->
-</div>';
-*/
-
-// add your static page IDs, order here is order they appear on the mooslide tabs
-//$slides = Array('mooslide_whatsnew', 'mooslide_cachetech', 'mooslide_integratedplugins', 'mooslide_mootools', 'mooslide_widgets');
- 
-//call the WIDGET_mooslide function from lib-widgets.php
-// last 3 options below are width, height, and css id
-//return WIDGET_mooslide($slides, 560, 160, 'gl_slide');
-
-//echo '<img id="gl_moosimplebox_trigger1" src="http://192.168.1.2/gl-test/layout/nouveau/images/pgpkey.png" alt="mooSimpleBox" title="mooSimpleBox"{xhtml}>';
+echo '
+<i><blockquote><center><p>Proper Education is More Important Than Mere Education.........</p></center></blockquote></i>
+';
 
 $display = COM_siteFooter();
 echo $display;
