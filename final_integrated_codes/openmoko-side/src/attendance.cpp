@@ -2,7 +2,7 @@
 #include"attendance.h"
 
 using namespace std;
-
+int status_attend = 1;
 std::string file_name= get_current_time_sec();
 ofstream g((get_local_folder() + file_name + ".txt").c_str(), ios::out); 	
 
@@ -14,6 +14,8 @@ static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) ;
 static void final_button_clicked(GtkWidget *button,gpointer student);
 
 static void file_head_clicked(GtkWidget *button,gpointer File_ptr);
+
+static void all_selected(GtkWidget *button, gpointer class_ptr);
 
 static void toggle_button_clicked(GtkWidget *toggle_button,gpointer label) 
 {
@@ -67,6 +69,25 @@ static void final_button_clicked(GtkWidget *button,gpointer student)
 	gtk_main_quit();
 }
 
+static void all_selected(GtkWidget *button, gpointer class_ptr)
+{
+	string class_selected = *(string *)class_ptr;
+	vector<string> current(0);
+	vector<string> roll_no(0);
+	int no_student;
+	read_file((get_data_folder() + class_selected + ".txt"), no_student , current, roll_no);
+	int i;
+	for(i=0;i < no_student; i++)
+		g<<roll_no[i]<<endl<<"PRESENT"<<endl;
+	gtk_main_quit();
+}
+
+static void cancel_selected(GtkWidget *button, gpointer class_ptr)
+{
+	status_attend = -1;	
+	gtk_main_quit();
+}
+
 
 int create_take_attendance(std::string &FileName,std::string class_selected, std::string sub_selected)
 {
@@ -114,11 +135,15 @@ int create_take_attendance(std::string &FileName,std::string class_selected, std
 	}
 
 
-	GtkWidget *Button_f;
+	GtkWidget *Button_finish, *Button_all, *Button_cancel;
 	//this has been done to limit the size of the button.
-	table2=gtk_table_new(1,3,TRUE);
-	Button_f=gtk_button_new_with_label("DONE");
-	gtk_table_attach_defaults(GTK_TABLE(table2),Button_f,1,2,0,1);
+	table2 = gtk_table_new(2,5,TRUE);
+	Button_finish = gtk_button_new_with_label("DONE");
+	Button_all = gtk_button_new_with_label("Select All");
+	Button_cancel = gtk_button_new_with_label("Cancel");
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_all, 1, 2, 0, 1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_cancel, 3, 4, 0, 1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish, 2, 3, 1, 2);
 
 
 	//Creating a new scrolled window
@@ -127,14 +152,17 @@ int create_take_attendance(std::string &FileName,std::string class_selected, std
 	vertical=gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(swin));
 	Widgets * student[no_student];
 	string class_code = class_selected + " " + sub_selected;
-	g_signal_connect(G_OBJECT(Button_f),"clicked",G_CALLBACK(file_head_clicked),&class_code);
+	g_signal_connect(G_OBJECT(Button_finish),"clicked",G_CALLBACK(file_head_clicked),&class_code);
+	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(file_head_clicked), &class_code);
+	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(all_selected), &class_selected);
+	g_signal_connect(G_OBJECT(Button_cancel),"clicked",G_CALLBACK(cancel_selected), NULL);
 	for(i=0;i<no_student;i++)
 	{	
 		student[i] = g_slice_new (Widgets);
 		student[i]->label = label[i];
 		student[i]->roll_label = roll_label[i];
 		student[i]->toggle_button = toggle_button[i];
-		g_signal_connect(G_OBJECT(Button_f),"clicked",G_CALLBACK(final_button_clicked),student[i]);
+		g_signal_connect(G_OBJECT(Button_finish),"clicked",G_CALLBACK(final_button_clicked),student[i]);
 	}
 
 	gtk_container_set_border_width(GTK_CONTAINER(swin),5);
@@ -151,6 +179,6 @@ int create_take_attendance(std::string &FileName,std::string class_selected, std
 
 	FileName = file_name;
 
-	return 1;
+	return status_attend;
 }
 

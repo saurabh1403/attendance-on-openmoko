@@ -10,8 +10,6 @@ $display =  COM_siteHeader('menu','test');
 echo $display;
 
 
-
-
 //printing of Header of the webpage
 echo '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -29,9 +27,14 @@ echo '
 <body> ';
 
 
+echo'
+<div class="story-featured">
+<h1 style="color:green">View remarks for Students</h1>
+</div>';
+
+
 //printing of central data of webpage
 echo '
-<br />
 
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-gc">
 

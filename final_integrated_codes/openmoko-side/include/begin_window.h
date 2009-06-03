@@ -11,7 +11,7 @@ using namespace std;
 
 void attendance_clicked(GtkWidget *object,GtkWidget *window);
 void notes_clicked(GtkWidget *object,GtkWidget *window);
-void update_clicked(GtkWidget *object, GtkWidget *window);
+void pending_clicked(GtkWidget *object, GtkWidget *window);
 gboolean update_progress_bar (gpointer data);
 void inform_user_of_time_wasted (GtkWidget *widget, GdkEvent * event, gpointer data);
 void on_window_destroy (GtkWidget *object, gpointer user_data);

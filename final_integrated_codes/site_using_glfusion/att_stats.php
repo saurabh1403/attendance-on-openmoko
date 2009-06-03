@@ -18,24 +18,25 @@ $year_of_entry = $_GET['year'];
 $sub_code = $_GET['sub_code'];
 $month = $_GET['month'];
 
-
+/*
 echo'
 <br />
 <center><blockquote><p>This page shows all the statistics of attendance of students for a class for a particular month</p></blockquote></center>
 <br />
 ';
 
-
+*/
 
 echo'
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-g">
 	<div class="yui-u first">
-	<br />
+	<div class="story-featured"><h1 style="color:green">Attendance Statistics</h1></div>
 		<span class="info">
-			<H2>
-				<center><strong>Attendance Table</strong>
+			<!--H2>
+				<center><strong>Attendance Statistics</strong>
 				</center>
-			</H2>
+			</H2-->
+						<H2>
 			<ul class="arrow">
 				<li>Branch :  ' . $branch .'</li>
 				<li>Section :  ' . $section .'</li>
@@ -43,6 +44,7 @@ echo'
 				<li>Subject Code :  ' . $sub_code .'</li>
 				<li>Data for the month :  ' . $month .'</li>
 			</ul>
+						</H2>
 			<br />
 		</span> 
 	</div>';
@@ -99,7 +101,7 @@ echo'	<div class="yui-u">
 
 
 //*********************retrieval of attendance data from the database********************************
-calculate_att_day_percent($branch, $section, $year_of_entry, $month, $year, $sub_code, &$no_students, &$date, &$no_present, &$no_students, &$arr_roll, &$arr_name, &$arr_roll_stat);
+calculate_att_day_percent($branch, $section, $year_of_entry, $month, $year, $sub_code, $no_students, $date, $no_present, $no_students, $arr_roll, $arr_name, $arr_roll_stat);
 
 $data = array(0,0,0,0);
 
@@ -127,7 +129,7 @@ for($i=0;$i<count($date);$i++)
 
 echo'
 <br />
-<div class="story-featured"><h1><center><i>Number of Days when the attendance distribution in % is</i></center></h1></div>
+<div class="story-featured"><h1><center><i>Number of Classes when the attendance distribution in % is</i></center></h1></div>
 <br />
 ';
 
@@ -137,7 +139,7 @@ $label = '< 25% attendance *25% to 50% attendance *50% tp 75% attendance *> 75% 
 
 echo'
 <ul class="arrow">
-<li><H2>Total Number of days - '.count($date).'</H2></li>
+<li><H2>Total Number of classes held - '.count($date).'</H2></li>
 <li><H2>Total Number of students in the class - '.$no_students.'</H2></li>
 </ul>
 
@@ -169,8 +171,6 @@ $temp = count($date) % $no_points_graph;
 if($temp!=0)
 	$max_graphs+=1;		//total number of graphs to be made
 
-echo $max_graphs;
-
 for($i =0;$i<$max_graphs;$i++)
 {
 //	$temp1=0;
@@ -183,7 +183,7 @@ for($i =0;$i<$max_graphs;$i++)
 	$data_l[$i*$no_points_graph + $j+1]=$att_percent[$i*$no_points_graph + $j]*100;
 	}
 
-//	for(;$j<$no_points_graph;$j++)
+	for(;$j<$no_points_graph;$j++)
 	{
 //		$data_l[$i][$i*$no_points_graph + $j+1]=$att_percent[$i*$no_points_graph + $j]*100;
 		$data_l[$i*$no_points_graph + $j+1]=$att_percent[$i*$no_points_graph + $j]*100;
@@ -233,6 +233,7 @@ echo'
 <br />
 ';
 
+
 unset($data);
 $total_days = count($date);
 for($i=0;$i<$no_students;$i++)
@@ -255,7 +256,7 @@ $label = '< 25% attendance *25% to 50% attendance *50% tp 75% attendance *> 75% 
 
 echo'
 <ul class="arrow">
-<li><H2>Total Number of days - '.count($date).'</H2></li>
+<li><H2>Total Number of Classes held - '.count($date).'</H2></li>
 <li><H2>Total Number of students in the class - '.$no_students.'</H2></li>
 </ul>
 
@@ -274,11 +275,6 @@ echo '<H1>
 Percentage of attendance for each roll number of students
 </li></ul>
 </H1>';
-
-
-//the following lines are working for bar graph
-$vals = Array("January" => 25,"February" => 20,"March" => 22,"April" => 23,"May" => 21,"June" => 14,"July" => 21,"August" => 18,"September" => 14,"October" => 12,"November" => 28,"December" => 22);
-
 
 
 $no_bar_graphs = 10;			//number of points on x-axis in one graph
@@ -315,7 +311,7 @@ echo'
 		<span class="alert">';
 
 echo '<H1>
-<ul class="arrow"><li>
+<ul class="script"><li>
 List of Students with attendance less than 75%
 </li></ul>
 </H1>';
@@ -323,16 +319,24 @@ List of Students with attendance less than 75%
 echo '
 <ul class="bug">';
 
+//short attendance student's list
+$count_short = 0;
+
 for($i=0;$i<$no_students;$i++)
 {
 	if($att_roll_percent[$i] < 0.75)
 	{
 		echo'<li>Roll no - '.$arr_roll[$i].' , '. $arr_name[$i].'</li>';
+		$count_short+=1;
 	}
 }
 
 echo'
 </ul>
+<ul class="arrow"><li><H2>
+No. of Students with attendance less than 75% - ' . $count_short . '</H2>
+</li></ul>
+
 </div>
 </div>	';
 

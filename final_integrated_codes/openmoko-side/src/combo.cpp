@@ -5,8 +5,12 @@ using namespace std;
 
 //this the callback function it is called when the class is selceted using dropdown menu
 //This function is called when combo is selected & "DONE" button is clicked
+
+int status = 1;
+
 static void combo_button_clicked(GtkWidget * button,gpointer window1); 
 
+static void combo_cancel_button_clicked(GtkWidget *button, gpointer struct_handle); 
 
 static void combo_button_clicked(GtkWidget *button, gpointer struct_handle) 
 {
@@ -26,8 +30,8 @@ static void combo_button_clicked(GtkWidget *button, gpointer struct_handle)
 
 static void combo_cancel_button_clicked(GtkWidget *button, gpointer struct_handle) 
 {
-	//gtk_object_destroy((GtkObject *)gpoint->window);
-	//return "NULL";
+	status = -1;
+	gtk_main_quit(); 
 }
 
 int class_list_window(int argc, char* argv[], string &class_code, string &sub_code)
@@ -46,7 +50,7 @@ int class_list_window(int argc, char* argv[], string &class_code, string &sub_co
 
 	gtk_window_set_title(GTK_WINDOW(window),"Class Selection");
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
-	gtk_widget_set_size_request(window,500,400);
+//	gtk_widget_set_size_request(window,500,400);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
 	combo_class = gtk_combo_box_new_text();
 	combo_sub = gtk_combo_box_new_text();
@@ -77,7 +81,7 @@ int class_list_window(int argc, char* argv[], string &class_code, string &sub_co
 	gpoint.combo_class=(GtkWidget *)combo_class;
 	gpoint.combo_sub=(GtkWidget *)combo_sub;
 	g_signal_connect(G_OBJECT(button_done),"clicked",G_CALLBACK(combo_button_clicked),&gpoint);
-
+	g_signal_connect(G_OBJECT(button_cancel),"clicked",G_CALLBACK(combo_cancel_button_clicked),NULL);
 	//string class_selected=gpoint.p;
 	gtk_box_pack_start((GtkBox *)vbox,label_class,FALSE,TRUE,30);
 	gtk_box_pack_start((GtkBox *)vbox,combo_class,FALSE,TRUE,30);
@@ -90,7 +94,7 @@ int class_list_window(int argc, char* argv[], string &class_code, string &sub_co
 	gtk_main();
 	class_code=gpoint.Class;
 	sub_code=gpoint.Sub;
-	return 1;
+	return status;
 
 }
 

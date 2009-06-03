@@ -33,7 +33,7 @@ $month = $_POST['month'];
 
 $att_menu_script = $_CONF['site_url'] . '/btp/' . 'att_menu.php';
 $att_stats_script = $_CONF['site_url'] . '/btp/' . 'att_stats.php';
-$self_script=$_CONF['site_url'] . '/btp/' . 'att_check.php';
+//$self_script=$_CONF['site_url'] . '/btp/' . 'att_check.php';
 $print_script = $_CONF['site_url'] . '/btp/' . 'att_print.php';
 
 $att_stats_script.="?branch=".$branch."&section=".$section."&year=".$year."&sub_code=".$sub_code."&month=".$month;
@@ -41,18 +41,20 @@ $att_stats_script.="?branch=".$branch."&section=".$section."&year=".$year."&sub_
 echo'
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-g">
 	<div class="yui-u first">
-	<br />
+	<div class="story-featured"><h1 style="color:green">Attendance Data</h1></div>
 		<span class="info">
-			<H2>
+			<!--H2>
 				<center><H1><strong>Attendance Table</strong></H1>
 				</center>
-			</H2>
+			</H2-->
 			<ul class="arrow">
+			<H2>
 				<li>Branch: ' . $branch .'</li>
 				<li>Section: ' . $section .'</li>
 				<li>Year of Entry: ' . $year .'</li>
 				<li>Subject Code: ' . $sub_code .'</li>
 				<li>Data for the month: ' . $month .'</li>
+			</H2>
 			</ul>
 		</span> 
 	</div>';

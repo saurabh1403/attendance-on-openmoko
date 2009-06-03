@@ -33,7 +33,7 @@ typedef enum UserOptions
 {
 	TakeAttendance 		= 1,		//for taking attendance for a class
 	TakeNotes 			= 2,		//for taking new notes
-	UpdateOpenmokoData 	= 3			//for updating the class list and students list on openmoko
+	Pending_data 		= 3			//for updating the class list and students list on openmoko
 }UserOptions;
 
 

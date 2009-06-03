@@ -25,10 +25,10 @@ void notes_clicked(GtkWidget *object,GtkWidget *window)
 	gtk_object_destroy((GtkObject *)window);
 }
 
-void update_clicked(GtkWidget *object, GtkWidget *window)
+void pending_clicked(GtkWidget *object, GtkWidget *window)
 {
 //	cout<<"UPDATE";
-	a=UpdateOpenmokoData;
+	a=Pending_data;
 	gtk_object_destroy((GtkObject *)window);
 }
 
@@ -83,10 +83,10 @@ int begin_window(int argc, char *argv[],UserOptions &b)
 
 	GtkWidget *button_attendance = glade_xml_get_widget (xml, "button1");
 	GtkWidget *button_notes = glade_xml_get_widget (xml, "button2");
-	GtkWidget *button_update = glade_xml_get_widget (xml, "button3");
+	GtkWidget *button_pending = glade_xml_get_widget (xml, "button3");
 	g_signal_connect (G_OBJECT (button_attendance), "clicked", G_CALLBACK (attendance_clicked),window);
 	g_signal_connect (G_OBJECT (button_notes), "clicked", G_CALLBACK (notes_clicked),window);
-	g_signal_connect (G_OBJECT (button_update), "clicked", G_CALLBACK (update_clicked),window);
+	g_signal_connect (G_OBJECT (button_pending), "clicked", G_CALLBACK (pending_clicked),window);
 	g_signal_connect(G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
 	gint func_ref = g_timeout_add (100, update_progress_bar, progress_bar);
 

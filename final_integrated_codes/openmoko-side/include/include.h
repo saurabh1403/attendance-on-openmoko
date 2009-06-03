@@ -9,7 +9,8 @@
 #include "notes.h"
 #include "notes_list.h"
 #include "final_window.h"
-
+#include "backend.h"
+#include "pending.h"
 //functions protoype for main.cpp
 
 //std::string get_current_time(void);
