@@ -29,6 +29,13 @@ echo '
 <body> ';
 
 
+echo'
+<div class="story-featured">
+<h1 style="color:green">Class Attendance For a month</h1>
+</div>';
+
+
+
 //printing of central data of webpage
 echo '
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-gc">
@@ -54,7 +61,7 @@ echo '
               <td><input type="text" name="section" /></td>
             </tr>
             <tr>
-              <td height="43">YEAR</td>
+              <td height="43">YEAR OF ENTRY</td>
               <td><input type="text" name="year" /></td>
             </tr>
             <tr>
@@ -63,7 +70,6 @@ echo '
             </tr>
             <tr>
               <td height="39">MONTH</td>
-              
               <td><select name="month">
                 <option value="Jan">JAN</option>
                 <option value="Feb">FEB</option>

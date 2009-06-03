@@ -34,18 +34,18 @@ $year = $_POST['year'];
 
 
 $notes_menu_script = $_CONF['site_url'] . '/btp/' . 'remarks_menu.php';
-$self_script=$_CONF['site_url'] . '/btp/' . 'att_check.php';
 $print_script = $_CONF['site_url'] . '/btp/' . 'att_print.php';
 
 
 echo'
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-g">
 	<div class="yui-u first">
+	<div class="story-featured"><h1 style="color:green">Remarks Data</h1></div>
 		<span class="info">
-			<H2>
+			<!--H2>
 				<center><H1><strong>Remarks Data</strong></H1>
 				</center>
-			</H2>
+			</H2-->
 			<ul class="arrow">
 				<li>Branch: ' . $branch .'</li>
 				<li>Section: ' . $section .'</li>
@@ -58,9 +58,9 @@ echo'
 		</span> 
 	</div>';
 
-
-
 echo'	<div class="yui-u">	
+		<br />
+		<br />
 		<br />
 		<ul class="script"><li>
 

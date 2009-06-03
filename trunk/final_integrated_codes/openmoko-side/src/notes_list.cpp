@@ -3,7 +3,7 @@
 
 using namespace std;
 Option option_notes = NO;
-
+int status_notes = 1;
 std::string file_name_notes= get_current_time_sec();
 ofstream g_notes((get_local_folder() + file_name_notes + ".txt").c_str(), ios::out);
 
@@ -25,9 +25,6 @@ static void file_head_clicked(GtkWidget *button,gpointer sub_selected_ptr)
 	g_notes<<"Roll_no"<<endl;
 	gtk_main_quit();	
 }
-
-
-
 
 static void final_button_clicked(GtkWidget *button,gpointer student)
 {
@@ -52,6 +49,13 @@ static void job_done(GtkWidget *button, gpointer File_ptr)
 	option_notes = YES;
 	gtk_main_quit();
 }
+
+static void cancel_selected(GtkWidget *button, gpointer class_ptr)
+{
+	status_notes = -1;	
+	gtk_main_quit();
+}
+
 int create_take_notes(int argc, char *argv[], std::string &file_name, string RollList, string sub_selected, Option &return_code)
 {
 	GtkWidget * window;
@@ -88,13 +92,15 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 		gtk_table_attach_defaults(GTK_TABLE(table1),toggle_button[i],2,3,i,i+1);	
 	}
 
-	GtkWidget *Button_finish, *Button_all;
+	GtkWidget *Button_finish, *Button_all, *Button_cancel;
 	//this has been done to limit the size of the button.
 	table2 = gtk_table_new(1,5,TRUE);
 	Button_finish = gtk_button_new_with_label("DONE");
 	Button_all = gtk_button_new_with_label("Select All");
+	Button_cancel = gtk_button_new_with_label("Cancel");
 	gtk_table_attach_defaults(GTK_TABLE(table2),Button_all,1,2,0,1);
-	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish,3,4,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_cancel,3,4,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish,2,3,1,2);
 
 
 	//Creating a new scrolled window
@@ -114,6 +120,7 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(file_head_clicked), &class_code);
 	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(all_selected), NULL);
 	g_signal_connect(G_OBJECT(Button_all),"clicked",G_CALLBACK(job_done), NULL);
+	g_signal_connect(G_OBJECT(Button_cancel),"clicked",G_CALLBACK(cancel_selected), NULL);
 	g_signal_connect(G_OBJECT(Button_finish),"clicked",G_CALLBACK(job_done), NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(swin),5);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swin),GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -130,6 +137,6 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 	g_notes.close();
 	file_name = file_name_notes;	
 	return_code = option_notes;
-	return 1;
+	return status_notes;
 }
 

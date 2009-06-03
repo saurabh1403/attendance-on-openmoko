@@ -10,8 +10,6 @@ $display =  COM_siteHeader('menu','test');
 echo $display;
 
 
-
-
 //printing of Header of the webpage
 echo '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -29,32 +27,25 @@ echo '
 <body> ';
 
 
-
-//printing of heading of this page
-
 echo'
 <div class="story-featured">
-<h1 style="color:green">Class Performance over a period of months</h1>
+<h1 style="color:green">View Student\'s Performance</h1>
 </div>';
-
 
 
 //printing of central data of webpage
 echo '
+
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-gc">
 
 <div class="yui-u first">
 
-<form id="form1" name="form1" method="post" action="class_check.php">
+<form id="form1" name="form1" method="post" action="remarks_check.php">
 
-<table width="673" border="1">
+<table width="601" border="1">
         <tr>
-          <td width="315" height="359"><img src="' . $_CONF1['ImageDir'] . 'attendance.jpg" /></td> 
+          <td width="400" height="309"><img src="' . $_CONF1['ImageDir'] . 'notes.jpg" /></td> 
                     <td width="362"><table width="367" border="1">
-            <!--tr>
-              <td width="176" height="42">TEACHER NAME </td>
-              <td width="175"><input type="text" name="teacher_name" /></td>
-            </tr-->
             <tr>
               <td height="43">BRANCH</td>
               <td><input type="text" name="branch" /></td>
@@ -64,54 +55,42 @@ echo '
               <td><input type="text" name="section" /></td>
             </tr>
             <tr>
-              <td height="43">YEAR OF ENTRY</td>
+              <td height="43">YEAR of ENTRY (of class)</td>
               <td><input type="text" name="year_of_entry" /></td>
+            </tr>
+            <tr>
+              <td height="43">ROLL NUMBER</td>
+              <td><input type="text" name="roll_no" /></td>
             </tr>
             <tr>
               <td height="41">SUBJECT CODE </td>
               <td><input type="text" name="sub_code" /></td>
             </tr>
             <tr>
-              <td height="39">FROM</td>
-
-              <td><select name="month_from">
-                <option value= 1>JAN</option>
-                <option value=2>FEB</option>
-                <option value=3>MAR</option>
-                <option value=4>APR</option>
-                <option value=5>MAY</option>
-                <option value=6>JUN</option>
-                <option value=7>JUL</option>
-                <option value=8>AUG</option>
-                <option value=9>SEP</option>
-                <option value=10>OCT</option>
-                <option value=11>NOV</option>
-                <option value=12>DEC</option>
+              <td height="39">MONTH</td>
+              
+              <td><select name="month">
+                <option value="0">ALL</option>
+                <option value="Jan">JAN</option>
+                <option value="Feb">FEB</option>
+                <option value="Mar">MAR</option>
+                <option value="Apr">APR</option>
+                <option value="May">MAY</option>
+                <option value="Jun">JUN</option>
+                <option value="Jul">JUL</option>
+                <option value="Aug">AUG</option>
+                <option value="Sep">SEP</option>
+                <option value="Oct">OCT</option>
+                <option value="Nov">NOV</option>
+                <option value="Dec">DEC</option>
                             </select></td>
-            </tr>
 
-            <tr>
-              <td height="39">TO</td>
-              <td><select name="month_to">
-                <option value= 1>JAN</option>
-                <option value=2>FEB</option>
-                <option value=3>MAR</option>
-                <option value=4>APR</option>
-                <option value=5>MAY</option>
-                <option value=6>JUN</option>
-                <option value=7>JUL</option>
-                <option value=8>AUG</option>
-                <option value=9>SEP</option>
-                <option value=10>OCT</option>
-                <option value=11>NOV</option>
-                <option value=12>DEC</option>
-				</select></td>
             </tr>
             <tr>
-              <td height="41">YEAR </td>
+              <td height="43">YEAR</td>
               <td><input type="text" name="year" /></td>
             </tr>
-
+            
           </table>
             <table width="371" height="40" border="1">
               <tr>
@@ -122,6 +101,7 @@ echo '
             </table></td>
         </tr>
       </table>
+
 
 </form> 
 </div>';
@@ -147,7 +127,9 @@ echo'</ul>
 </span> 
 <br />
 <span class="note">
-<strong>Warning: Entering any wrong section or subject code will result in different data. Be careful!!</strong>
+<strong>Enter "0" for fields whom you want to get the general information.E.g. subject code 0 will mean for all subjects.
+Similarly for YEAR and ROLL Number.
+</strong>
 </span> 
 </div>
 

@@ -47,6 +47,9 @@ echo '
 
 $att_menu_script = $_CONF['site_url'] . '/btp/' . 'att_menu.php';
 $remarks_menu_script = $_CONF['site_url'] . '/btp/' . 'remarks_menu.php';
+$class_menu_script= $_CONF['site_url'] . '/btp/' . 'class_menu.php';
+$student_menu_script = $_CONF['site_url'] . '/btp/' . 'student_menu.php';
+
 
 echo '<H1 style="color:green">
 <ul class="arrow">
@@ -65,14 +68,14 @@ View Remarks for students
 </a>
 <br>
 
-<a href="http://www.nsit.com">
+<a href="'.$student_menu_script.'">
 <li>
 View student\'s performance
 </li>
 </a>
 <br>
 
-<a href="http://www.nsit.com">
+<a href="'.$class_menu_script.'">
 <li>
 View Class performance
 </li>

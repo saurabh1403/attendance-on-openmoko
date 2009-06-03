@@ -117,25 +117,29 @@ int main(int argc, char* argv[])
 	int status;Option return_code = YES;
 //	while(return_code == YES)
 	{
+		status = backend(argc, argv); 
 		status = begin_window(argc, argv,option_selected);
 		cout<<option_selected;
 		switch (option_selected)
 		{
 
 			case TakeAttendance:
-					class_list_window(argc,argv, class_selected, sub_selected);
-					cout<<class_selected<<" "<<sub_selected;
-					take_new_attendance(class_selected, sub_selected);
+					status = class_list_window(argc,argv, class_selected, sub_selected);
+					if(status > 0)
+						take_new_attendance(class_selected, sub_selected);
+//					cout<<class_selected<<" "<<sub_selected;
 					break;
 
 			case TakeNotes:
-					class_list_window(argc, argv, class_selected, sub_selected); 
+					status = class_list_window(argc, argv, class_selected, sub_selected); 
+					if(status > 0)
+						enter_new_notes(argc, argv, class_selected ,sub_selected);
 //					cout<<"\n\nreturn code is"<<(return_code==YES);
-					enter_new_notes(argc, argv, class_selected ,sub_selected);
 					break;
 
-			case UpdateOpenmokoData:
-					update_openmoko_data();
+			case Pending_data:
+					Current_mode = pending_data( argc, argv);
+					send_pending_files(Current_mode);
 					break;
 
 			default:
