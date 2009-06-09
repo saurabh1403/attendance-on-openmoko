@@ -23,7 +23,7 @@ void send_pending_files(Comm_Mode Current_Mode = Via_WiFi)
 	for(int i =0;i<no_file;i++)
 	{
 		if(Current_Mode == Via_WiFi)
-			status = send_file(get_local_folder(), list_files[i], IP_LOCAL_LOOPBACK, PORT, ErrMsg);
+			status = send_file(get_local_folder(), list_files[i], IP_CONNECT, PORT, ErrMsg);
 
 		else if(Current_Mode == Via_Wire)
 			status = send_file(get_local_folder(), list_files[i], IP_USB, PORT, ErrMsg);
@@ -99,14 +99,6 @@ void enter_new_notes(int argc, char * argv[],string RollList, string sub_selecte
 }
 
 
-void update_openmoko_data()
-{
-	
-	
-	
-}
-
-
 int main(int argc, char* argv[]) 
 {
 
@@ -120,6 +112,7 @@ int main(int argc, char* argv[])
 		status = backend(argc, argv); 
 		status = begin_window(argc, argv,option_selected);
 		cout<<option_selected;
+
 		switch (option_selected)
 		{
 
@@ -138,7 +131,7 @@ int main(int argc, char* argv[])
 					break;
 
 			case Pending_data:
-					Current_mode = pending_data( argc, argv);
+					Current_mode = pending_data(argc, argv);
 					send_pending_files(Current_mode);
 					break;
 
@@ -150,5 +143,3 @@ int main(int argc, char* argv[])
 	}
 	return 0;	
 }
-
-

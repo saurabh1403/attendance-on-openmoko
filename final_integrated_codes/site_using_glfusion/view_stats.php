@@ -7,6 +7,14 @@ global $_CONF1,$_CONF;
 $display =  COM_siteHeader('menu','test');
 echo $display;
 
+
+$att_menu_script = $_CONF['site_url'] . '/btp/' . 'att_menu.php';
+$remarks_menu_script = $_CONF['site_url'] . '/btp/' . 'remarks_menu.php';
+$class_menu_script= $_CONF['site_url'] . '/btp/' . 'class_menu.php';
+$student_menu_script = $_CONF['site_url'] . '/btp/' . 'student_menu.php';
+$contact_us_script = $_CONF['site_url'] . '/btp/' . 'contact_us.php';
+
+
 USES_lib_widgets();
 
 echo WIDGET_moospring();
@@ -20,23 +28,23 @@ echo '
 <div id="gl_moospring">
 	<ul class="gl_moosprings">
 		<li>
-			<a class="gl_moospring gl_moospring5" href="http://www.glfusion.org/filemgmt/index.php">
-				<span>Grab It</span>
+			<a class="gl_moospring gl_moospring5" href="'.$class_menu_script.'">
+				<span>View attendance</span>
 			</a>
 		</li>
 		<li>
-			<a class="gl_moospring gl_moospring6" href="http://glfusion.org/wiki/doku.php">
-				<span>Grab It</span>
+			<a class="gl_moospring gl_moospring6" href="'.$remarks_menu_script.'">
+				<span>View remarks</span>
 			</a>
 		</li>
 		<li>
-			<a class="gl_moospring gl_moospring3" href="http://www.glfusion.org/forum/">
-				<span>Say It</span>
+			<a class="gl_moospring gl_moospring7" href="'.$student_menu_script.'">
+				<span>view student\'s performance</span>
 			</a>
 		</li>
 		<li>
-			<a class="gl_moospring gl_moospring4" href="http://www.glfusion.org/wiki/doku.php?id=glfusion:mission">
-				<span>Join Us</span>
+			<a class="gl_moospring gl_moospring4" href="'.$contact_us_script.'">
+				<span>view class performance</span>
 			</a>
 		</li>
 	</ul>
@@ -44,11 +52,6 @@ echo '
 </center>
 <br>';
 
-
-$att_menu_script = $_CONF['site_url'] . '/btp/' . 'att_menu.php';
-$remarks_menu_script = $_CONF['site_url'] . '/btp/' . 'remarks_menu.php';
-$class_menu_script= $_CONF['site_url'] . '/btp/' . 'class_menu.php';
-$student_menu_script = $_CONF['site_url'] . '/btp/' . 'student_menu.php';
 
 
 echo '<H1 style="color:green">

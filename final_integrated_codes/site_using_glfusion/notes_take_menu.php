@@ -1,6 +1,5 @@
 <?php
 
-//require_once ('../lib-common.php');
 require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/db.php';
 //require_once 'db.php';	
@@ -9,11 +8,7 @@ global $_CONF1;
 $display =  COM_siteHeader('menu','test');
 echo $display;
 
-
-
-
-//printing of Header of the webpage
-echo '
+echo'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -26,32 +21,32 @@ echo '
 </style>
 </head>
 
-<body> ';
+<body>';
 
 
 echo'
 <div class="story-featured">
-<h1 style="color:green">Class Attendance For a month</h1>
+<h1 style="color:green">
+Write Remarks about a student or whole class
+</h1>
 </div>';
 
+echo'
 
-
-//printing of central data of webpage
-echo '
 <div style="border-bottom: 2px solid rgb(247, 247, 247);" class="yui-gc">
 
 <div class="yui-u first">
 
-<form id="form1" name="form1" method="post" action="att_check.php">
+<form id="form1" name="form1" method="post" action="notes_select_roll.php">
 
-<table width="673" border="1">
+<table width="601" border="1">
         <tr>
-          <td width="315" height="359"><img src="' . $_CONF1['ImageDir'] . 'attendance.jpg" /></td> 
+          <td width="400" height="309"><img src="' . $_CONF1['ImageDir'] . 'notes.jpg" /></td> 
                     <td width="362"><table width="367" border="1">
-            <!--tr>
-              <td width="176" height="42">TEACHER NAME </td>
-              <td width="175"><input type="text" name="teacher_name" /></td>
-            </tr-->
+            <tr>
+              <td width="192" height="42">TEACHER NAME(without space) </td>
+              <td width="215"><input type="text" name="teacher_name" /></td>
+            </tr>
             <tr>
               <td height="43">BRANCH</td>
               <td><input type="text" name="branch" /></td>
@@ -61,15 +56,19 @@ echo '
               <td><input type="text" name="section" /></td>
             </tr>
             <tr>
-              <td height="43">YEAR OF ENTRY</td>
-              <td><input type="text" name="year" /></td>
+              <td height="43">YEAR of ENTRY (of class)</td>
+              <td><input type="text" name="year_of_entry" /></td>
             </tr>
             <tr>
               <td height="41">SUBJECT CODE </td>
               <td><input type="text" name="sub_code" /></td>
             </tr>
             <tr>
-              <td height="39">MONTH</td>
+              <td height="41">Date </td>
+              <td><input type="text" name="date" /></td>
+            </tr>
+            <tr>
+              <td height="42">MONTH</td>
               <td><select name="month">
                 <option value="Jan">JAN</option>
                 <option value="Feb">FEB</option>
@@ -83,21 +82,30 @@ echo '
                 <option value="Oct">OCT</option>
                 <option value="Nov">NOV</option>
                 <option value="Dec">DEC</option>
-                            </select></td>
-
+              </select></td>
             </tr>
+            <tr>
+              <td height="41">Year </td>
+              <td><input type="text" name="year" /></td>
+            </tr>
+            <tr>
+              <td height="41">Time (hh:mm:ss) </td>
+              <td><input type="text" name="time_now" /></td>
+            </tr>
+
           </table>
-            <table width="371" height="40" border="1">
+            <table width="368" height="34" border="1">
               <tr>
-                <td width="137">&nbsp;</td>
+                <td width="137" height="28">&nbsp;</td>
                 <td width="94"><input type="submit" name="Submit" value="Submit Query" /></td>
-                <td width="118">&nbsp;</td>
+                <td width="171">&nbsp;</td>
               </tr>
             </table></td>
         </tr>
-      </table>
-
-</form> 
+      </table></td>
+    </tr>
+  </table>
+</form>
 </div>';
 
 get_available_classes($branch,$section,$year_of_entry);
@@ -121,12 +129,14 @@ echo'</ul>
 </span> 
 <br />
 <span class="note">
-<strong>Warning: Entering any wrong section or subject code will result in different data. Be careful!!</strong>
+<strong>Enter "0" for fields whom you want to get the general information.E.g. subject code 0 will mean for all subjects.
+</strong>
 </span> 
 </div>
 
 </div>
-';
+</body>
+</html>';
 
 
 //printing of footer of the webpage
