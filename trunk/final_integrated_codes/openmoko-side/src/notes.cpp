@@ -38,6 +38,7 @@ static void on_window_destroy (GtkWidget *object, gpointer user_data)
     gtk_main_quit ();
 }
 
+
 static void combo_box_selected(GtkWidget *combo_box, gpointer text_view)
 {
 	GtkTextBuffer* Buffer;

@@ -62,7 +62,7 @@ function parse_notes_file($file_handle)
 
 	$trash=fgets($file_handle);			//Device information
 	$trash=chop(fgets($file_handle));
-	
+
 	$trash=fgets($file_handle);
 	$info['OpenmokoID']=chop(fgets($file_handle));
 
@@ -72,12 +72,10 @@ function parse_notes_file($file_handle)
 	$trash=fgets($file_handle);			//year of issue
 	$trash=chop(fgets($file_handle));
 
-
 	$info['TimeStamp']=chop(fgets($file_handle));
 // split the phrase by any number of commas or space characters,
 // which include " ", \r, \t, \n and \f
 	list($trash, $info['Month'], $info['Date'], $info['Time'],$info['Year'])=preg_split("/[\s,]+/",$info['TimeStamp']);
-
 
 	#this part extarcts the info from the file
 	$trash=fgets($file_handle);			//year of issue

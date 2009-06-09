@@ -3,6 +3,6 @@ Openmoko
 id_code
 #1234
 Teacher
-Mr-Dhananjay-Gadre
+Mr Dhananjay V. Gadre
 Year-of-Issue
 2008

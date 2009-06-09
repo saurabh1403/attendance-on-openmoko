@@ -1,5 +1,4 @@
 <?php
-//require_once ('../lib-common.php');
 require_once $_SERVER['DOCUMENT_ROOT'] . 'gl/btp/lib-common1.php';
 require_once $_CONF1['path'] . 'schema_database.php';
 

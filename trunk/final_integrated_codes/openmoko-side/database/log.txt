@@ -181,3 +181,16 @@ Tue Jun  2 03:10:58 2009 : 1243892430.txt sent to server
 Wed Jun  3 10:38:43 2009 : 1244005706.txt sent to server
 Wed Jun  3 10:39:19 2009 : 1244005737.txt sent to server
 Wed Jun  3 10:46:47 2009 : 1244006192.txt sent to server
+Wed Jun  3 20:22:42 2009 : client: failed to connect
+Wed Jun  3 20:23:43 2009 : 1244040744.txt sent to server
+Wed Jun  3 20:23:43 2009 : 1244040802.txt sent to server
+Fri Jun  5 13:56:36 2009 : 1244190369.txt sent to server
+Fri Jun  5 13:57:21 2009 : 1244190432.txt sent to server
+Fri Jun  5 13:58:25 2009 : 1244190452.txt sent to server
+Fri Jun  5 14:00:01 2009 : 1244190558.txt sent to server
+Fri Jun  5 14:00:32 2009 : 1244190621.txt sent to server
+Fri Jun  5 14:05:47 2009 : 1244190933.txt sent to server
+Fri Jun  5 14:09:58 2009 : 1244191167.txt sent to server
+Fri Jun  5 14:10:31 2009 : 1244191214.txt sent to server
+Fri Jun  5 14:14:28 2009 : 1244191449.txt sent to server
+Fri Jun  5 14:16:14 2009 : 1244191548.txt sent to server

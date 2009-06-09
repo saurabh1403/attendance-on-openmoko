@@ -80,8 +80,7 @@ echo'	<div class="yui-u">
 			</strong></li>
 		</ul>
 		<br />
-		
-		
+
 		<ul class="bullet-star"><li>
 		<strong>
 			<a href="'. $att_stats_script .'">
