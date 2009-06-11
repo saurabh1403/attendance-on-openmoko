@@ -1,7 +1,7 @@
 
 #include "pending.h" 
 
-/*#pragma once
+#pragma once
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
@@ -12,7 +12,6 @@
 #include "utils.h"	
 
 Comm_Mode pending_data(int argc, char *argv[]);
-*/
 
 using namespace std;
 

@@ -10,7 +10,7 @@
 #include "utils.h"
 #define MAX_SIZE 6
 
-const string Template[] = {"The Class is Mass Bunked. ", "He was MISBEHAVIING. ", "He did PROXY. " , "He is a BACK BENCHER. ","He is a GOOD PERFORMER. " ,"He is an intelligent student"};
+const string Template[6] = {"The Class is Mass Bunked. ", "He was ABUSING. ", "He was MISBEHAVIING. ", "He did PROXY. " , "He is a GOOD PERFORMER. " ,"He is a BACK BENCHER. "};
 
 typedef struct TextBundle
 {

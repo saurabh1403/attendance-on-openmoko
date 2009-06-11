@@ -11,6 +11,8 @@
 #include "final_window.h"
 #include "backend.h"
 #include "pending.h"
+#include "final.h"
+#include "feedback.h"
 //functions protoype for main.cpp
 
 //std::string get_current_time(void);

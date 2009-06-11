@@ -74,7 +74,7 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 	vector <string> current(0); vector<string> roll_no(0);
 	read_file((get_data_folder() + RollList + ".txt"), no_student , current, roll_no);
 	int i;
-	cout<<no_student;
+//	cout<<no_student;
 	//CREATING A TABLE OF 50X3.
 	table1 = gtk_table_new(no_student,3,FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(table1),5);
@@ -94,14 +94,21 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 
 	GtkWidget *Button_finish, *Button_all, *Button_cancel;
 	//this has been done to limit the size of the button.
-	table2 = gtk_table_new(1,5,TRUE);
+/*	table2 = gtk_table_new(2,5,TRUE);
 	Button_finish = gtk_button_new_with_label("DONE");
 	Button_all = gtk_button_new_with_label("Select All");
 	Button_cancel = gtk_button_new_with_label("Cancel");
 	gtk_table_attach_defaults(GTK_TABLE(table2),Button_all,1,2,0,1);
 	gtk_table_attach_defaults(GTK_TABLE(table2),Button_cancel,3,4,0,1);
 	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish,2,3,1,2);
-
+*/
+	table2 = gtk_table_new(2,5,TRUE);
+	Button_finish = gtk_button_new_with_label("DONE");
+	Button_all = gtk_button_new_with_label("Select All");
+	Button_cancel = gtk_button_new_with_label("Cancel");
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_all,0,1,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_cancel,4,5,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table2),Button_finish,2,3,1,2);
 
 	//Creating a new scrolled window
 	swin= gtk_scrolled_window_new(NULL,NULL);
@@ -133,7 +140,7 @@ int create_take_notes(int argc, char *argv[], std::string &file_name, string Rol
 	gtk_container_add(GTK_CONTAINER(window),vbox);
 	gtk_widget_show_all(window);
 	gtk_main();
-	cout<<"vijay";
+//	cout<<"vijay";
 	g_notes.close();
 	file_name = file_name_notes;	
 	return_code = option_notes;

@@ -26,20 +26,20 @@ std::string get_current_time_str()
 
 int file_write(GtkWidget *button,gpointer student,std::ofstream &g)
 {
-	//this is called when the attendance is finished.
-	Widgets *a=(Widgets *)student;
-	GtkWidget *toggle_button=a->toggle_button;
-	GtkWidget *roll_label=a->roll_label;
+	Toggle_Widgets *a=(Toggle_Widgets *)student;
+	GtkWidget *toggle_button = a->toggle_button;
+	GtkWidget *roll_label = a->roll_label;
 	char *b;
+//	cout<<"vijay";
 	gtk_label_get((GtkLabel *)roll_label,(gchar **)&b);
-	string vijay=b;
+	string roll_no = b;
 	if(gtk_toggle_button_get_active((GtkToggleButton *)toggle_button))
 	{
-		g<<vijay<<endl<<"PRESENT"<<endl;
+		g<<roll_no<<endl<<"PRESENT"<<endl;
 	}
 	else
 	{
-		g<<vijay<<endl<<"ABSENT"<<endl;
+		g<<roll_no<<endl<<"ABSENT"<<endl;
 	}
 	return 1;
 }
