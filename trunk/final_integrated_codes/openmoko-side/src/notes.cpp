@@ -18,7 +18,7 @@ static void notes_submit(GtkWidget *button, gpointer Text_bundle)
 	ofstream file_handle((get_local_folder() + p->file_name).c_str(), ios::app);
 	file_handle<<"Comment"<<endl;
 	file_handle<<data;
-	cout<<data;
+//	cout<<data;
 	return_code = 1;
 	gtk_main_quit();
 
@@ -37,7 +37,6 @@ static void on_window_destroy (GtkWidget *object, gpointer user_data)
 	return_code = -1;
     gtk_main_quit ();
 }
-
 
 static void combo_box_selected(GtkWidget *combo_box, gpointer text_view)
 {

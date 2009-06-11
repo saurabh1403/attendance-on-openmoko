@@ -194,3 +194,5 @@ Fri Jun  5 14:09:58 2009 : 1244191167.txt sent to server
 Fri Jun  5 14:10:31 2009 : 1244191214.txt sent to server
 Fri Jun  5 14:14:28 2009 : 1244191449.txt sent to server
 Fri Jun  5 14:16:14 2009 : 1244191548.txt sent to server
+Wed Jun 10 19:13:27 2009 : failed to take attendance
+Thu Jun 11 22:48:40 2009 : client: failed to connect

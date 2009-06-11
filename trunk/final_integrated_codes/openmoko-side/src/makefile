@@ -10,9 +10,8 @@ OM_FLAGS_USED = $(OM_FLAGS_TOOLCHAIN)
 OM_FLAGS_USED_C = $(MY_FLAGS_C)
 
 
-OBJ = attendance.o combo.o main.o utils.o send_file.o begin_window.o notes.o notes_list.o final_window.o backend.o pending.o
-OBJ_OM = attendance_OM.o combo_OM.o main_OM.o utils_OM.o send_file_OM.o begin_window_OM.o notes_OM.o notes_list_OM.o final_window_OM.o backend_OM.o pending_OM.o
-
+OBJ = attendance.o combo.o main.o utils.o send_file.o begin_window.o notes.o notes_list.o final_window.o backend.o pending.o final.o feedback.o
+OBJ_OM = attendance_OM.o combo_OM.o main_OM.o utils_OM.o send_file_OM.o begin_window_OM.o notes_OM.o notes_list_OM.o final_window_OM.o backend_OM.o pending_OM.o feedback_OM.o
 
 MY_FLAGS =  `pkg-config --cflags --libs gtk+-2.0 libglade-2.0` -export-dynamic
 MY_FLAGS_C = `pkg-config --cflags gtk+-2.0 libglade-2.0` -export-dynamic
@@ -34,8 +33,14 @@ all: test neo_gui
 test: $(OBJ)
 	$(GCC) $(MY_FLAGS) -o $@ $(OBJ)
 
+feedback.o: feedback.cpp $(INCLUDE_DIR)feedback.h
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  feedback.cpp
+	
 pending.o: pending.cpp $(INCLUDE_DIR)pending.h
-	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  pending.cpp 
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  pending.cpp
+	
+final.o: final.cpp $(INCLUDE_DIR)final.h
+	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  final.cpp
 
 backend.o: backend.cpp $(INCLUDE_DIR)backend.h
 	$(GCC) -I$(INCLUDE_DIR) $(MY_FLAGS_C) -c  backend.cpp 
@@ -92,13 +97,13 @@ send_file_OM.o: send_file.cpp $(INCLUDE_DIR)send_file.h
 
 begin_window_OM.o: begin_window.cpp $(INCLUDE_DIR)begin_window.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c begin_window.cpp -o begin_window_OM.o
-	
+
 notes_OM.o: notes.cpp $(INCLUDE_DIR)notes.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  notes.cpp -o notes_OM.o
-	
+
 notes_list_OM.o: notes_list.cpp $(INCLUDE_DIR)notes_list.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  notes_list.cpp -o notes_list_OM.o
-	
+
 final_window_OM.o: begin_window.cpp $(INCLUDE_DIR)final_window.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c final_window.cpp -o final_window_OM.o
 
@@ -108,6 +113,9 @@ pending_OM.o: pending.cpp $(INCLUDE_DIR)pending.h
 backend_OM.o: backend.cpp $(INCLUDE_DIR)backend.h
 	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c  backend.cpp -o backend_OM.o
 
+feedback_OM.o: feedback.cpp $(INCLUDE_DIR)feedback.h
+	$(OM_COMPILER_USED) -I$(INCLUDE_DIR) $(OM_FLAGS_USED) -c feedback.cpp -o feedback_OM.o
+
 
 clean:
-	rm *.o test neo_gui
+	rm *.o *_OM.o test neo_gui
